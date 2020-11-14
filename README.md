@@ -37,24 +37,27 @@ library(logical)
 ```
 
 
+## `redistrict`: Simulated the Probability of Minority Candidate Emergence in Varying District Racial Compositions
+Generate a probability of minority candidate emergence with specified levels of minority co-ethnic voting and White crossover voting as follows:
+
 ```r
-out <- redistrict(coethnic=0.9, crossover=0.3, sd=5)
-out2 <- redistrict(coethnic=0.9, crossover=0.6, sd=5)
+sim1 <- redistrict(coethnic=0.9, crossover=0, sd=5)   # Strong Minority Co-ethnic Voting and No White Crossover
+sim2 <- redistrict(coethnic=0.9, crossover=0.3, sd=5) # Strong Minority Co-ethnic Voting and Moderate White Crossover
 
 # PLOT THE SIMULATED PROBABILITIES
 plot(0, type="n", ylim=c(0,1.1),xlim=c(45,65),
     ylab="Pr(Minority Candidate Emergence)",xlab="C (% of Minority Voters)",
      mgp=c(2,0.7,0))
-lines(out, col="seagreen",lwd=2)
-lines(out2, col="maroon",lwd=2)
-points(x=50, y=out[50], pch=16, cex=2, col=scales::alpha("seagreen",0.9))
-points(x=60, y=out[60], pch=16, cex=2, col=scales::alpha("seagreen",0.9))
-text(x=50, y=out[50]-0.09, labels=round(out[50],d=3), col="seagreen")
-text(x=60, y=out[60]-0.09, labels=round(out[60],d=3), col="seagreen")
-points(x=50, y=out2[50], pch=16, cex=2, col=scales::alpha("maroon", 0.9))
-points(x=60, y=out2[60], pch=16, cex=2, col=scales::alpha("maroon", 0.9))
-text(x=50, y=out2[50]+0.09, labels=round(out2[50],d=3), col="maroon")
-text(x=60, y=out2[60]+0.09, labels=round(out2[60],d=3), col="maroon")
+lines(sim1, col="seagreen",lwd=2)
+lines(sim2, col="maroon",lwd=2)
+points(x=50, y=sim1[50], pch=16, cex=2, col=scales::alpha("seagreen",0.9))
+points(x=60, y=sim1[60], pch=16, cex=2, col=scales::alpha("seagreen",0.9))
+text(x=50, y=sim1[50]-0.09, labels=round(sim1[50],d=3), col="seagreen")
+text(x=60, y=sim1[60]-0.09, labels=round(sim1[60],d=3), col="seagreen")
+points(x=50, y=sim2[50], pch=16, cex=2, col=scales::alpha("maroon", 0.9))
+points(x=60, y=sim2[60], pch=16, cex=2, col=scales::alpha("maroon", 0.9))
+text(x=50, y=sim2[50]+0.09, labels=round(sim2[50],d=3), col="maroon")
+text(x=60, y=sim2[60]+0.09, labels=round(sim2[60],d=3), col="maroon")
 ```
 
 <img src="man/figures/redistrict.png" width="50%" style="display: block; margin: auto;" />
