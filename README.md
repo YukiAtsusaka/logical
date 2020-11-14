@@ -86,7 +86,7 @@ text(x=58, y=0.2, labels="Moderate minority co-ethnic voting \n + No White cross
 
 ```
 
-<img src="man/figures/redistrict.png" width="70%" style="display: block; margin: auto;" />
+<img src="man/figures/redistrict.png" width="55%" style="display: block; margin: auto;" />
 
 <br/>
 
