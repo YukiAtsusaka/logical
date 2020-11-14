@@ -59,8 +59,11 @@ emerge
 Generate a probability of minority candidate emergence with specified levels of minority co-ethnic voting and White crossover voting as follows:
 
 ```r
-sim1 <- redistrict(coethnic=0.9, crossover=0, sd=5)   # Strong Minority Co-ethnic Voting and No White Crossover
-sim2 <- redistrict(coethnic=0.9, crossover=0.3, sd=5) # Strong Minority Co-ethnic Voting and Moderate White Crossover
+# Strong Minority Co-ethnic Voting and No White Crossover
+sim1 <- redistrict(coethnic=0.9, crossover=0, sd=5)  
+
+# Strong Minority Co-ethnic Voting and Moderate White Crossover
+sim2 <- redistrict(coethnic=0.9, crossover=0.3, sd=5) 
 
 # PLOT THE SIMULATED PROBABILITIES
 plot(0, type="n", ylim=c(0,1.1),xlim=c(45,65),
@@ -83,7 +86,7 @@ text(x=58, y=0.2, labels="Moderate minority co-ethnic voting \n + No White cross
 
 ```
 
-<img src="man/figures/redistrict.png" width="50%" style="display: block; margin: auto;" />
+<img src="man/figures/redistrict.png" width="70%" style="display: block; margin: auto;" />
 
 <br/>
 
