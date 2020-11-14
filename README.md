@@ -36,6 +36,22 @@ First, load the package.
 library(logical)
 ```
 
+## `emerge`: Simulated the Probability of Minority Candidate Emergence with Specified Values of *M* and *C*
+Generate a probability of minority candidate emergence with specified values of *M* and *C* as follows:
+
+```r
+rmargin = c(20, 50, 30)
+percent = c(40, 70, 85)
+emerge(M=rmargin, C=percent)
+emerge
+# [1] 0.9982217 1.0000000 1.0000000
+
+emerge(M=rmargin, C=percent, sd=5)
+emerge
+# [1] 0.7200551 1.0000000 1.0000000
+```
+
+
 
 ## `redistrict`: Simulated the Probability of Minority Candidate Emergence in Varying District Racial Compositions
 Generate a probability of minority candidate emergence with specified levels of minority co-ethnic voting and White crossover voting as follows:
@@ -58,6 +74,11 @@ points(x=50, y=sim2[50], pch=16, cex=2, col=scales::alpha("maroon", 0.9))
 points(x=60, y=sim2[60], pch=16, cex=2, col=scales::alpha("maroon", 0.9))
 text(x=50, y=sim2[50]+0.09, labels=round(sim2[50],d=3), col="maroon")
 text(x=60, y=sim2[60]+0.09, labels=round(sim2[60],d=3), col="maroon")
+text(x=51, y=1.02, labels="Moderate minority co-ethnic voting \n + Moderate White crossover",
+     cex=0.8, col="maroon", font=2)
+text(x=58, y=0.2, labels="Moderate minority co-ethnic voting \n + No White crossover",
+     cex=0.8, col="seagreen", font=2)
+
 ```
 
 <img src="man/figures/redistrict.png" width="50%" style="display: block; margin: auto;" />
