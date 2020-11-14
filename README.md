@@ -40,6 +40,8 @@ library(logical)
 ```r
 out <- redistrict(coethnic=0.9, crossover=0.3, sd=5)
 out2 <- redistrict(coethnic=0.9, crossover=0.6, sd=5)
+
+# PLOT THE SIMULATED PROBABILITIES
 plot(0, type="n", ylim=c(0,1.1),xlim=c(45,65),
     ylab="Pr(Minority Candidate Emergence)",xlab="C (% of Minority Voters)",
      mgp=c(2,0.7,0))
