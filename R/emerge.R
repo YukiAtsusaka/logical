@@ -1,6 +1,6 @@
 #' @title emerge
 #'
-#' @description  \code{minority_cand} computes a vector of probabilities that minority candidate emerges given M and C
+#' @description  \code{emerge} computes a vector of probabilities that minority candidate emerges given M and C
 #'
 #' @param M a vector of raw margin of victories
 #' @param C a vector of the percentages of minority voters in districts
