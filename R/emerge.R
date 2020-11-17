@@ -10,8 +10,8 @@
 #' @examples
 #' rmargin = c(20, 50, 30)
 #' percent = c(40, 70, 85)
-#' emerge_prob(M=rmargin, C=percent)
-#' emerge_prob(M=rmargin, C=percent, sd=5)
+#' emerge(M=rmargin, C=percent)
+#' emerge(M=rmargin, C=percent, sd=5)
 #' @export
 
 emerge <- function(M, C, sd=1){
