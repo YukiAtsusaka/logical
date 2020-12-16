@@ -1,6 +1,6 @@
 # logical: A Software to Compute and Visualize Quantitative Predictions of Logical Models
 
-This R package computes and visualizes the quantitative predictions of the logical model of minority candidate emergence introduced by Atsusaka (2020) ["Unifying Demand and Supply-Side Theories of Minority Representation: A Logical Model"](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3637699).
+This R package computes and visualizes the quantitative predictions of the logical model of minority candidate emergence introduced by Atsusaka (2020) ["A Logical Model for Predicting Minority Representation: Application to Redistricting and Voting Rights Studies"](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3637699).
 
 <details>
 <summary>Cite this software✒️</summary>
@@ -38,8 +38,8 @@ library(logical)
 
 <br/>
 
-## `emerge`: Simulated the Probability of Minority Candidate Emergence with Specified Values of *M* and *C*
-Generate a probability of minority candidate emergence with specified values of *M* and *C* as follows:
+## `emerge`: Predict the Probability of Minority Candidate Emergence and Electoral Success with Specified Values of *M* and *C*
+Predict a probability at which minority candidates run for office and win races in districts with specified values of *M* and *C* as follows:
 
 ```r
 rmargin = c(20, 50, 30)
@@ -59,10 +59,10 @@ emerge
 Generate a probability of minority candidate emergence with specified levels of minority co-ethnic voting and White crossover voting as follows:
 
 ```r
-# sim1: Strong Minority Co-ethnic Voting and No White Crossover
-# sim2: Strong Minority Co-ethnic Voting and Moderate White Crossover
-sim1 <- redistrict(coethnic=0.9, crossover=0, sd=5)  
-sim2 <- redistrict(coethnic=0.9, crossover=0.3, sd=5) 
+# plan1: Strong Minority Co-ethnic Voting and No White Crossover
+# plan2: Strong Minority Co-ethnic Voting and Moderate White Crossover
+plan1 <- redistrict(coethnic=0.9, crossover=0, sd=5)  
+plan2 <- redistrict(coethnic=0.9, crossover=0.3, sd=5) 
 
 # PLOT THE SIMULATED PROBABILITIES
 start <- 45 # Starting Point
