@@ -38,7 +38,7 @@ library(logical)
 
 <br/>
 
-## `emerge`: Predict the Probability of Minority Candidate Emergence and Electoral Success with Specified Values of *M* and *C*
+## `minorep`: Predict the Probability of Minority Candidate Emergence and Electoral Success with Specified Values of *M* and *C*
 Predict a probability at which minority candidates run for office and win races in districts with specified values of *M* and *C* as follows:
 
 ```r
