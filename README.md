@@ -44,13 +44,9 @@ Predict a probability at which minority candidates run for office and win races 
 ```r
 rmargin = c(20, 50, 30)
 percent = c(40, 70, 85)
-emerge(M=rmargin, C=percent)
-emerge
+minorep(M=rmargin, C=percent)
+minorep
 # [1] 0.9982217 1.0000000 1.0000000
-
-emerge(M=rmargin, C=percent, sd=5)
-emerge
-# [1] 0.7200551 1.0000000 1.0000000
 ```
 <br/>
 
