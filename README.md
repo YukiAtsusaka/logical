@@ -60,7 +60,7 @@ In *Heyes v. Louisiana* (1992), one of the main controversies was about the empi
 ```r
 plot.minorep(M=margin, C=VAP)
 ```
-
+<img src="man/figures/plot.minorep.sample.png" width="55%" style="display: block; margin: auto;" />
 
 <br/>
 
