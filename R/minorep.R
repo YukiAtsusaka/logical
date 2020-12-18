@@ -1,6 +1,6 @@
-#' @title emerge
+#' @title minorep
 #'
-#' @description  \code{emerge} computes a vector of probabilities that minority candidate emerges given M and C
+#' @description  \code{minorep} computes a vector of probabilities that minority candidate emerges given M and C
 #'
 #' @param M a vector of raw margin of victories
 #' @param C a vector of the percentages of minority voters in districts
@@ -14,7 +14,7 @@
 #' emerge(M=rmargin, C=percent, sd=5)
 #' @export
 
-emerge <- function(M, C, sd=1){
+minorep <- function(M, C, sd=1){
 
 sd=sd
 q = sqrt((M+50)*C) - 50 # GEOMETRIC MEAN
