@@ -42,9 +42,9 @@ library(logical)
 Predict a probability at which minority candidates run for office and win races in districts with specified values of *M* and *C* as follows:
 
 ```r
-rmargin <- c(20, 50, 30)
-percent <- c(40, 70, 85)
-rep.prob <- minorep(M=rmargin, C=percent)
+rmargin <- c(20, 50, 30)   # Half the Difference between the Top Minority and Top White Vote Shares
+VAP <- c(40, 70, 85)       # Minority Voting-Age Population
+rep.prob <- minorep(M=rmargin, C=VAP)
 rep.prob
 # [1] 0.9982217 1.0000000 1.0000000
 ```
@@ -58,7 +58,7 @@ In *Heyes v. Louisiana* (1992), one of the main controversies was about the empi
 ## `plot.minorep`: Visualize the Predicted Probability of Minority Representation with Input Values of  *M* and *C*
 
 ```r
-plot.minorep(rep.prob)
+plot.minorep(M=margin, C=VAP)
 ```
 
 
