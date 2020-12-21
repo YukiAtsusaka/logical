@@ -72,29 +72,21 @@ Generate a probability of minority candidate emergence with specified levels of 
 # plan2: Strong Minority Co-ethnic Voting and Moderate White Crossover
 plan1 <- redistrict(coethnic=0.9, crossover=0)  
 plan2 <- redistrict(coethnic=0.9, crossover=0.3) 
-
-# PLOT THE SIMULATED PROBABILITIES
-start <- 45 # Starting Point
-end <- 55   # Ending Point
-
-plot(0, type="n", ylim=c(-0.1,1.1),xlim=c(start-5,end+5),
-   ylab="Pr(Minority Candidate Emergence)",xlab="C (% of Minority Voters)",
-   mgp=c(2,0.7,0))
-lines(sim1, col="seagreen",lwd=2.5)
-lines(sim2, col="maroon",lwd=2.5)
- points(x=start, y=sim1[start], pch=16, cex=2, col=scales::alpha("seagreen",0.9))
- points(x=end, y=sim1[end], pch=16, cex=2, col=scales::alpha("seagreen",0.9))
- text(x=start, y=sim1[start]-0.09, labels=round(sim1[start],d=3), col="seagreen")
- text(x=end, y=sim1[end]-0.09, labels=round(sim1[end],d=3), col="seagreen")
- points(x=start, y=sim2[start], pch=16, cex=2, col=scales::alpha("maroon", 0.9))
- points(x=end, y=sim2[end], pch=16, cex=2, col=scales::alpha("maroon", 0.9))
- text(x=start, y=sim2[start]+0.09, labels=round(sim2[start],d=3), col="maroon")
- text(x=end, y=sim2[end]+0.09, labels=round(sim2[end],d=3), col="maroon")
- text(x=start+1, y=1.08, labels="Strong minority co-ethnic voting \n + Moderate White crossover",
-      cex=0.8, col="maroon", font=2)
- text(x=start+6, y=0.2, labels="Strong minority co-ethnic voting \n + No White crossover",
-      cex=0.8, col="seagreen", font=2)
 ```
+
+```r
+myplans = cbind(plan1, plan2)
+myrange = c(44,55) # From 44% to 55%
+plot.redistrict(plans=myplans, range=myrange)
+
+# To Add Title, etc.
+text(x=start, y=1.1, labels="Moderate white crossover",
+      cex=1, col="maroon", font=2)
+text(x=start+10, y=-0.09, labels="No white crossover",
+     cex=1, col="seagreen", font=2)
+ title("With Strong Minority Bloc Voting")
+```
+
 
 <img src="man/figures/redistrict.png" width="55%" style="display: block; margin: auto;" />
 
