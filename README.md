@@ -25,10 +25,8 @@ To install the latest development version of `logical` directly from
 library(devtools)
 devtools::install_github("YukiAtsusaka/logical")
 ```
-<br>
 
-
-## Example
+## Loading
 
 First, load the package.
 
