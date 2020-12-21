@@ -34,7 +34,7 @@
 redistrict <- function(coethnic, crossover, gap=NULL){
 
 # PERCENTAGE OF MINORITY VOTERS
-C = seq(from=1, to=100, by=1) 
+C = seq(from=1, to=100, by=0.1) 
     
 # TURNOUT ADJUSTED PERCENTAGE OF MINORITY VOTERS
 if(is.null(gap)){
