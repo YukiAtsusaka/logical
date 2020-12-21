@@ -31,16 +31,27 @@
 #'      cex=0.8, col="seagreen", font=2)
 #' @export 
 
-redistrict <- function(coethnic, crossover, sd){
+redistrict <- function(coethnic, crossover, gap=NULL){
 
-C.tilde = seq(from=1, to=100, by=1) 
-V_m = C.tilde*coethnic + ((100-C.tilde)*crossover)
-V_w = C.tilde*(1-coethnic) + ((100-C.tilde)*(1-crossover))
-M.tilde = 1/2*(V_m - V_w) + 50 
+# PERCENTAGE OF MINORITY VOTERS
+C = seq(from=1, to=100, by=1) 
+    
+# TURNOUT ADJUSTED PERCENTAGE OF MINORITY VOTERS
+if(is.null(gap)){
+C = C
+}else{
+C = (C*gap[1])/(C*gap[1] + (100-C)*gap[2])*100
+}
+  
+# SIMULATED RACIAL MARGIN OF VICTORY
+V_m = C*coethnic + ((100-C)*crossover)
+V_w = C*(1-coethnic) + ((100-C)*(1-crossover))
+M = 1/2*(V_m - V_w) + 50 
 
-MC.sqrt.min50 = sqrt(C.tilde*M.tilde) - 50  # GEOMETRIC MEAN  
-P  <- pnorm(MC.sqrt.min50, mean=0, sd=sd)   # Probability of Candidate Emergence
+# MODEL PREDICTIONS
+MC.sqrt.min50 = sqrt(C*M) - 50  # GEOMETRIC MEAN  
+out <- pnorm(MC.sqrt.min50)     # Probability of Candidate Emergence
 
-return(P)
+return(out)
 }
 

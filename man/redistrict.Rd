@@ -4,7 +4,7 @@
 \alias{redistrict}
 \title{redistrict}
 \usage{
-redistrict(coethnic, crossover, sd)
+redistrict(coethnic, crossover, gap = NULL)
 }
 \arguments{
 \item{coethnic}{the level of minority co-ethnic voting}
