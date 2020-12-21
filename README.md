@@ -38,7 +38,7 @@ library(logical)
 
 <br/>
 
-## `minorep`: Predict the Probability of Minority Candidate Emergence and Electoral Success with Specified Values of *M* and *C*
+## `minorep`: Predict the Probability of Minority Candidate Emergence and Electoral Success
 Predict a probability at which minority candidates run for office and win races in districts with specified values of *M* and *C* as follows:
 
 ```r
@@ -55,7 +55,7 @@ In *Heyes v. Louisiana* (1992), one of the main controversies was about the empi
 
 <br/>
 
-## `plot.minorep`: Visualize the Predicted Probability of Minority Representation with Input Values of  *M* and *C*
+## `plot.minorep`: Visualize the Predicted Probability of Minority Representation
 
 ```r
 plot.minorep(M=margin, C=VAP)
@@ -70,8 +70,8 @@ Generate a probability of minority candidate emergence with specified levels of 
 ```r
 # plan1: Strong Minority Co-ethnic Voting and No White Crossover
 # plan2: Strong Minority Co-ethnic Voting and Moderate White Crossover
-plan1 <- redistrict(coethnic=0.9, crossover=0, sd=5)  
-plan2 <- redistrict(coethnic=0.9, crossover=0.3, sd=5) 
+plan1 <- redistrict(coethnic=0.9, crossover=0)  
+plan2 <- redistrict(coethnic=0.9, crossover=0.3) 
 
 # PLOT THE SIMULATED PROBABILITIES
 start <- 45 # Starting Point
@@ -97,6 +97,16 @@ lines(sim2, col="maroon",lwd=2.5)
 ```
 
 <img src="man/figures/redistrict.png" width="55%" style="display: block; margin: auto;" />
+
+<br/>
+
+### Accounting for the Turnout Gap
+To account for the turnout gap in simulating *M*, one can simply include a vector of proportions of minority and white voters who turn out. Suppose that one knows that, from exit polls, surveys, ecological inference, and/or historical studies, turnout rates are usually 0.5 for minority voters and 0.6 for white voters.
+
+```r
+plan3 <- redistrict(coethnic=1, crossover=0.3, gap=c(0.5, 0.6))
+```
+
 
 <br/>
 
