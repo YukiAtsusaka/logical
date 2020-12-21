@@ -101,7 +101,7 @@ lines(sim2, col="maroon",lwd=2.5)
 <br/>
 
 ### Extention I (Accounting for the Turnout Gap)
-To account for the turnout gap in simulating *M*, one can simply include a vector of proportions of minority and white voters who turn out. Suppose that one knows that, from exit polls, surveys, ecological inference, and/or historical studies, turnout rates are usually 0.5 for minority voters and 0.6 for white voters.
+To account for the turnout gap in simulating *M*, one can simply include a vector of proportions of minority and white voters who turn out as an additional argument. Suppose that one knows that, from exit polls, surveys, ecological inference, and/or historical studies, turnout rates are usually 0.5 for minority voters and 0.6 for white voters.
 
 ```r
 plan3 <- redistrict(coethnic=1, crossover=0.3, gap=c(0.5, 0.6))
