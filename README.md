@@ -81,8 +81,10 @@ plan1 <- redistrict(coethnic=0.9, crossover=0)
 plan2 <- redistrict(coethnic=0.9, crossover=0.3) 
 ```
 
-
 <br/>
+
+## `plot.redistrict`: Visualize the Impact of Redistricting on the Probability of Minority Candidate Emergence/Electoral Success
+
 
 ```r
 myplans = cbind(plan1, plan2)
