@@ -66,7 +66,9 @@ plot.minorep(M=margin, C=VAP)
 Generate a probability of minority candidate emergence with specified levels of minority co-ethnic voting and White crossover voting as follows:
 
 ```r
-# Suppose that we have two district plans for which we know the expected behaviors of minority and white voters (from surveys, exit polls, ecological inference, historical analyses, etc)
+# Suppose that we have two district plans for which we know the expected behaviors of minority and white voters 
+# (from surveys, exit polls, ecological inference, historical analyses, etc)
+
 # Plan1 
 # 90% of minority voters are expected to vote for the minority candidate (Strong Minority Bloc Voting)
 # 0% of white voters are expected to vote for the minority candidate (No White Crossover)
@@ -78,6 +80,9 @@ Generate a probability of minority candidate emergence with specified levels of 
 plan1 <- redistrict(coethnic=0.9, crossover=0)  
 plan2 <- redistrict(coethnic=0.9, crossover=0.3) 
 ```
+
+
+<br/>
 
 ```r
 myplans = cbind(plan1, plan2)
