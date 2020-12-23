@@ -66,7 +66,7 @@ plot.minorep(M=margin, C=VAP)
 Generate a probability of minority candidate emergence with specified levels of minority co-ethnic voting and White crossover voting as follows:
 
 ```r
-# Suppose that we have two district plans for which we know the expected behaviors of minority and white voters 
+# Suppose we have two district plans for which we know the expected behaviors of minority and white voters 
 # (from surveys, exit polls, ecological inference, historical analyses, etc)
 
 # Plan1 
