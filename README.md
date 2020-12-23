@@ -113,7 +113,7 @@ To account for the turnout gap in simulating *M*, one can simply include a vecto
 # 30% of white voters are expected to vote for the minority candidate
 # Turnout Rates are 50% (minority voters) and 60% (white voters)
 
-plan3 <- redistrict(coethnic=1, crossover=0.3, gap=c(0.5, 0.6))
+plan3 <- redistrict(coethnic=0.9, crossover=0.3, gap=c(0.5, 0.6))
 ```
 
 
