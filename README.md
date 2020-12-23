@@ -108,6 +108,11 @@ text(x=start+10, y=-0.09, labels="No white crossover",
 To account for the turnout gap in simulating *M*, one can simply include a vector of proportions of minority and white voters who turn out as an additional argument. Suppose that one knows that, from exit polls, surveys, ecological inference, and/or historical studies, turnout rates are usually 0.5 for minority voters and 0.6 for white voters.
 
 ```r
+# Suppose we know/estimate that:
+# 90% of minority voters are expected to vote for the minority candidate
+# 30% of white voters are expected to vote for the minority candidate
+# Turnout Rates are 50% (minority voters) and 60% (white voters)
+
 plan3 <- redistrict(coethnic=1, crossover=0.3, gap=c(0.5, 0.6))
 ```
 
