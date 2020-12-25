@@ -62,7 +62,7 @@ plot.minorep(M=margin, C=VAP)
 
 <br/>
 
-## `redistrict`: Simulated the Probability of Minority Candidate Emergence in Varying District Racial Compositions
+## `redistrict`: Simulated the Probability of Minority Representation in Varying District Racial Compositions
 Generate a probability of minority candidate emergence with specified levels of minority co-ethnic voting and White crossover voting as follows:
 
 ```r
