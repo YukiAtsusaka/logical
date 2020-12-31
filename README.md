@@ -1,6 +1,9 @@
 # logical: A Software to Compute and Visualize Quantitative Predictions of Logical Models
 
-This R package computes and visualizes the quantitative predictions of the logical model of minority candidate emergence introduced by Atsusaka (2020) ["A Logical Model for Predicting Minority Representation: Application to Redistricting and Voting Rights Studies"](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3637699).
+This R package computes and visualizes the quantitative predictions of the logical model of minority candidate emergence introduced by Atsusaka (2020) ["A Logical Model for Predicting Minority Representation: Application to Redistricting and Voting Rights Studies"](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3637699). 
+
+<img src='man/figures/pexels-mathias-pr-reding-4394240.jpg' align="right" height="200" />
+
 
 <details>
 <summary>Cite this software✒️</summary>
