@@ -3,7 +3,7 @@
 [![R
 badge](https://img.shields.io/badge/Build%20with-🍚%20and%20R-blue)](https://github.com/YukiAtsusaka/cWise)
 [![CRAN\_Status\_Badge](https://www.r-pkg.org/badges/version/cWise)](https://cran.r-project.org/package=cWise)
-[![license](https://img.shields.io/badge/license-GPL--3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html) <img src='man/figures/pexels-mathias-pr-reding-4394240.jpg' align="right" height="200" />
+[![license](https://img.shields.io/badge/license-GPL--3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html) <img src='man/figures/pexels-mathias-pr-reding-4394233.jpg' align="right" height="200" />
 
 This R package computes and visualizes the quantitative predictions of the logical model of minority candidate emergence introduced by Atsusaka (2020) ["A Logical Model for Predicting Minority Representation: Application to Redistricting and Voting Rights Studies"](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3637699). 
 
