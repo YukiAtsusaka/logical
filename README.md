@@ -113,19 +113,43 @@ text(x=start+10, y=-0.09, labels="No white crossover",
 
 ## `plot.redistrict`: (2) Visualize the Percentage of Minority Voters Sufficient to Elect Minority Candidates with A Pre-Specified Probability
 
-Users can pre-specified a threshold as a probability of minority electoal success under given district plans. For example, one may be interested what percentage of minority voters is sufficient to yield 80% or higher chance of having a minority officeholder under two different plans (from the above examples).
+Users can pre-specified a threshold as a probability of minority electoal success under given district plans. For example, one may be interested what percentage of minority voters is sufficient to yield 80% or higher chance of having a minority officeholder under two different plans (from the above examples). Under this option, a probability (from 0 to 1) must be input for the optional argument "threshold" as follows:
 
 ```r
-myplans = cbind(plan1, plan2)
-plot.redistrict(plans=myplans, threshold=0.8)
+myplans = cbind(plan1, plan2)                  # Same Plans from Above
+plot.redistrict(plans=myplans, threshold=0.8)  # Setting 0.8 as a threshold value
 
 # To Add Title, etc.
 text(x=start, y=1.1, labels="Moderate white crossover",
       cex=1, col="maroon", font=2)
 text(x=start+10, y=-0.09, labels="No white crossover",
      cex=1, col="seagreen", font=2)
- title("With Strong Minority Bloc Voting")
+title("With Strong Minority Bloc Voting")
 ```
+
+
+
+## `plot.redistrict`: (3) Visualize the Degree of Potential Vote Dilution
+
+Building upon (2), one can also visualize the degree of potential vote dilution via "packing" of minority voters. For this option, one only needs to input a percentage point as an additional argument 
+
+```r
+
+myplans = cbind(plan1, plan2)                  # Same Plans from Above
+plot.redistrict(plans=myplans, 
+                threshold=0.8,                 # Setting 0.8 as a threshold value
+                C=75)                          # A plan has 75% minority voters
+
+# To Add Title, etc.
+text(x=start, y=1.1, labels="Moderate white crossover",
+      cex=1, col="maroon", font=2)
+text(x=start+10, y=-0.09, labels="No white crossover",
+     cex=1, col="seagreen", font=2)
+title("With Strong Minority Bloc Voting")
+
+
+```
+
 
 
 <img src="man/figures/redistrict_threshold.png" width="45%" style="display: block; margin: auto;" />
