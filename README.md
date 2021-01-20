@@ -1,7 +1,7 @@
 # logical: A Software to Compute and Visualize Quantitative Predictions of Logical Models
 
 [![R
-badge](https://img.shields.io/badge/Build%20with-🍚%20and%20R-blue)](https://github.com/YukiAtsusaka/cWise)
+badge](https://img.shields.io/badge/Build%20with-🍩%20and%20R-blue)](https://github.com/YukiAtsusaka/cWise)
 [![CRAN\_Status\_Badge](https://www.r-pkg.org/badges/version/cWise)](https://cran.r-project.org/package=cWise)
 [![license](https://img.shields.io/badge/license-GPL--3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html) <img src='man/figures/pexels-mathias-pr-reding-4394233.jpg' align="right" height="200" />
 
@@ -20,10 +20,20 @@ Semi-formally, **Pr(Minority Runs) = Pr(Minority Wins) = &Phi;( &Sqrt;(MC)- 50)*
     + M quantifies how safely minority candidates secure their descriptive representation relative to their white counterparts
 
 
+The logical model can answer various questions that researchers and practicioners are often interested in redistricting and voting rights cases, including:
+
+- Do minority voters have a viable chance of electing their candidate of choice in about 25\% minority (*influence*) districts? 
+- Does changing the percentage of minority voters from A (less than 50) to B (over 50) significantly increases the probability that minority candidates emerge? 
+- What percentage of minority voters is sufficient for a given district to enable minority voters to elect their co-ethnic candidates?
+- Where is the "sweet spot" -- the point at which the probability of minority candidates becomes high enough with the minimum percentage of minority voters? 
+- Does a given district plan have more minority voters than necessary to elect minority candidates, leading to a potential vote dilution? 
+- How many minority representatives are likely to be elected under a given district plan?
+
+
+This README file explains how to apply the logical model to answer these questions in specific contexts via this R package. 
+
 
 <br/>
-
-
 
 <details>
 <summary>Cite this software✒️</summary>
