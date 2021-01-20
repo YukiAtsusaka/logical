@@ -90,7 +90,7 @@ plan2 <- redistrict(coethnic=0.9, crossover=0.3)
 
 <br/>
 
-## `plot.redistrict`: Visualize the Impact of Redistricting on the Probability of Minority Candidate Emergence/Electoral Success
+## `plot.redistrict`: (1) Visualize the Impact of Redistricting on the Probability of Minority Electoral Success
 
 
 ```r
@@ -107,9 +107,29 @@ text(x=start+10, y=-0.09, labels="No white crossover",
 ```
 
 
-<img src="man/figures/redistrict.png" width="55%" style="display: block; margin: auto;" />
+<img src="man/figures/redistrict_change.png" width="55%" style="display: block; margin: auto;" />
 
 <br/>
+
+## `plot.redistrict`: (2) Visualize the Percentage of Minority Voters Sufficient to Elect Minority Candidates with A Pre-Specified Probability
+
+Users can pre-specified a threshold as a probability of minority electoal success under given district plans. For example, one may be interested what percentage of minority voters is sufficient to yield 80% or higher chance of having a minority officeholder under two different plans (from the above examples).
+
+```r
+myplans = cbind(plan1, plan2)
+plot.redistrict(plans=myplans, threshold=0.8)
+
+# To Add Title, etc.
+text(x=start, y=1.1, labels="Moderate white crossover",
+      cex=1, col="maroon", font=2)
+text(x=start+10, y=-0.09, labels="No white crossover",
+     cex=1, col="seagreen", font=2)
+ title("With Strong Minority Bloc Voting")
+```
+
+
+<img src="man/figures/redistrict_threshold.png" width="55%" style="display: block; margin: auto;" />
+
 
 ### Extention I (Accounting for the Turnout Gap)
 To account for the turnout gap in simulating *M*, one can simply include a vector of proportions of minority and white voters who turn out as an additional argument. Suppose that one knows that, from exit polls, surveys, ecological inference, and/or historical studies, turnout rates are usually 0.5 for minority voters and 0.6 for white voters.
