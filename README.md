@@ -65,7 +65,7 @@ In *Heyes v. Louisiana* (1992), one of the main controversies was about the empi
 ```r
 plot.minorep(M=margin, C=VAP)
 ```
-<img src="man/figures/plot.minorep.sample.png" width="55%" style="display: block; margin: auto;" />
+<img src="man/figures/plot.minorep.sample.png" width="5%" style="display: block; margin: auto;" />
 
 <br/>
 
@@ -107,7 +107,7 @@ text(x=start+10, y=-0.09, labels="No white crossover",
 ```
 
 
-<img src="man/figures/redistrict_change.png" width="55%" style="display: block; margin: auto;" />
+<img src="man/figures/redistrict_change.png" width="45%" style="display: block; margin: auto;" />
 
 <br/>
 
@@ -128,7 +128,7 @@ text(x=start+10, y=-0.09, labels="No white crossover",
 ```
 
 
-<img src="man/figures/redistrict_threshold.png" width="55%" style="display: block; margin: auto;" />
+<img src="man/figures/redistrict_threshold.png" width="45%" style="display: block; margin: auto;" />
 
 
 ### Extention I (Accounting for the Turnout Gap)
