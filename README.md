@@ -5,7 +5,19 @@ badge](https://img.shields.io/badge/Build%20with-🍚%20and%20R-blue)](https://g
 [![CRAN\_Status\_Badge](https://www.r-pkg.org/badges/version/cWise)](https://cran.r-project.org/package=cWise)
 [![license](https://img.shields.io/badge/license-GPL--3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html) <img src='man/figures/pexels-mathias-pr-reding-4394233.jpg' align="right" height="200" />
 
-This R package computes and visualizes the quantitative predictions of the logical model of minority candidate emergence introduced by Atsusaka (2020) ["A Logical Model for Predicting Minority Representation: Application to Redistricting and Voting Rights Studies"](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3637699). 
+This R package computes and visualizes the quantitative predictions of the logical model of minority candidate emergence introduced by Atsusaka (2020) ["A Logical Model for Predicting Minority Representation: Application to Redistricting and Voting Rights Cases"](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3637699). The logical model of minority representation states that the probability that a minority candidate runs for office is equal to the probability that the minority candidate wins the race, which in turn is a Cumulative Distribution Function (CDF) of the standard normal distribution (also known as probit) of a square-root of a product of two terms (MC) minus 50.
+
+Semi-formally: **Pr(Minority Runs) = Pr(Minority Wins) = &Phi;( &Sqrt;(MC)- 50)**, where
+
+- **C** : % minority voters in the electorate
+- **M** : (adjusted) racial margin of victory
+    = (V<sub>t-1</sub><sup>M</sup> - V<sub>t-1</sub><sup>W</sup>) + 50
+    + **V<sub>t-1</sub><sup>M</sup>** : the vote share of the "top" (most vote-earning) minority candidate in the most recent election (at time "t-1")
+    + **V<sub>t-1</sub><sup>W</sup>** : the vote share of the "top" (most vote-earning) white candidate in the most recent election (at time "t-1")
+
+
+
+<br/>
 
 
 
@@ -22,6 +34,9 @@ This R package computes and visualizes the quantitative predictions of the logic
 </details>
 
 This R package is still under development. Please let me know ([atsusaka@rice.edu](atsusaka@rice.edu)) if you find any issue installing and using the software..!
+
+
+
 
 
 ## Instllation
@@ -41,15 +56,7 @@ First, load the package.
 library(logical)
 ```
 
-<br/>
 
-## The Logical Model of Minority Representation
-
-The logical model of minority representation states that the probability that a minority candidate runs for office is equal to the probability that the minority candidate wins the race, which in turn is a Cumulative Distribution Function (CDF) of the standard normal distribution (also known as probit) of a square-root of a product of two terms (MC) minus 50. Formally,
-
-<img src="man/figures/Model.png" width="55%" style="display: block; margin: auto;" />
-
-<br/>
 
 ## `minorep`: Predict the Probability of Minority Candidate Emergence and Electoral Success
 `minorep` is a workhorse function of this package. It predicts a probability at which minority candidates run for office and win races in districts with specified values of *M* and *C*. For example, when one wants to predict the probability of minority candidate emergence and electoral success (equivalent in the logical model) for three districts for which she knows the percentage of minority voters and the (adjusted) racial margin of victory:
