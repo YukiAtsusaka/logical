@@ -43,6 +43,14 @@ library(logical)
 
 <br/>
 
+## The Logical Model of Minority Representation
+
+The logical model of minority representation states that the probability that a minority candidate runs for office is equal to the probability that the minority candidate wins the race, which in turn is a Cumulative Distribution Function (CDF) of the standard normal distribution (also known as probit) of a square-root of a product of two terms (MC) minus 50. Formally,
+
+<img src="man/figures/Model.png" width="55%" style="display: block; margin: auto;" />
+
+<br/>
+
 ## `minorep`: Predict the Probability of Minority Candidate Emergence and Electoral Success
 `minorep` is a workhorse function of this package. It predicts a probability at which minority candidates run for office and win races in districts with specified values of *M* and *C*. For example, when one wants to predict the probability of minority candidate emergence and electoral success (equivalent in the logical model) for three districts for which she knows the percentage of minority voters and the (adjusted) racial margin of victory:
 
