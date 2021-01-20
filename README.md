@@ -65,7 +65,7 @@ In *Heyes v. Louisiana* (1992), one of the main controversies was about the empi
 ```r
 plot.minorep(M=margin, C=VAP)
 ```
-<img src="man/figures/plot.minorep.sample.png" width="5%" style="display: block; margin: auto;" />
+<img src="man/figures/plot.minorep.sample.png" width="55%" style="display: block; margin: auto;" />
 
 <br/>
 
@@ -131,7 +131,7 @@ title("With Strong Minority Bloc Voting")
 
 ## `plot.redistrict`: (3) Visualize the Degree of Potential Vote Dilution
 
-Building upon (2), one can also visualize the degree of potential vote dilution via "packing" of minority voters. For this option, one only needs to input a percentage point as an additional argument 
+Building upon (2), one can also visualize the degree of potential vote dilution via "packing" of minority voters. For this option, one only needs to input a percentage point as an additional argument "C". Suppose that a district plan that one examines have 75% minority voters and she wants to know how many minority voters the district has beyond what is sufficient to elect a minority candidate with a probability of 0.8 and higher.
 
 ```r
 
