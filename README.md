@@ -44,7 +44,7 @@ library(logical)
 <br/>
 
 ## `minorep`: Predict the Probability of Minority Candidate Emergence and Electoral Success
-Predict a probability at which minority candidates run for office and win races in districts with specified values of *M* and *C* as follows:
+`minorep` is a workhorse function of this package. It predicts a probability at which minority candidates run for office and win races in districts with specified values of *M* and *C*. For example, when one wants to predict the probability of minority candidate emergence and electoral success (equivalent in the logical model) for three districts for which she knows the percentage of minority voters and the (adjusted) racial margin of victory:
 
 ```r
 rmargin <- c(20, 50, 30)   # Half the Difference between the Top Minority and Top White Vote Shares
