@@ -1,4 +1,4 @@
-# logical: A Software to Compute and Visualize Quantitative Predictions of Logical Models
+# logical: Computing and Visualizing Quantitative Predictions of Logical Models
 
 [![R
 badge](https://img.shields.io/badge/Build%20with-🍩%20and%20R-blue)](https://github.com/YukiAtsusaka/cWise)
