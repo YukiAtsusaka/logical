@@ -25,12 +25,12 @@ Semi-formally, **Pr(Minority Runs) = Pr(Minority Wins) = &Phi;( &Sqrt;(MC)- 50)*
 
 The logical model can answer various questions that researchers and practicioners are often interested in redistricting and voting rights cases, including:
 
-- Do minority voters have a viable chance of electing their candidate of choice in about 25\% minority (*influence*) districts? 
-- Does changing the percentage of minority voters from A (less than 50) to B (over 50) significantly increases the probability that minority candidates emerge? 
-- What percentage of minority voters is sufficient for a given district to enable minority voters to elect their co-ethnic candidates?
-- Where is the "sweet spot" -- the point at which the probability of minority candidates becomes high enough with the minimum percentage of minority voters? 
-- Does a given district plan have more minority voters than necessary to elect minority candidates, leading to a potential vote dilution? 
-- How many minority representatives are likely to be elected under a given district plan?
+- *Do minority voters have a viable chance of electing their candidate of choice in about 25\% minority (*influence*) districts?* 
+- *Does changing the percentage of minority voters from A (less than 50) to B (over 50) significantly increases the probability that minority candidates emerge?* 
+- *What percentage of minority voters is sufficient for a given district to enable minority voters to elect their co-ethnic candidates?*
+- *Where is the "sweet spot" -- the point at which the probability of minority candidates becomes high enough with the minimum percentage of minority voters?* 
+- *Does a given district plan have more minority voters than necessary to elect minority candidates, leading to a potential vote dilution?* 
+- *How many minority representatives are likely to be elected under a given district plan?*
 
 
 This README file explains how to apply the logical model to answer these questions in specific contexts via this R package. It also documents multiple motivating examples from actual redistricting and voting rights cases.
@@ -55,8 +55,6 @@ This R package is still under development. Please let me know ([atsusaka@rice.ed
 
 <br/>
 
-<br/>
-
 ## Instllation
 To install the latest development version of `logical` directly from
 [GitHub](https://github.com/YukiAtsusaka/logical) use:
@@ -66,7 +64,6 @@ library(devtools)
 devtools::install_github("YukiAtsusaka/logical")
 ```
 
-<br/>
 
 ## Loading
 
