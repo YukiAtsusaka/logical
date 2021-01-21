@@ -53,8 +53,9 @@ This README file explains how to apply the logical model to answer these questio
 This R package is still under development. Please let me know ([atsusaka@rice.edu](atsusaka@rice.edu)) if you find any issue installing and using the software..!
 
 
+<br/>
 
-
+<br/>
 
 ## Instllation
 To install the latest development version of `logical` directly from
@@ -64,6 +65,8 @@ To install the latest development version of `logical` directly from
 library(devtools)
 devtools::install_github("YukiAtsusaka/logical")
 ```
+
+<br/>
 
 ## Loading
 
@@ -81,7 +84,7 @@ library(logical)
 # statelegis (sample data)
 ```
 
-
+<br/>
 
 ## `minorep`: Predict the Probability of Minority Candidate Emergence and Electoral Success
 `minorep` is a workhorse function of this package. It predicts a probability at which minority candidates run for office and win races in districts with specified values of *M* and *C*. For example, when one wants to predict the probability of minority candidate emergence and electoral success (equivalent in the logical model) for three districts for which she knows the percentage of minority voters and the (adjusted) racial margin of victory:
@@ -167,7 +170,11 @@ text(x=start+10, y=-0.09, labels="No white crossover",
 title("With Strong Minority Bloc Voting")
 ```
 
+<br/>
 
+<img src="man/figures/redistrict_threshold.png" width="45%" style="display: block; margin: auto;" />
+
+<br/>
 
 ## `plot.redistrict`: (3) Visualize the Degree of Potential Vote Dilution
 
@@ -190,9 +197,7 @@ title("With Strong Minority Bloc Voting")
 
 ```
 
-
-
-<img src="man/figures/redistrict_threshold.png" width="45%" style="display: block; margin: auto;" />
+<br/>
 
 
 ### Extention I (Accounting for the Turnout Gap)
