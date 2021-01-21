@@ -133,7 +133,8 @@ plan2 <- redistrict(coethnic=0.9, crossover=0.3)
 
 <br/>
 
-## `plot.redistrict`: (1) Visualize the Impact of Redistricting on the Probability of Minority Electoral Success
+## `plot.redistrict`
+### (1) Visualize the Impact of Redistricting on the Probability of Minority Electoral Success
 
 
 ```r
@@ -154,7 +155,7 @@ text(x=start+10, y=-0.09, labels="No white crossover",
 
 <br/>
 
-## `plot.redistrict`: (2) Visualize the Percentage of Minority Voters Sufficient to Elect Minority Candidates with A Pre-Specified Probability
+### (2) Visualize the Percentage of Minority Voters Sufficient to Elect Minority Candidates with A Pre-Specified Probability
 
 Users can pre-specified a threshold as a probability of minority electoal success under given district plans. For example, one may be interested what percentage of minority voters is sufficient to yield 80% or higher chance of having a minority officeholder under two different plans (from the above examples). Under this option, a probability (from 0 to 1) must be input for the optional argument "threshold" as follows:
 
@@ -176,7 +177,7 @@ title("With Strong Minority Bloc Voting")
 
 <br/>
 
-## `plot.redistrict`: (3) Visualize the Degree of Potential Vote Dilution
+### (3) Visualize the Degree of Potential Vote Dilution
 
 Building upon (2), one can also visualize the degree of potential vote dilution via "packing" of minority voters. For this option, one only needs to input a percentage point as an additional argument "C". Suppose that a district plan that one examines have 75% minority voters and she wants to know how many minority voters the district has beyond what is sufficient to elect a minority candidate with a probability of 0.8 and higher.
 
