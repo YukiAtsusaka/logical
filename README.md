@@ -8,7 +8,7 @@ badge](https://img.shields.io/badge/Build%20with-🍩%20and%20R-blue)](https://g
 This R package computes and visualizes the quantitative predictions of the logical model of minority representation introduced by Atsusaka (2020) ["A Logical Model for Predicting Minority Representation: Application to Redistricting and Voting Rights Cases"](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3637699).
 
 
-## Main Idea🌱
+## Main Idea
 The logical model of minority representation states that the probability that a minority candidate runs for office is equal to the probability that the minority candidate wins the race, which in turn is a Cumulative Distribution Function (CDF) of the standard normal distribution of a square-root of a product of two terms (MC) minus 50.
 
 Semi-formally, **Pr(Minority Runs) = Pr(Minority Wins) = &Phi;( &Sqrt;(MC)- 50)**, where
@@ -21,7 +21,7 @@ Semi-formally, **Pr(Minority Runs) = Pr(Minority Wins) = &Phi;( &Sqrt;(MC)- 50)*
     + M represents the past performance of minority candidates relative to their white counterparts
     + M quantifies how safely minority candidates secure their descriptive representation relative to their white counterparts
 
-## Key Applications🔆
+## Key Applications
 
 The logical model can answer various questions that researchers and practicioners are often interested in redistricting and voting rights cases, including:
 
