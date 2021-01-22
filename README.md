@@ -81,11 +81,13 @@ library(logical)
 # statelegis (sample data)
 ```
 
+Below, I explain how to use this package by questions that it can answer, instead of introducing the funcationality by functions.
+
 <br/>
 
 ## 1. Predicting the Probability of Minority Electoral Success
+### Key functions: `minorep`,  `plot.minorep` 
 
-### `minorep`: Predict the Probability of Minority Candidate Emergence and Electoral Success
 `minorep` is a workhorse function of this package. It predicts a probability at which minority candidates run for office and win races in districts with specified values of *M* and *C*. For example, when one wants to predict the probability of minority candidate emergence and electoral success (equivalent in the logical model) for three districts for which she knows the percentage of minority voters and the (adjusted) racial margin of victory:
 
 ```r
@@ -102,8 +104,6 @@ rep.prob
 
 <br/>
 
-### `plot.minorep`: Visualize the Predicted Probability of Minority Representation
-
 ```r
 plot.minorep(M=margin, C=VAP)
 ```
@@ -112,9 +112,8 @@ plot.minorep(M=margin, C=VAP)
 <br/>
 
 ## 2. Simulating the Impact of Redistricting on Minority Representation
+### Key functions: `redistrict`,  `plot.redistrict` 
 
-
-## `redistrict`: Simulated the Probability of Minority Representation in Varying District Racial Compositions
 Generate a probability of minority candidate emergence with specified levels of minority co-ethnic voting and White crossover voting as follows:
 
 ```r
@@ -135,7 +134,6 @@ plan2 <- redistrict(coethnic=0.9, crossover=0.3)
 
 <br/>
 
-## `plot.redistrict`
 
 ```r
 myplans = cbind(plan1, plan2)
@@ -156,6 +154,7 @@ text(x=start+10, y=-0.09, labels="No white crossover",
 <br/>
 
 ## 3. Finding Sufficient Percentage of Minority Voters and Sweet Spot
+### Key functions: `redistrict`,  `plot.redistrict` 
 
 Users can pre-specified a threshold as a probability of minority electoal success under given district plans. For example, one may be interested what percentage of minority voters is sufficient to yield 80% or higher chance of having a minority officeholder under two different plans (from the above examples). Under this option, a probability (from 0 to 1) must be input for the optional argument "threshold" as follows:
 
@@ -178,6 +177,7 @@ title("With Strong Minority Bloc Voting")
 <br/>
 
 ## 4. Quantifying the Degree of Vote Dilution via Packing
+### Key functions: `redistrict`,  `plot.redistrict` 
 
 Building upon (2), one can also visualize the degree of potential vote dilution via "packing" of minority voters. For this option, one only needs to input a percentage point as an additional argument "C". Suppose that a district plan that one examines have 75% minority voters and she wants to know how many minority voters the district has beyond what is sufficient to elect a minority candidate with a probability of 0.8 and higher.
 
@@ -201,6 +201,11 @@ title("With Strong Minority Bloc Voting")
 <br/>
 
 ## 5. Predicting the Number of Minority Officeholders
+### Key functions: `minorep`,  `n.minorep` 
+
+
+
+## 6. Using Complex Options
 
 
 <br/>
