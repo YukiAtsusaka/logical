@@ -203,15 +203,14 @@ title("With Strong Minority Bloc Voting")
 ## 5. Predicting the Number of Minority Officeholders
 ### Key functions: `minorep`,  `n.minorep` 
 
+<br/>
 
 
 ## 6. Using Complex Options
+### Key functions: `redistrict` 
 
-
-<br/>
-
-### Extention I (Accounting for the Turnout Gap)
-To account for the turnout gap in simulating *M*, one can simply include a vector of proportions of minority and white voters who turn out as an additional argument. Suppose that one knows that, from exit polls, surveys, ecological inference, and/or historical studies, turnout rates are usually 0.5 for minority voters and 0.6 for white voters.
+#### Extention I (Accounting for the Turnout Gap)
+As an extension, one can also account for the relative turnout rates for minority and white voters, if any. To account for the turnout gap in simulating *M*, one can simply include a vector of proportions of minority and white voters who turn out as an additional argument. Suppose that one knows that, from exit polls, surveys, ecological inference, and/or historical studies, turnout rates are usually 0.5 for minority voters and 0.6 for white voters.
 
 ```r
 # Suppose we know/estimate that:
@@ -221,6 +220,10 @@ To account for the turnout gap in simulating *M*, one can simply include a vecto
 
 plan3 <- redistrict(coethnic=0.9, crossover=0.3, gap=c(0.5, 0.6))
 ```
+
+
+
+
 
 
 <br/>
