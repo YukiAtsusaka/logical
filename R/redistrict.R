@@ -5,10 +5,10 @@
 #' @param coethnic the level of minority co-ethnic voting
 #' @param crossover the level of White crossover voting
 #'
-#' @return A list containing main results ($Results) and related statistics ($Stats).
+#' @return A vector of predicted probabilities that minority candidates run for office and win under varying % minority voters
 #' @examples
-#' sim1 <- redistrict(coethnic=0.9, crossover=0, sd=1)
-#' sim2 <- redistrict(coethnic=0.9, crossover=0.3, sd=1)
+#' sim1 <- redistrict(coethnic=0.9, crossover=0)
+#' sim2 <- redistrict(coethnic=0.9, crossover=0.3)
 #' 
 #' start <- 45
 #' end <- 55
