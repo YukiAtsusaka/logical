@@ -1,18 +1,18 @@
-#' @title plot.minorep
+#' @title plot_minorep
 #'
-#' @description  \code{plot.minorep} visualizes the probability of minority candidate emergence and electoral success with given M and C
+#' @description  \code{plot_minorep} visualizes the probability of minority candidate emergence and electoral success with given M and C
 #'
 #' @param M a vector of raw margin of victories
 #' @param C a vector of the percentages of minority voters in districts
 #'
 #' @return A list containing main results ($Results) and related statistics ($Stats).
 #' @examples
-#' rmargin = c(20, 50, 30)
-#' VAP = c(40, 70, 85)
-#' plot.minorep(M=rmargin, C=VAP)
+#' M_vec = c(20, 50, 30) # Racial margin of victories from three districts
+#' C_vec = c(40, 70, 85) # Percentage of minority voters from the same districts
+#' plot_minorep(M=rmargin, C=VAP) # Assuming no turnout gap
 #' @export
 
-plot.minorep <- function(M, C, pch=NULL){
+plot_minorep <- function(M, C, pch=NULL){
 
 point.M <- M
 point.C <- C
