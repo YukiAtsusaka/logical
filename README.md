@@ -16,6 +16,22 @@ For quantitatively predictive logical models more generally, please do check out
 - Taagepera, Rein. 2008. [*Making Social Sciences More Scientific: The Need for Predictive Models*](https://books.google.com/books?id=l6tiJLcVZ8AC&printsec=frontcover&dq=rein+taagepera&hl=ja&sa=X&ved=2ahUKEwjslpOhndnwAhURac0KHdMWD0AQ6AEwBnoECAcQAg#v=onepage&q=rein%20taagepera&f=false). Oxford University Press.
 - Shugart, Matthew S and Rein Taagepera. 2017. [*Votes from seats: Logical models of electoral systems*](https://books.google.com/books?id=0S42DwAAQBAJ&printsec=frontcover&dq=rein+taagepera&hl=ja&sa=X&ved=2ahUKEwjslpOhndnwAhURac0KHdMWD0AQ6AEwCHoECAsQAg#v=onepage&q=rein%20taagepera&f=false). Cambridge University Press.
 
+<br/>
+
+<details>
+<summary>How to Cite logical✒️</summary>
+
+@Manual{,
+    title = {logical: A Software to Compute and Visualize Quantitative Predictions of Logical Models},
+    author = {Yuki Atsusaka},
+    year = {2021},
+    note = {R package version 0.0.1},
+    url = {https://CRAN.R-project.org/package=logical},
+  }
+</details>
+
+This R package is still under development. Please let me know ([atsusaka@rice.edu](atsusaka@rice.edu)) if you find any issue installing and using the software!
+
 
 ## Core Idea
 The logical model of minority representation states that the probability that a minority candidate runs for office is equal to the probability that the minority candidate wins the race, which in turn is a Cumulative Distribution Function (CDF) of the standard normal distribution of a square-root of a product of two terms (MC) minus 50.
@@ -46,21 +62,6 @@ The logical model can answer various questions that researchers and practicioner
 This README file explains how to apply the logical model to answer these questions in specific contexts via this R package. It also documents multiple motivating examples from actual redistricting and voting rights cases.
 
 
-<br/>
-
-<details>
-<summary>Cite this software✒️</summary>
-
-@Manual{,
-    title = {logical: A Software to Compute and Visualize Quantitative Predictions of Logical Models},
-    author = {Yuki Atsusaka},
-    year = {2021},
-    note = {R package version 0.0.1},
-    url = {https://CRAN.R-project.org/package=logical},
-  }
-</details>
-
-This R package is still under development. Please let me know ([atsusaka@rice.edu](atsusaka@rice.edu)) if you find any issue installing and using the software..!
 
 
 ## Instllation
@@ -95,7 +96,7 @@ Below, I explain how to use this package by questions that it can answer, instea
 <br/>
 
 ## 1. Predicting the Probability of Minority Electoral Success
-### Key functions: `minorep`,  `plot.minorep` 
+### Key functions: `minorep`,  `plot_minorep` 
 
 `minorep` is a workhorse function of this package. It predicts a probability at which minority candidates run for office and win races in districts with specified values of *M* and *C*. For example, when one wants to predict the probability of minority candidate emergence and electoral success (equivalent in the logical model) for three districts for which she knows the percentage of minority voters and the (adjusted) racial margin of victory:
 
@@ -121,7 +122,7 @@ plot_minorep(M=margin, C=VAP)
 <br/>
 
 ## 2. Simulating the Impact of Redistricting on Minority Representation
-### Key functions: `redistrict`,  `plot.redistrict` 
+### Key functions: `sim_redistrict`,  `plot_redistrict` 
 
 Generate a probability of minority candidate emergence with specified levels of minority co-ethnic voting and White crossover voting as follows:
 
@@ -163,7 +164,7 @@ title("With Strong Minority Bloc Voting")
 <br/>
 
 ## 3. Finding Sufficient Percentage of Minority Voters and Sweet Spot
-### Key functions: `redistrict`,  `plot.redistrict` 
+### Key functions: `sim_redistrict`,  `plot_redistrict` 
 
 Users can pre-specified a threshold as a probability of minority electoal success under given district plans. For example, one may be interested what percentage of minority voters is sufficient to yield 80% or higher chance of having a minority officeholder under two different plans (from the above examples). Under this option, a probability (from 0 to 1) must be input for the optional argument "threshold" as follows:
 
@@ -186,7 +187,7 @@ title("With Strong Minority Bloc Voting")
 <br/>
 
 ## 4. Quantifying the Degree of Vote Dilution via Packing
-### Key functions: `redistrict`,  `plot.redistrict` 
+### Key functions: `sim_redistrict`,  `plot_redistrict` 
 
 Building upon (2), one can also visualize the degree of potential vote dilution via "packing" of minority voters. For this option, one only needs to input a percentage point as an additional argument "C". Suppose that a district plan that one examines have 75% minority voters and she wants to know how many minority voters the district has beyond what is sufficient to elect a minority candidate with a probability of 0.8 and higher.
 
