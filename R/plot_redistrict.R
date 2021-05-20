@@ -1,17 +1,17 @@
-#' @title plot.redistrict
+#' @title plot_redistrict
 #'
-#' @description  \code{plot.redistrict} visualizes the impact of redistricting on minority descriptive representation
+#' @description  \code{plot_redistrict} visualizes the impact of redistricting on minority descriptive representation
 #'
 #' @param M a vector of raw margin of victories
 #' @param C a vector of the percentages of minority voters in districts
 #'
 #' @return A list containing main results ($Results) and related statistics ($Stats).
 #' @examples
-#' plan1 <- redistrict(coethnic=1, crossover=0)
-#' plan2 <- redistrict(coethnic=1. crossover=0.3)
+#' plan1 <- sim_redistrict(coethnic=1, crossover=0)
+#' plan2 <- sim_redistrict(coethnic=1. crossover=0.3)
 #' myplans = cbind(plan1, plan2)
 #' mtrange = c(44,55) # From 44% to 55%
-#' plot.redistrict(plans=myplans, range=myrange)
+#' plot_redistrict(plans=myplans, range=myrange)
 #'  text(x=start, y=1.1, labels="Moderate white crossover",
 #'      cex=1, col="maroon", font=2)
 #' text(x=start+10, y=-0.09, labels="No white crossover",
@@ -19,7 +19,7 @@
 #' title("With Strong Minority Bloc Voting")
 #' @export
 
-plot.redistrict <- function(plans, range){
+plot_redistrict <- function(plans, range){
 
 library(scales)
 plan1 <- plans[,1] # FIRST PLAN from "redistrict"
