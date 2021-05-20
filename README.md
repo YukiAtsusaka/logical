@@ -44,16 +44,14 @@ This README file explains how to apply the logical model to answer these questio
 @Manual{,
     title = {logical: A Software to Compute and Visualize Quantitative Predictions of Logical Models},
     author = {Yuki Atsusaka},
-    year = {2020},
-    note = {R package version 0.0.0},
+    year = {2021},
+    note = {R package version 0.0.1},
     url = {https://CRAN.R-project.org/package=logical},
   }
 </details>
 
 This R package is still under development. Please let me know ([atsusaka@rice.edu](atsusaka@rice.edu)) if you find any issue installing and using the software..!
 
-
-<br/>
 
 ## Instllation
 To install the latest development version of `logical` directly from
@@ -63,7 +61,6 @@ To install the latest development version of `logical` directly from
 library(devtools)
 devtools::install_github("YukiAtsusaka/logical")
 ```
-
 
 ## Loading
 
@@ -93,10 +90,10 @@ Below, I explain how to use this package by questions that it can answer, instea
 `minorep` is a workhorse function of this package. It predicts a probability at which minority candidates run for office and win races in districts with specified values of *M* and *C*. For example, when one wants to predict the probability of minority candidate emergence and electoral success (equivalent in the logical model) for three districts for which she knows the percentage of minority voters and the (adjusted) racial margin of victory:
 
 ```r
-rmargin <- c(20, 50, 30)   # Half the Difference between the Top Minority and Top White Vote Shares
-VAP <- c(40, 70, 85)       # Minority Voting-Age Population
-rep.prob <- minorep(M=rmargin, C=VAP)
-rep.prob
+M_vec <- c(20, 50, 30)   # Half the Difference between the Top Minority and Top White Vote Shares
+C_vec <- c(40, 70, 85)       # Minority Voting-Age Population
+pred <- minorep(M=M_vec, C=C_vec)
+pred
 # [1] 0.9982217 1.0000000 1.0000000
 ```
 <br/>
@@ -107,7 +104,7 @@ rep.prob
 <br/>
 
 ```r
-plot.minorep(M=margin, C=VAP)
+plot_minorep(M=margin, C=VAP)
 ```
 <img src="man/figures/plot.minorep.sample.png" width="55%" style="display: block; margin: auto;" />
 
@@ -130,8 +127,8 @@ Generate a probability of minority candidate emergence with specified levels of 
 # 90% of minority voters are expected to vote for the minority candidate (Strong Minority Bloc Voting)
 # 30% of white voters are expected to vote for the minority candidate (Moderate White Crossover)
 
-plan1 <- redistrict(coethnic=0.9, crossover=0)  
-plan2 <- redistrict(coethnic=0.9, crossover=0.3) 
+plan1 <- sim_redistrict(coethnic=0.9, crossover=0)  
+plan2 <- sim_redistrict(coethnic=0.9, crossover=0.3) 
 ```
 
 <br/>
@@ -140,14 +137,14 @@ plan2 <- redistrict(coethnic=0.9, crossover=0.3)
 ```r
 myplans = cbind(plan1, plan2)
 myrange = c(44,55) # From 44% to 55%
-plot.redistrict(plans=myplans, range=myrange)
+plot_redistrict(plans=myplans, range=myrange)
 
 # To Add Title, etc.
 text(x=start, y=1.1, labels="Moderate white crossover",
       cex=1, col="maroon", font=2)
 text(x=start+10, y=-0.09, labels="No white crossover",
      cex=1, col="seagreen", font=2)
- title("With Strong Minority Bloc Voting")
+title("With Strong Minority Bloc Voting")
 ```
 
 
@@ -162,7 +159,7 @@ Users can pre-specified a threshold as a probability of minority electoal succes
 
 ```r
 myplans = cbind(plan1, plan2)                  # Same Plans from Above
-plot.redistrict(plans=myplans, threshold=0.8)  # Setting 0.8 as a threshold value
+plot_redistrict(plans=myplans, threshold=0.8)  # Setting 0.8 as a threshold value
 
 # To Add Title, etc.
 text(x=start, y=1.1, labels="Moderate white crossover",
@@ -186,7 +183,7 @@ Building upon (2), one can also visualize the degree of potential vote dilution 
 ```r
 
 myplans = cbind(plan1, plan2)                  # Same Plans from Above
-plot.redistrict(plans=myplans, 
+plot_redistrict(plans=myplans, 
                 threshold=0.8,                 # Setting 0.8 as a threshold value
                 C=75)                          # A plan has 75% minority voters
 
@@ -203,13 +200,13 @@ title("With Strong Minority Bloc Voting")
 <br/>
 
 ## 5. Predicting the Number of Minority Officeholders
-### Key functions: `minorep`,  `n.minorep` 
+### Key functions: `minorep`,  `n_minorep` 
 
 <br/>
 
 
 ## 6. Using Complex Options
-### Key functions: `redistrict` 
+### Key functions: `sim_redistrict` 
 
 #### Extention I (Accounting for the Turnout Gap)
 As an extension, one can also account for the relative turnout rates for minority and white voters, if any. To account for the turnout gap in simulating *M*, one can simply include a vector of proportions of minority and white voters who turn out as an additional argument. Suppose that one knows that, from exit polls, surveys, ecological inference, and/or historical studies, turnout rates are usually 0.5 for minority voters and 0.6 for white voters.
