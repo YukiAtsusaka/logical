@@ -8,7 +8,7 @@ badge](https://img.shields.io/badge/Build%20with-🍩%20and%20R-blue)](https://g
 This R package computes and visualizes the quantitative predictions of the logical model of minority representation introduced by Atsusaka (2021) ["A Logical Model for Predicting Minority Representation: Application to Redistricting and Voting Rights Cases"](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3637699) (Conditionally Accepted by the *American Political Science Review*).
 
 
-## Main Idea
+## Core Idea
 The logical model of minority representation states that the probability that a minority candidate runs for office is equal to the probability that the minority candidate wins the race, which in turn is a Cumulative Distribution Function (CDF) of the standard normal distribution of a square-root of a product of two terms (MC) minus 50.
 
 Semi-formally, **Pr(Minority Runs) = Pr(Minority Wins) = &Phi;( &Sqrt;(MC)- 50)**, where
@@ -74,11 +74,13 @@ library(logical)
 
 # This package contains several functions and sample data
 
-# minorep (prediction tool)
-# redistrict (prediction tool)
-# plot.minorep (visulization tool)
-# plot.redistrict (visulization tool)
-# statelegis (sample data)
+# sim_minorep (prediction tool)
+# sim_redistrict (prediction tool)
+# comp_M (computing tool)
+# plot_minorep (visulization tool)
+# plot_redistrict (visulization tool)
+# dt_mayor (sample data)
+# dt_state (sample data)
 ```
 
 Below, I explain how to use this package by questions that it can answer, instead of introducing the funcationality by functions.
