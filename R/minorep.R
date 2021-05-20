@@ -1,12 +1,12 @@
 #' @title minorep
 #'
-#' @description  \code{minorep} computes a vector of probabilities that minority candidate emerges given M and C
+#' @description  \code{minorep} computes a vector of probabilities that minority candidate run for office and win in given districts
 #'
-#' @param M a vector of raw margin of victories
-#' @param C a vector of the percentages of minority voters in districts
+#' @param M a vector of (adjusted) racial margin of victories (Top minority candidate' vote share - Top White candidate's vote share + 50)
+#' @param C a vector of the percentages of minority voters in districts (as simulated racial margin of victory given distrcit racial composition)
 #' @param gap a vector of the turnout rates of minority and White voters
 #'
-#' @return A list containing main results ($Results) and related statistics ($Stats).
+#' @return A vector of predicted probabilities that minority candidates run for office and win in given districts (defined by M and C)
 #' @examples
 #' M_vec = c(20, 50, 30)
 #' C_vec = c(40, 70, 85)
