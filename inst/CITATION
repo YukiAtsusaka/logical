@@ -1,0 +1,9 @@
+citHeader("To cite logical in publications use:")
+
+bibentry(bibtype = "article",
+         title = "A Logical Model for Predicting Minority Representation: Application to Redistricting and Voting Rights Cases",
+         journal = "The American Political Science Review (conditionally accepted)",
+         author = person("Yuki", "Atsusaka"),
+         url = "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3637699",
+         year = 2021
+)
