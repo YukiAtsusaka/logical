@@ -1,14 +1,14 @@
-#' @title redistrict
+#' @title sim_redistrict
 #'
-#' @description  \code{redistrict} simulates the probability of minority candidate emergence when changing the district racial composition
+#' @description  \code{sim_redistrict} simulates the probability of minority candidate emergence when changing the district racial composition
 #'
 #' @param coethnic the level of minority co-ethnic voting
 #' @param crossover the level of White crossover voting
 #'
 #' @return A vector of predicted probabilities that minority candidates run for office and win under varying % minority voters
 #' @examples
-#' sim1 <- redistrict(coethnic=0.9, crossover=0)
-#' sim2 <- redistrict(coethnic=0.9, crossover=0.3)
+#' sim1 <- sim_redistrict(coethnic=0.9, crossover=0)
+#' sim2 <- sim_redistrict(coethnic=0.9, crossover=0.3)
 #' 
 #' start <- 45
 #' end <- 55
@@ -31,7 +31,7 @@
 #'      cex=0.8, col="seagreen", font=2)
 #' @export 
 
-redistrict <- function(coethnic, crossover, gap=NULL){
+sim_redistrict <- function(coethnic, crossover, gap=NULL){
 
 # A vector of % minority voters
 C = seq(from=1, to=100, by=0.1) 
