@@ -33,24 +33,23 @@
 
 redistrict <- function(coethnic, crossover, gap=NULL){
 
-# PERCENTAGE OF MINORITY VOTERS
+# A vector of % minority voters
 C = seq(from=1, to=100, by=0.1) 
     
-# TURNOUT ADJUSTED PERCENTAGE OF MINORITY VOTERS
+# Turnout adjusted % of minority voters
 if(is.null(gap)){
 C = C
 }else{
 C = (C*gap[1])/(C*gap[1] + (100-C)*gap[2])*100
 }
   
-# SIMULATED RACIAL MARGIN OF VICTORY
+# Simulated Racial Margin of Victory
 V_m = C*coethnic + ((100-C)*crossover)
 V_w = C*(1-coethnic) + ((100-C)*(1-crossover))
 M = 1/2*(V_m - V_w) + 50 
 
-# MODEL PREDICTIONS
-MC.sqrt.min50 = sqrt(C*M) - 50  # GEOMETRIC MEAN  
-out <- pnorm(MC.sqrt.min50)     # Probability of Candidate Emergence
+q = sqrt(C*M) - 50            # Geometric mean of the two bounds
+out <- pnorm(q, mean=0, sd=1) # Model prediction
 
 return(out)
 }
