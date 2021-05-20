@@ -1,6 +1,6 @@
 Package: logical
 Type: Package 
-Title: A Software to Compute and Visualize Quantitative Predictions of Logical Models
+Title: Computing and Visualizing Quantitative Predictions of Logical Models
 Version: 0.0.0.9000
 Author: person("Yuki", "Atsusaka", email = "atsusaka@rice.edu", role = c("cre","aut"))
 Description: This computes and visualizes predictions of quantitatively predictive logical models.
