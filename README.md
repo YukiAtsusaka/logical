@@ -18,7 +18,7 @@ For quantitatively predictive logical models more generally, please do check out
 
 <br/>
 
-This R package is still under development. Please let me know ([atsusaka@rice.edu](atsusaka@rice.edu)) if you find any issue installing and using the software! **I am looking for a partner who can co-manage this R package with me. If you are interested in and have prior experience in managing R packages, please let me know**
+This R package is still under development. Please let me know ([atsusaka@rice.edu](atsusaka@rice.edu)) if you find any issue installing and using the software! **I am looking for a partner who can co-manage this R package with me. If you are interested in and have prior experience in managing R packages, please let me know!**
 
 <details>
 <summary>How to Cite logical✒️</summary>
@@ -162,7 +162,7 @@ title("With Strong Minority Bloc Voting")
 
 <br/>
 
-## 3. Finding Sufficient Percentage of Minority Voters and Sweet Spot
+## 3. Finding Sufficient Percentage of Minority Voters, Sweet Spot, Degree of Vote Dilution via Packing
 ### Key functions: `sim_redistrict`,  `plot_redistrict` 
 
 Users can pre-specified a threshold as a probability of minority electoal success under given district plans. For example, one may be interested what percentage of minority voters is sufficient to yield 80% or higher chance of having a minority officeholder under two different plans (from the above examples). Under this option, a probability (from 0 to 1) must be input for the optional argument "threshold" as follows:
@@ -185,37 +185,13 @@ title("With Strong Minority Bloc Voting")
 
 <br/>
 
-## 4. Quantifying the Degree of Vote Dilution via Packing
-### Key functions: `sim_redistrict`,  `plot_redistrict` 
-
-Building upon (2), one can also visualize the degree of potential vote dilution via "packing" of minority voters. For this option, one only needs to input a percentage point as an additional argument "C". Suppose that a district plan that one examines have 75% minority voters and she wants to know how many minority voters the district has beyond what is sufficient to elect a minority candidate with a probability of 0.8 and higher.
-
-```r
-
-myplans = cbind(plan1, plan2)                  # Same Plans from Above
-plot_redistrict(plans=myplans, 
-                threshold=0.8,                 # Setting 0.8 as a threshold value
-                C=75)                          # A plan has 75% minority voters
-
-# To Add Title, etc.
-text(x=start, y=1.1, labels="Moderate white crossover",
-      cex=1, col="maroon", font=2)
-text(x=start+10, y=-0.09, labels="No white crossover",
-     cex=1, col="seagreen", font=2)
-title("With Strong Minority Bloc Voting")
-
-
-```
-
-<br/>
-
-## 5. Predicting the Number of Minority Officeholders
+## 4. Predicting the Number of Minority Officeholders
 ### Key functions: `minorep`,  `n_minorep` 
 
 <br/>
 
 
-## 6. Using Complex Options
+## 5. Using Complex Options
 ### Key functions: `sim_redistrict` 
 
 #### Extention I (Accounting for the Turnout Gap)
