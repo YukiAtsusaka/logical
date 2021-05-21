@@ -18,7 +18,7 @@ For quantitatively predictive logical models more generally, please do check out
 
 <br/>
 
-This R package is still under development. Please let me know ([atsusaka@rice.edu](atsusaka@rice.edu)) if you find any issue installing and using the software!
+This R package is still under development. Please let me know ([atsusaka@rice.edu](atsusaka@rice.edu)) if you find any issue installing and using the software! **I am looking for a partner who can co-manage this R package with me. If you are interested in and have prior experience in managing R packages, please let me know**
 
 <details>
 <summary>How to Cite logical✒️</summary>
