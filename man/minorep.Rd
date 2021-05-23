@@ -4,24 +4,24 @@
 \alias{minorep}
 \title{minorep}
 \usage{
-minorep(M, C, sd = 1)
+minorep(M, C, gap = NULL)
 }
 \arguments{
-\item{M}{a vector of raw margin of victories}
+\item{M}{a vector of (adjusted) racial margin of victories (Top minority candidate' vote share - Top White candidate's vote share + 50)}
 
-\item{C}{a vector of the percentages of minority voters in districts}
+\item{C}{a vector of the percentages of minority voters in districts (as simulated racial margin of victory given distrcit racial composition)}
 
-\item{sd}{the pre-specified value of the standard deviation in the standard normal CDF}
+\item{gap}{a vector of the turnout rates of minority and White voters}
 }
 \value{
-A list containing main results ($Results) and related statistics ($Stats).
+A vector of predicted probabilities that minority candidates run for office and win in given districts (defined by M and C)
 }
 \description{
-\code{minorep} computes a vector of probabilities that minority candidate emerges given M and C
+\code{minorep} computes a vector of probabilities that minority candidate run for office and win in given districts
 }
 \examples{
-rmargin = c(20, 50, 30)
-percent = c(40, 70, 85)
-emerge(M=rmargin, C=percent)
-emerge(M=rmargin, C=percent, sd=5)
+M_vec = c(20, 50, 30)
+C_vec = c(40, 70, 85)
+minorep(M=M_vec, C=C_vec) # Assuming no turnout gap
+minorep(M=M_vec, C=C_vec, gap=c(0.5, 0.6)) # Assuming that minority turnout is 0.5 and White turnout is 0.6 
 }
