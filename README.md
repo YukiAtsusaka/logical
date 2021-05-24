@@ -208,8 +208,10 @@ pred_vec <- minorep(M=M_vec, C=C_vec)         # Obtain model predictions
 n_pred <- n_minorep(model_predict = pred_vec) # Draw the number of minority winners via Monte Carlo simulations
 hist(n_pred)                                  # Visualize the results in histogram
 ```
-<br/>
 
+<img src="man/figures/n_minorep.png" width="45%" style="display: block; margin: auto;" />
+
+<br/>
 
 ## 5. Using Complex Options
 ### Key functions: `sim_redistrict` 
