@@ -160,14 +160,17 @@ top_minority <- c(18, 40, 85, 20) # Top minority candidate's vote share in four 
 top_white <- c(60, 40, 10, 34)    # Top white candidate's vote share in four districts
 
 M_vec_obs <- comp_M(Vm = top_minority, Vw = top_white) # Compute the (adjusted) racial margin of victory
-
+M_vec_obs
+# [1] 29.0 50.0 87.5 43.0
 
 # Simulating M from substantive knowledge
-C_hypothetical <- 40  # Hypothetical percentage of % minority voters
+C_hypothetical <- c(40,50,60)  # Hypothetical percentages of % minority voters
 bloc <- 1        # Proportion of minority voters who vote for a single (hypothetical) minority candidate
 cross <- 0.3     # Proportion of white voters who vote for a single (hypothetical) minority candidate
 
 M_vec_sim <- sim_M(C = C_hypothetical, coethnic = bloc, crossover = cross)
+M_vec_sim
+# [1] 58 65 72
 ```
 
 <br/>
