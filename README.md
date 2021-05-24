@@ -29,7 +29,7 @@ This R package is under active development. Please let me know ([atsusaka@rice.e
 </details>
 
 ## Main Idea: What is the Logical Model of Minority Representation?
-The logical model of minority representation is a simple mathematical formula introduced in Atsusaka (2021). The main purpose of the model is to logically explain and accurately predict when minority candidates run for office and win electoral contests. It has been shown that the model can predict over 90% of minority candidate emergence and over 95% of minority electoral success in actual elections.
+The logical model of minority representation is a simple mathematical formula introduced in Atsusaka (2021). Its main purpose is to logically explain and accurately predict when minority candidates run for office and win electoral contests. It has been shown that the model can predict over 90% of minority candidate emergence and over 95% of minority electoral success in actual elections.
 
 The logical model states that the probability that a minority candidate runs for office in a particular district is equal to the estimated probability that she can win the election in the distirct. This estimated probability in turn is represented by the standard normal CDF (Cumulative Distribution Function) of a square-root of a product of two terms (*MC*) minus 50 (please see the original manuscript and its Online Appendix for derivation and explanations).
 
@@ -39,12 +39,14 @@ where
 
 - **C** : % minority voters in the electorate
     + C represents the racial margin of victory (see below) in the presence of extreme racial polarization
-- **M** : (adjusted) racial margin of victory
+- **M** : (adjusted) racial margin of victory in the most recent election
     = (V<sub>t-1</sub><sup>M</sup> - V<sub>t-1</sub><sup>W</sup>) + 50
     + **V<sub>t-1</sub><sup>M</sup>** : the vote share of the "top" (most vote-earning) minority candidate in the most recent election (at time "t-1")
     + **V<sub>t-1</sub><sup>W</sup>** : the vote share of the "top" (most vote-earning) white candidate in the most recent election (at time "t-1")
     + M represents the past performance of minority candidates relative to their white counterparts
     + M quantifies how safely minority candidates secure their descriptive representation relative to their white counterparts
+
+The core idea of the model is that future performance of minority candidates will be somewhere between the two logical bounds defined by *M* and *C*. In one extreme case, the results of upcoming elections will be identical to what happened in the most recent elections (*M*). In another extreme scenario, the results of upcoming elections will be equivalent to what we would have expected from district racial composition in the presence of perfect racially polarized voting. The notion of "somewhere between" is reflected by the geometric mean of the two bounds &Sqrt;(MC).
 
 
 ## Key Applications
