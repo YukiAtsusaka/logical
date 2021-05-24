@@ -18,10 +18,10 @@
 #'      cex=1, col="seagreen", font=2)
 #' title("With Strong Minority Bloc Voting")
 #' @export
+#' @importFrom scales "alpha"
 
 plot_redistrict <- function(plans, range){
 
-library(scales)
 plan1 <- plans[,1] # FIRST PLAN from "redistrict"
 plan2 <- plans[,2] # SECOND PLAN from "redistrict"
 

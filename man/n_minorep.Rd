@@ -2,7 +2,7 @@
 % Please edit documentation in R/n_minorep.R
 \name{n_minorep}
 \alias{n_minorep}
-\title{minorep}
+\title{n_minorep}
 \usage{
 n_minorep(model_pred)
 }
