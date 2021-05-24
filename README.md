@@ -33,11 +33,14 @@ This R package is still under development. Please let me know ([atsusaka@rice.ed
 </details>
 
 ## Core Idea
-The logical model of minority representation states that the probability that a minority candidate runs for office is equal to the probability that the minority candidate wins the race, which in turn is a Cumulative Distribution Function (CDF) of the standard normal distribution of a square-root of a product of two terms (MC) minus 50.
+The logical model of minority representation states that the probability that a minority candidate runs for office is equal to the estimated probability that the minority candidate wins the race. This estimated probability in turn is the standard normal CDF (Cumulative Distribution Function) of a square-root of a product of two terms (MC) minus 50.
 
-Semi-formally, **Pr(Minority Runs) = Pr(Minority Wins) = &Phi;( &Sqrt;(MC)- 50)**, where
+Semi-formally, **Pr(Minority Runs) = Pr(Minority Wins) = &Phi;( &Sqrt;(MC)- 50)**, 
+
+where
 
 - **C** : % minority voters in the electorate
+    + C represents the racial margin of victory (see below) in the presence of extreme racial polarization
 - **M** : (adjusted) racial margin of victory
     = (V<sub>t-1</sub><sup>M</sup> - V<sub>t-1</sub><sup>W</sup>) + 50
     + **V<sub>t-1</sub><sup>M</sup>** : the vote share of the "top" (most vote-earning) minority candidate in the most recent election (at time "t-1")
@@ -193,6 +196,18 @@ title("With Strong Minority Bloc Voting")
 ## 4. Predicting the Number of Minority Officeholders
 ### Key functions: `minorep`,  `n_minorep` 
 
+Sometimes researchers are interested in predicting the number of minority officeholders at the jurisdiction level. For example, researchers may wish to know how many minority representatives can be expected in an entire jurisdiction with six districts, where they observe a set of information: **C**=(50,40,60,30,50,80) and **M**=(50,40,40,35,70,85).
+
+
+```r
+M_vec <- c(50,40,40,35,70,85)                 # M from the six districts 
+C_vec <- c(50,40,60,30,50,80)                 # C from the six districts
+
+pred_vec <- minorep(M=M_vec, C=C_vec)         # Obtain model predictions
+
+n_pred <- n_minorep(model_predict = pred_vec) # Draw the number of minority winners via Monte Carlo simulations
+hist(n_pred)                                  # Visualize the results in histogram
+```
 <br/>
 
 
