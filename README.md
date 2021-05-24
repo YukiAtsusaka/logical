@@ -7,6 +7,7 @@ badge](https://img.shields.io/badge/Build%20with-🍩%20and%20R-blue)](https://g
 
 **This R package is for computing and visualizing the quantitative predictions of a logical model of minority representation.** This quantitatively predictive logical model was developed in Atsusaka (2021) ["A Logical Model for Predicting Minority Representation: Application to Redistricting and Voting Rights Cases"](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3637699) (Conditionally Accepted by the *American Political Science Review*).
 
+<br>
 
 For quantitatively predictive logical models more generally, please refer to:
 
@@ -143,7 +144,6 @@ hist(n_pred)                                  # Visualize the results in histogr
 
 <img src="man/figures/n_minorep.png" width="45%" style="display: block; margin: auto;" />
 
-<br/>
 
 ## 3. Computing or Simulating the Racial Margin of Victory
 #### :key: `comp_M`,  `sim_M`  
@@ -176,7 +176,6 @@ minorep(M = M_vec_sim, C = C_hypothetical)
 # [1] 0.0334 1.0000 1.0000
 ```
 
-<br/>
 
 ## 4. Simulating the Impact of Redistricting on Minority Representation
 #### :key: `sim_redistrict`,  `plot_redistrict` 
