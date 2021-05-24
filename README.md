@@ -70,6 +70,11 @@ To install the latest development version of `logical` directly from
 ``` r
 library(devtools)
 devtools::install_github("YukiAtsusaka/logical")
+
+# This may take some time. 
+# Also, you may be asked to update 
+# one or more packages if you are not using
+# the most recent version of R.
 ```
 
 ## Loading
