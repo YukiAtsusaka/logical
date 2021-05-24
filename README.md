@@ -164,6 +164,9 @@ M_vec_obs <- comp_M(Vm = top_minority, Vw = top_white) # Compute the (adjusted) 
 M_vec_obs
 # [1] 29.0 50.0 87.5 43.0
 
+minorep(M = M_vec_obs, C = c(50, 45, 65, 35))
+# [1] 0.0000 0.0051 1.0000 0.0000
+
 
 # Simulating M from substantive knowledge
 C_hypothetical <- c(40,50,60)  # Hypothetical percentages of % minority voters
@@ -173,6 +176,9 @@ cross <- 0.3     # Proportion of white voters who vote for a single (hypothetica
 M_vec_sim <- sim_M(C = C_hypothetical, coethnic = bloc, crossover = cross)
 M_vec_sim
 # [1] 58 65 72
+
+minorep(M = M_vec_sim, C = C_hypothetical)
+# [1] 0.0334 1.0000 1.0000
 ```
 
 <br/>
