@@ -104,14 +104,19 @@ Below, I explain how to use this package by questions that it can answer, instea
 `minorep` is a workhorse function of this package. It predicts a probability at which minority candidates run for office and win races in districts with specified values of *M* and *C*. For example, when one wants to predict the probability of minority candidate emergence and electoral success (equivalent in the logical model) for three districts for which she knows the percentage of minority voters and the (adjusted) racial margin of victory:
 
 ```r
+# Base Implementation
 M_vec <- c(20, 50, 30)   # Half the Difference between the Top Minority and Top White Vote Shares
-C_vec <- c(40, 70, 85)       # Minority Voting-Age Population
+C_vec <- c(40, 70, 85)   # % minority voters (e.g., CVAP, VAP, Population)
 pred <- minorep(M=M_vec, C=C_vec)
 pred
-# [1] 0.9982217 1.0000000 1.0000000
+# [1] 0.000 1.000 0.691
+
+# Accounting for Turnout Grap
+pred_gap <- minorep(M=M_vec, C=C_vec, gap=c(0.5,0.6)) # 50% of minority and 60% of white voters turn out 
+pred_gap
+# [1] 0.0000 1.0000 0.4039
 ```
 <br/>
-
 
 
 ```r
@@ -205,37 +210,3 @@ title("With Strong Minority Bloc Voting")
 <img src="man/figures/redistrict_threshold.png" width="45%" style="display: block; margin: auto;" />
 
 <br/>
-
-
-
-## 5. Using Complex Options
-### Key functions: `sim_redistrict` 
-
-#### Extention I (Accounting for the Turnout Gap)
-As an extension, one can also account for the relative turnout rates for minority and white voters, if any. To account for the turnout gap in simulating *M*, one can simply include a vector of proportions of minority and white voters who turn out as an additional argument. Suppose that one knows that, from exit polls, surveys, ecological inference, and/or historical studies, turnout rates are usually 0.5 for minority voters and 0.6 for white voters.
-
-```r
-# Suppose we know/estimate that:
-# 90% of minority voters are expected to vote for the minority candidate
-# 30% of white voters are expected to vote for the minority candidate
-# Turnout Rates are 50% (minority voters) and 60% (white voters)
-
-plan3 <- redistrict(coethnic=0.9, crossover=0.3, gap=c(0.5, 0.6))
-```
-
-
-
-
-> ### Motivating Examples (1): Influence Districts in *Hayes v. Louisiana* (1992)
-> In *Heyes v. Louisiana* (1992), one of the main controversies was about the empirical validity of the claim that minority voters can influence electoral results (to elect minority candidates) in districts with about 20% minority voters. While the plaintiffs maintained that such districts can be minority *influence* districts, the state contended that "there was no evidence" to support such a theory given a strong racially polarized voting pattern (Enstrgom and Kirksey 1998, 250). The logical model offers one answer to this debate: the probability of minority candidate emergence in districts with 20% minority voters with a strong racially polarized voting pattern is almost 0. Other claims have been that 35% to 45% (*Heyes v. Louisiana* (1994))(Enstrgom and Kirksey 1998, 258) minority voters are sufficient to provide minority voters with a realistic chance to elect a candidate of their choice.
-
-<br/>
-
-<br/>
-
-> ### Motivating Example (3): Louisiana Congressional District 4 Plan in 1992
-> Concerning the effectiveness of the plan for a new majority-minority District 4 supported by the Senate in the 1990 round of redistricting, "Sherman Copelin, the African-American representative who sponsored the [alternative] plan, complained that the new minority district in the plan passed by the Senate did not contain enough African-American voters to ensure that African-Americans would elect a candidate of their choice....The percentage of African-Americans among the registered voters in this district was 63.2, almost 4 percentage points higher than the second minority district in the other version" (Engstrom and Kirksey 1998, 245)
-
-<br/>
-
-
