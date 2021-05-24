@@ -92,6 +92,7 @@ library(logical)
 # n_minorep (prediction tool)
 # sim_redistrict (prediction tool)
 # comp_M (computing tool)
+# sim_m (computing tool)
 ```
 
 Below, I explain how to use this package by questions that it can answer, instead of introducing the funcationality by functions.
