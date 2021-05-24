@@ -61,10 +61,9 @@ The logical model can answer various questions that researchers and practicioner
 - *How many minority representatives are likely to be elected under a given district plan?*
 
 
-This README file explains how to apply the logical model to answer these questions in specific contexts via this R package. It also documents multiple motivating examples from actual redistricting and voting rights cases.
+**This README file explains how to apply the logical model to answer these questions in specific contexts via this R package.** 
 
-
-
+<br>
 
 ## Instllation
 To install the latest development version of `logical` directly from
@@ -89,13 +88,10 @@ library(logical)
 
 # This package contains several functions and sample data
 
-# sim_minorep (prediction tool)
+# minorep (prediction tool)
+# n_minorep (prediction tool)
 # sim_redistrict (prediction tool)
 # comp_M (computing tool)
-# plot_minorep (visulization tool)
-# plot_redistrict (visulization tool)
-# dt_mayor (sample data)
-# dt_state (sample data)
 ```
 
 Below, I explain how to use this package by questions that it can answer, instead of introducing the funcationality by functions.
@@ -103,7 +99,7 @@ Below, I explain how to use this package by questions that it can answer, instea
 <br/>
 
 ## 1. Predicting the Probability of Minority Electoral Success
-### Key functions: `minorep`,  `plot_minorep` 
+#### :key: `minorep`,  `plot_minorep` 
 
 `minorep` is a workhorse function of this package. It predicts a probability at which minority candidates run for office and win races in districts with specified values of *M* and *C*. For example, when one wants to predict the probability of minority candidate emergence and electoral success (equivalent in the logical model) for three districts for which she knows the percentage of minority voters and the (adjusted) racial margin of victory:
 
@@ -116,10 +112,7 @@ pred
 ```
 <br/>
 
-> ### Motivating Examples (1): Influence Districts in *Hayes v. Louisiana* (1992)
-> In *Heyes v. Louisiana* (1992), one of the main controversies was about the empirical validity of the claim that minority voters can influence electoral results (to elect minority candidates) in districts with about 20% minority voters. While the plaintiffs maintained that such districts can be minority *influence* districts, the state contended that "there was no evidence" to support such a theory given a strong racially polarized voting pattern (Enstrgom and Kirksey 1998, 250). The logical model offers one answer to this debate: the probability of minority candidate emergence in districts with 20% minority voters with a strong racially polarized voting pattern is almost 0. Other claims have been that 35% to 45% (*Heyes v. Louisiana* (1994))(Enstrgom and Kirksey 1998, 258) minority voters are sufficient to provide minority voters with a realistic chance to elect a candidate of their choice.
 
-<br/>
 
 ```r
 plot_minorep(M=margin, C=VAP)
@@ -128,8 +121,28 @@ plot_minorep(M=margin, C=VAP)
 
 <br/>
 
-## 2. Simulating the Impact of Redistricting on Minority Representation
-### Key functions: `sim_redistrict`,  `plot_redistrict` 
+## 2. Predicting the Number of Minority Officeholders
+#### :key: `minorep`,  `plot_minorep`  
+
+Sometimes researchers are interested in predicting the number of minority officeholders at the jurisdiction level. For example, researchers may wish to know how many minority representatives can be expected in an entire jurisdiction with six districts, where they observe a set of information: **C**=(50,40,60,30,50,80) and **M**=(50,40,40,35,70,85).
+
+
+```r
+M_vec <- c(50,40,40,35,70,85)                 # M from the six districts 
+C_vec <- c(50,40,60,30,50,80)                 # C from the six districts
+
+pred_vec <- minorep(M=M_vec, C=C_vec)         # Obtain model predictions
+
+n_pred <- n_minorep(model_predict = pred_vec) # Draw the number of minority winners via Monte Carlo simulations
+hist(n_pred)                                  # Visualize the results in histogram
+```
+
+<img src="man/figures/n_minorep.png" width="45%" style="display: block; margin: auto;" />
+
+<br/>
+
+## 3. Simulating the Impact of Redistricting on Minority Representation
+#### :key: `sim_redistrict`,  `plot_redistrict` 
 
 Generate a probability of minority candidate emergence with specified levels of minority co-ethnic voting and White crossover voting as follows:
 
@@ -170,8 +183,8 @@ title("With Strong Minority Bloc Voting")
 
 <br/>
 
-## 3. Finding Sufficient Percentage of Minority Voters, Sweet Spot, Degree of Vote Dilution via Packing
-### Key functions: `sim_redistrict`,  `plot_redistrict` 
+## 4. Finding Sufficient Percentage of Minority Voters, Sweet Spot, Degree of Vote Dilution via Packing
+#### :key: `sim_redistrict`,  `plot_redistrict` 
 
 Users can pre-specified a threshold as a probability of minority electoal success under given district plans. For example, one may be interested what percentage of minority voters is sufficient to yield 80% or higher chance of having a minority officeholder under two different plans (from the above examples). Under this option, a probability (from 0 to 1) must be input for the optional argument "threshold" as follows:
 
@@ -193,25 +206,7 @@ title("With Strong Minority Bloc Voting")
 
 <br/>
 
-## 4. Predicting the Number of Minority Officeholders
-### Key functions: `minorep`,  `n_minorep` 
 
-Sometimes researchers are interested in predicting the number of minority officeholders at the jurisdiction level. For example, researchers may wish to know how many minority representatives can be expected in an entire jurisdiction with six districts, where they observe a set of information: **C**=(50,40,60,30,50,80) and **M**=(50,40,40,35,70,85).
-
-
-```r
-M_vec <- c(50,40,40,35,70,85)                 # M from the six districts 
-C_vec <- c(50,40,60,30,50,80)                 # C from the six districts
-
-pred_vec <- minorep(M=M_vec, C=C_vec)         # Obtain model predictions
-
-n_pred <- n_minorep(model_predict = pred_vec) # Draw the number of minority winners via Monte Carlo simulations
-hist(n_pred)                                  # Visualize the results in histogram
-```
-
-<img src="man/figures/n_minorep.png" width="45%" style="display: block; margin: auto;" />
-
-<br/>
 
 ## 5. Using Complex Options
 ### Key functions: `sim_redistrict` 
@@ -231,7 +226,10 @@ plan3 <- redistrict(coethnic=0.9, crossover=0.3, gap=c(0.5, 0.6))
 
 
 
+> ### Motivating Examples (1): Influence Districts in *Hayes v. Louisiana* (1992)
+> In *Heyes v. Louisiana* (1992), one of the main controversies was about the empirical validity of the claim that minority voters can influence electoral results (to elect minority candidates) in districts with about 20% minority voters. While the plaintiffs maintained that such districts can be minority *influence* districts, the state contended that "there was no evidence" to support such a theory given a strong racially polarized voting pattern (Enstrgom and Kirksey 1998, 250). The logical model offers one answer to this debate: the probability of minority candidate emergence in districts with 20% minority voters with a strong racially polarized voting pattern is almost 0. Other claims have been that 35% to 45% (*Heyes v. Louisiana* (1994))(Enstrgom and Kirksey 1998, 258) minority voters are sufficient to provide minority voters with a realistic chance to elect a candidate of their choice.
 
+<br/>
 
 <br/>
 
