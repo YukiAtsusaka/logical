@@ -87,12 +87,14 @@ First, load the package.
 library(logical)
 
 # This package contains several functions and sample data
-
+# Main Functions
 # minorep (prediction tool)
 # n_minorep (prediction tool)
 # sim_redistrict (prediction tool)
+
+# Help Functions
 # comp_M (computing tool)
-# sim_m (computing tool)
+# sim_M (computing tool)
 ```
 
 Below, I explain how to use this package by questions that it can answer, instead of introducing the funcationality by functions.
@@ -147,7 +149,30 @@ hist(n_pred)                                  # Visualize the results in histogr
 
 <br/>
 
-## 3. Simulating the Impact of Redistricting on Minority Representation
+## 3. Computing or Simulating the Racial Margin of Victory
+#### :key: `comp_M`,  `sim_M`  
+
+So far, we have assumed that *M* is readily available. However, researchers often want to (A) compute the racial margin of victory based on observed data or (B) simulate it using substantive knowledge on the level of minority bloc voting and white crossover. Two help functions will help you achieve each of these goals:
+
+```r
+# Computing M from observed data
+top_minority <- c(18, 40, 85, 20) # Top minority candidate's vote share in four districts
+top_white <- c(60, 40, 10, 34)    # Top white candidate's vote share in four districts
+
+M_vec_obs <- comp_M(Vm = top_minority, Vw = top_white) # Compute the (adjusted) racial margin of victory
+
+
+# Simulating M from substantive knowledge
+C_hypothetical <- 40  # Hypothetical percentage of % minority voters
+bloc <- 1        # Proportion of minority voters who vote for a single (hypothetical) minority candidate
+cross <- 0.3     # Proportion of white voters who vote for a single (hypothetical) minority candidate
+
+M_vec_sim <- sim_M(C = C_hypothetical, coethnic = bloc, crossover = cross)
+```
+
+<br/>
+
+## 4. Simulating the Impact of Redistricting on Minority Representation
 #### :key: `sim_redistrict`,  `plot_redistrict` 
 
 Generate a probability of minority candidate emergence with specified levels of minority co-ethnic voting and White crossover voting as follows:
@@ -189,7 +214,7 @@ title("With Strong Minority Bloc Voting")
 
 <br/>
 
-## 4. Finding Sufficient Percentage of Minority Voters, Sweet Spot, Degree of Vote Dilution via Packing
+## 5. Finding Sufficient Percentage of Minority Voters, Sweet Spot, Degree of Vote Dilution via Packing
 #### :key: `sim_redistrict`,  `plot_redistrict` 
 
 Users can pre-specified a threshold as a probability of minority electoal success under given district plans. For example, one may be interested what percentage of minority voters is sufficient to yield 80% or higher chance of having a minority officeholder under two different plans (from the above examples). Under this option, a probability (from 0 to 1) must be input for the optional argument "threshold" as follows:
