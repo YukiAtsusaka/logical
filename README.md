@@ -8,34 +8,32 @@ badge](https://img.shields.io/badge/Build%20with-🍩%20and%20R-blue)](https://g
 **This R package is for computing and visualizing the quantitative predictions of a logical model of minority representation.** This quantitatively predictive logical model was developed in Atsusaka (2021) ["A Logical Model for Predicting Minority Representation: Application to Redistricting and Voting Rights Cases"](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3637699) (Conditionally Accepted by the *American Political Science Review*).
 
 
-<br/>
-
-For quantitatively predictive logical models more generally, please do check out:
+For quantitatively predictive logical models more generally, please refer to:
 
 - Taagepera, Rein. 2007. [*Predicting Party Sizes: The Logic of Simple Electoral Systems*](https://books.google.com/books?id=T_YTDAAAQBAJ&printsec=frontcover&dq=rein+taagepera&hl=ja&sa=X&ved=2ahUKEwjslpOhndnwAhURac0KHdMWD0AQ6AEwBHoECAUQAg#v=onepage&q=rein%20taagepera&f=false). Oxford University Press.
 - Taagepera, Rein. 2008. [*Making Social Sciences More Scientific: The Need for Predictive Models*](https://books.google.com/books?id=l6tiJLcVZ8AC&printsec=frontcover&dq=rein+taagepera&hl=ja&sa=X&ved=2ahUKEwjslpOhndnwAhURac0KHdMWD0AQ6AEwBnoECAcQAg#v=onepage&q=rein%20taagepera&f=false). Oxford University Press.
 - Shugart, Matthew S. and Rein Taagepera. 2017. [*Votes from seats: Logical models of electoral systems*](https://books.google.com/books?id=0S42DwAAQBAJ&printsec=frontcover&dq=rein+taagepera&hl=ja&sa=X&ved=2ahUKEwjslpOhndnwAhURac0KHdMWD0AQ6AEwCHoECAsQAg#v=onepage&q=rein%20taagepera&f=false). Cambridge University Press.
 
-<br/>
-
-This R package is still under development. Please let me know ([atsusaka@rice.edu](atsusaka@rice.edu)) if you find any issue installing and using the software! **I am looking for a partner who can co-manage this R package with me. If you are interested in and have prior experience in managing R packages, please let me know!**
+This R package is under active development. Please let me know ([atsusaka@rice.edu](atsusaka@rice.edu)) if you find any issue installing and using the software! **I am looking for a partner who can co-manage this R package with me. If you are interested in and have prior experience in managing R packages, please let me know!**
 
 <details>
 <summary>How to Cite logical✒️</summary>
 
 @Manual{,
-    title = {logical: A Software to Compute and Visualize Quantitative Predictions of Logical Models},
+    title = {logical: Computing and Visualizing Quantitative Predictions of Logical Models},
     author = {Yuki Atsusaka},
     year = {2021},
     note = {R package version 0.0.1},
-    url = {https://CRAN.R-project.org/package=logical},
+    url = {https://github.com/YukiAtsusaka/logical},
   }
 </details>
 
-## Core Idea
-The logical model of minority representation states that the probability that a minority candidate runs for office is equal to the estimated probability that the minority candidate wins the race. This estimated probability in turn is the standard normal CDF (Cumulative Distribution Function) of a square-root of a product of two terms (MC) minus 50.
+## Main Idea: What is the Logical Model of Minority Representation?
+The logical model of minority representation is a simple mathematical formula introduced in Atsusaka (2021). The main purpose of the model is to logically explain and accurately predict when minority candidates run for office and win electoral contests. It has been shown that the model can predict over 90% of minority candidate emergence and over 95% of minority electoral success in actual elections.
 
-Semi-formally, **Pr(Minority Runs) = Pr(Minority Wins) = &Phi;( &Sqrt;(MC)- 50)**, 
+The logical model states that the probability that a minority candidate runs for office in a particular district is equal to the estimated probability that she can win the election in the distirct. This estimated probability in turn is represented by the standard normal CDF (Cumulative Distribution Function) of a square-root of a product of two terms (*MC*) minus 50 (please see the original manuscript and its Online Appendix for derivation and explanations).
+
+Semi-formally, the model tells that **Pr(Minority Runs) = Pr(Minority Wins) = &Phi;( &Sqrt;(MC)- 50)**, 
 
 where
 
@@ -53,17 +51,16 @@ where
 
 The logical model can answer various questions that researchers and practicioners are often interested in redistricting and voting rights cases, including:
 
-- *Do minority voters have a viable chance of electing their candidate of choice in about 25\% minority (*influence*) districts?* 
-- *Does changing the percentage of minority voters from A (less than 50) to B (over 50) significantly increases the probability that minority candidates emerge?* 
-- *What percentage of minority voters is sufficient for a given district to enable minority voters to elect their co-ethnic candidates?*
-- *Where is the "sweet spot" -- the point at which the probability of minority candidates becomes high enough with the minimum percentage of minority voters?* 
-- *Does a given district plan have more minority voters than necessary to elect minority candidates, leading to a potential vote dilution?* 
-- *How many minority representatives are likely to be elected under a given district plan?*
+- Do minority voters have a viable chance of electing their candidate of choice in about 25\% minority (*influence*) districts? 
+- Does changing the percentage of minority voters from A (less than 50) to B (over 50) significantly increases the probability that minority candidates emerge? 
+- What percentage of minority voters is sufficient for a given district to enable minority voters to elect their co-ethnic candidates?
+- Where is the "sweet spot" -- the point at which the probability of minority candidates becomes high enough with the minimum percentage of minority voters? 
+- Does a given district plan have more minority voters than necessary to elect minority candidates, leading to a potential vote dilution? 
+- How many minority representatives are likely to be elected under a given district plan?
 
 
-**This README file explains how to apply the logical model to answer these questions in specific contexts via this R package.** 
+### **This README file explains how to apply the logical model to answer these questions in specific contexts using this R package.** 
 
-<br>
 
 ## Instllation
 To install the latest development version of `logical` directly from
@@ -97,14 +94,10 @@ library(logical)
 #    sim_M
 ```
 
-Below, I explain how to use this package by questions that it can answer, instead of introducing the funcationality by functions.
-
-<br/>
-
 ## 1. Predicting the Probability of Minority Electoral Success
 #### :key: `minorep`,  `plot_minorep` 
 
-`minorep` is a workhorse function of this package. It predicts a probability at which minority candidates run for office and win races in districts with specified values of *M* and *C*. For example, when one wants to predict the probability of minority candidate emergence and electoral success (equivalent in the logical model) for three districts for which she knows the percentage of minority voters and the (adjusted) racial margin of victory:
+`minorep` is a workhorse function of this package. It predicts a probability at which minority candidates run for office and win elections in given districts with specific values of *M* and *C*. For example, when one wants to predict the probability of minority candidate emergence and electoral success (equivalent in the logical model) for three districts for which she knows the percentage of minority voters and the (adjusted) racial margin of victory:
 
 ```r
 # Base Implementation
@@ -223,7 +216,6 @@ title("With Strong Minority Bloc Voting")
 
 <img src="man/figures/redistrict_change.png" width="45%" style="display: block; margin: auto;" />
 
-<br/>
 
 ## 5. Finding Sufficient Percentage of Minority Voters, Sweet Spot, Degree of Vote Dilution via Packing
 #### :key: `sim_redistrict`,  `plot_redistrict` 
@@ -246,4 +238,4 @@ title("With Strong Minority Bloc Voting")
 
 <img src="man/figures/redistrict_threshold.png" width="45%" style="display: block; margin: auto;" />
 
-<br/>
+
