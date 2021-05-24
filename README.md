@@ -88,13 +88,13 @@ library(logical)
 
 # This package contains several functions and sample data
 # Main Functions
-# minorep (prediction tool)
-# n_minorep (prediction tool)
-# sim_redistrict (prediction tool)
+#    minorep
+#    n_minorep
+#    sim_redistrict
 
 # Help Functions
-# comp_M (computing tool)
-# sim_M (computing tool)
+#    comp_M
+#    sim_M
 ```
 
 Below, I explain how to use this package by questions that it can answer, instead of introducing the funcationality by functions.
@@ -114,6 +114,7 @@ pred <- minorep(M=M_vec, C=C_vec)
 pred
 # [1] 0.000 1.000 0.691
 
+
 # Accounting for Turnout Grap
 pred_gap <- minorep(M=M_vec, C=C_vec, gap=c(0.5,0.6)) # 50% of minority and 60% of white voters turn out 
 pred_gap
@@ -130,7 +131,7 @@ plot_minorep(M=margin, C=VAP)
 <br/>
 
 ## 2. Predicting the Number of Minority Officeholders
-#### :key: `minorep`,  `plot_minorep`  
+#### :key: `minorep`,  `n_minorep`  
 
 Sometimes researchers are interested in predicting the number of minority officeholders at the jurisdiction level. For example, researchers may wish to know how many minority representatives can be expected in an entire jurisdiction with six districts, where they observe a set of information: **C**=(50,40,60,30,50,80) and **M**=(50,40,40,35,70,85).
 
@@ -152,7 +153,7 @@ hist(n_pred)                                  # Visualize the results in histogr
 ## 3. Computing or Simulating the Racial Margin of Victory
 #### :key: `comp_M`,  `sim_M`  
 
-So far, we have assumed that *M* is readily available. However, researchers often want to (A) compute the racial margin of victory based on observed data or (B) simulate it using substantive knowledge on the level of minority bloc voting and white crossover. Two help functions will help you achieve each of these goals:
+So far, we have assumed that *M* is readily available. However, researchers often want to (A) compute the racial margin of victory based on observed data or (B) simulate it using substantive knowledge on the level of minority bloc voting and white crossover. Two help functions `comp_M` and `sim_M` will help you achieve each of these goals:
 
 ```r
 # Computing M from observed data
@@ -162,6 +163,7 @@ top_white <- c(60, 40, 10, 34)    # Top white candidate's vote share in four dis
 M_vec_obs <- comp_M(Vm = top_minority, Vw = top_white) # Compute the (adjusted) racial margin of victory
 M_vec_obs
 # [1] 29.0 50.0 87.5 43.0
+
 
 # Simulating M from substantive knowledge
 C_hypothetical <- c(40,50,60)  # Hypothetical percentages of % minority voters
