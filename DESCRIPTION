@@ -10,8 +10,8 @@ BugReports: https://github.com/YukiAtsusaka/logical/issues
 Depends: R (>= 4.1.0)
 Imports:
     tidyverse (>= 1.3.1),
-    plotly (>= 4.9.3),
     RColorBrewer (>= 1.1-2),
+    graphics,
     grDevices
 Suggests:
     testthat

@@ -11,7 +11,9 @@
 #' C_vec = c(40, 70, 85) # Percentage of minority voters from the same districts
 #' plot_minorep(M=rmargin, C=VAP) # Assuming no turnout gap
 #' @export
-#' @importFrom plotly "filled.contour"
+#' @importFrom graphics "filled.contour"
+#'             scales "alpha"
+#'             RColorBrewer "brewer.pal"
 
 plot_minorep <- function(M, C, pch=NULL){
 
@@ -34,7 +36,7 @@ Mt[i,j] <- pnorm(q=q, mean=0, sd=1)   # Prob(minority candidate emergence/electo
 }
 
 
-filled.contour(x=M_vec,y=C_vec,z=Mt, 
+graphics::filled.contour(x=M_vec,y=C_vec,z=Mt, 
                xlim=c(-2,102), ylim=c(0,100),
                plot.axes =
                  {points(point.M,point.C, pch=pch)
