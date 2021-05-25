@@ -213,7 +213,7 @@ title("Impact of Increasing % Minority on Minority Success")
 
 
 ## 5. Finding Sufficient Percentage of Minority Voters, Sweet Spot, Degree of Vote Dilution via Packing
-#### :key: `sim_redistrict`,  `plot_redistrict` 
+#### :key: `sim_redistrict`,  `plot_sweetpot` 
 
 Users can pre-specified a threshold as a probability of minority electoal success under given district plans. For example, one may be interested what percentage of minority voters is sufficient to yield 80% or higher chance of having a minority officeholder under two different plans (from the above examples). Under this option, a probability (from 0 to 1) must be input for the optional argument "threshold" as follows:
 
@@ -250,6 +250,6 @@ arrows(x0=65.5, x1=69,
 
 <br/>
 
-<img src="man/figures/sweetspot.png" width="45%" style="display: block; margin: auto;" />
+<img src="man/figures/plot_sweetspot.png" width="45%" style="display: block; margin: auto;" />
 
 
