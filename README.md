@@ -195,20 +195,21 @@ plan2 <- sim_redistrict(coethnic=0.9, crossover=0.3)
 
 
 ```r
-myplans = cbind(plan1, plan2)
-myrange = c(44,55) # From 44% to 55%
-plot_redistrict(plans=myplans, range=myrange)
+plan1 <- sim_redistrict(coethnic=1, crossover=0)
+plan2 <- sim_redistrict(coethnic=1, crossover=0.3)
+my_plans = cbind(plan1, plan2)  # Two district plans
+my_range = c(44,55)             # Changing from 44% to 55%
 
-# To Add Title, etc.
+plot_redistrict(plans=my_plans, range=my_range)
 text(x=start, y=1.1, labels="Moderate white crossover",
-      cex=1, col="maroon", font=2)
+     cex=1, col="maroon", font=2)
 text(x=start+10, y=-0.09, labels="No white crossover",
-     cex=1, col="seagreen", font=2)
-title("With Strong Minority Bloc Voting")
+    cex=1, col="seagreen", font=2)
+title("Impact of Increasing % Minority on Minority Success")
 ```
 
 
-<img src="man/figures/redistrict_change.png" width="45%" style="display: block; margin: auto;" />
+<img src="man/figures/plot_redistrict.png" width="45%" style="display: block; margin: auto;" />
 
 
 ## 5. Finding Sufficient Percentage of Minority Voters, Sweet Spot, Degree of Vote Dilution via Packing
