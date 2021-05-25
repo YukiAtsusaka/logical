@@ -119,13 +119,6 @@ pred_gap
 <br/>
 
 
-```r
-plot_minorep(M=margin, C=VAP)
-```
-<img src="man/figures/plot.minorep.sample.png" width="55%" style="display: block; margin: auto;" />
-
-<br/>
-
 ## 2. Predicting the Number of Minority Officeholders
 #### :key: `minorep`,  `n_minorep`  
 
