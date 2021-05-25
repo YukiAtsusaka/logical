@@ -91,6 +91,8 @@ library(logical)
 #    minorep
 #    n_minorep
 #    sim_redistrict
+#    plot_redistrict
+#    plot_sweetspot
 
 # Help Functions
 #    comp_M
