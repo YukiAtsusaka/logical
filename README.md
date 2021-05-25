@@ -249,6 +249,6 @@ arrows(x0=65.5, x1=69,
 
 <br/>
 
-<img src="man/figures/sweetapot.png" width="45%" style="display: block; margin: auto;" />
+<img src="man/figures/sweetspot.png" width="45%" style="display: block; margin: auto;" />
 
 
