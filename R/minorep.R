@@ -26,5 +26,6 @@ C = (C*gap[1])/(C*gap[1] + (100-C)*gap[2])*100
 q = sqrt(M*C) - 50             # Geometric mean of the two bounds
 p = pnorm(q=q,  mean=0, sd=1)  # Model prediction
   
+p <- round(p,d=4)              # Rounding
 return(p)
 }

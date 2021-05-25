@@ -4,9 +4,18 @@
 #'
 #' @param C a scalar denoting the (turnout adjusted) percentages of minority voters in a district of interest
 #' @param coethnic a scaler denoting the proportion of minority voters who would vote for the minority candidate in biracial elections with a single minority and White candidates.
-#' @param crossover a scaler denoting the proportion of White voters who would vote for the minority candidate in biracial elections with a single minority and White candidates.#' @return A vector of predicted probabilities that minority candidates run for office and win in given districts (defined by M and C)
+#' @param crossover a scaler denoting the proportion of White voters who would vote for the minority candidate in biracial elections with a single minority and White candidates.
+#' @return A vector of the racial margin of victories based on substantive knowledge on the levels of minority bloc and crossover voting
 #' @examples
-#' sim_M(C=40, coethnic=1, crossover=0.3) 
+#' Simulating M from substantive knowledge
+#' C_hypothetical <- c(40,50,60)  # Hypothetical percentages of % minority voters
+#' bloc <- 1        # Proportion of minority voters who vote for a single (hypothetical) minority candidate
+#' cross <- 0.3     # Proportion of white voters who vote for a single (hypothetical) minority candidate
+#'
+#' M_vec_sim <- sim_M(C = C_hypothetical, coethnic = bloc, crossover = cross)
+#' M_vec_sim
+#'
+#'minorep(M = M_vec_sim, C = C_hypothetical)
 #' @export
 
 
