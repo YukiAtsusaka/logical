@@ -176,6 +176,7 @@ minorep(M = M_vec_sim, C = C_hypothetical)
 # [1] 0.0334 1.0000 1.0000
 ```
 
+<br/>
 
 ## 4. Simulating the Impact of Redistricting on Minority Representation
 #### :key: `sim_redistrict`,  `plot_redistrict` 
@@ -236,8 +237,6 @@ text(x=64, y=0.2, labels="C'\n(District Plan \nof Interest)",
 arrows(x0=65.5, x1=69,
        y0=0.28, y1=0.28, col="dimgray", lwd=1, length=0.1)    
 ```
-
-<br/>
 
 <img src="man/figures/plot_sweetspot.png" width="45%" style="display: block; margin: auto;" />
 
