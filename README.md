@@ -225,34 +225,16 @@ title("Impact of Increasing % Minority on Minority Success")
 Users can pre-specified a threshold as a probability of minority electoal success under given district plans. For example, one may be interested what percentage of minority voters is sufficient to yield 80% or higher chance of having a minority officeholder under two different plans (from the above examples). Under this option, a probability (from 0 to 1) must be input for the optional argument "threshold" as follows:
 
 ```r
-C <- seq(from=1, to=100, by=0.1)
-threshold <- 0.80
-C.pr <- 70                          # % minority in a given district plan
-sim1 <- redistrict(coethnic=0.9, crossover=0.2) 
+plan_1 <- sim_redistrict(coethnic=0.9, crossover=0.2)                  # Simulated district plan
+plot_sweetspot(plan=plan_1, range=c(30,70), threshold=0.8, C.prime=70) # Visualizing the sweet spot
 
-plot(0, type="n", ylim=c(-0.1,1.1),xlim=c(30,70),
-   ylab="Pr(Minority Electoral Success)",xlab="C (% of Minority Voters)",
-   mgp=c(2,0.7,0), cex.lab=1.2)
-lines(sim1 ~ C, col="maroon",lwd=4)
-abline(h=threshold, lty=2, col="dimgray")
-text(x=37,y=threshold+0.1, labels="Pre-specified \nThreshold", font=2, col="dimgray")
-
-sw1 = min(C[sim1>=0.8]) # SWEET SPLOT for sim1
-rect(sw1, -0.2, C.pr, 1.2, col=alpha("gray80", 0.5), lty=0)
-abline(v=C.pr, lwd=2, col="gray60", lty=2)
-arrows(x0=sw1, x1=sw1,
-       y0=threshold, y1=-0.05, col="maroon", lwd=1, length=0.1, lty=1)
-arrows(x0=sw1, x1=sw1,
-       y0=0, y1=-0.05, col="maroon", lwd=1, length=0.1)
-points(x=sw1, y=threshold, cex=1.5, pch=16, col="maroon")
-text(x=sw1+6, y=-0.1, labels=paste0(sw1, "% (Sweet Spot)"), col="maroon", font=2)
-
+# Add annotations
 text(x=59, y=0.6, labels="Degree of \nPotential Vote Dilution \n(C'-Sweet Spot)",
-      cex=1, col="dimgray", font=1)
+     cex=1, col="dimgray", font=1)
 text(x=64, y=0.2, labels="C'\n(District Plan \nof Interest)",
-      cex=1, col="dimgray", font=2)
+     cex=1, col="dimgray", font=2)
 arrows(x0=65.5, x1=69,
-       y0=0.28, y1=0.28, col="dimgray", lwd=1, length=0.1)
+       y0=0.28, y1=0.28, col="dimgray", lwd=1, length=0.1)    
 ```
 
 <br/>
