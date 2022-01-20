@@ -5,7 +5,7 @@ badge](https://img.shields.io/badge/Build%20with-🍩%20and%20R-blue)](https://g
 [![CRAN\_Status\_Badge](https://www.r-pkg.org/badges/version/cWise)](https://cran.r-project.org/package=cWise)
 [![license](https://img.shields.io/badge/license-GPL--3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html) <img src='man/figures/pexels-mathias-pr-reding-4394233.jpg' align="right" height="200" />
 
-**This R package is for computing and visualizing the quantitative predictions of a logical model of minority representation.** This quantitatively predictive logical model was developed in Atsusaka (2021) ["A Logical Model for Predicting Minority Representation: Application to Redistricting and Voting Rights Cases"](https://www.cambridge.org/core/journals/american-political-science-review/article/abs/logical-model-for-predicting-minority-representation-application-to-redistricting-and-voting-rights-cases/86C3B6E592B2B9111F58634AE656CD60?utm_source=hootsuite&utm_medium=twitter&utm_campaign=PSR_Jun21) (In Press at the *American Political Science Review*).
+**This R package is for computing and visualizing the quantitative predictions of a logical model of minority representation.** This quantitatively predictive logical model was developed in Atsusaka (2021) ["A Logical Model for Predicting Minority Representation: Application to Redistricting and Voting Rights Cases"](https://www.cambridge.org/core/journals/american-political-science-review/article/abs/logical-model-for-predicting-minority-representation-application-to-redistricting-and-voting-rights-cases/86C3B6E592B2B9111F58634AE656CD60?utm_source=hootsuite&utm_medium=twitter&utm_campaign=PSR_Jun21) *American Political Science Review*  115 (4), 1210-1225.
 
 <br>
 
