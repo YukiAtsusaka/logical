@@ -19,9 +19,6 @@ For an undergraduate-level treatment, please also see:
 
 - Taagepera, Rein. 2015. [*Logical models and basic numeracy in social sciences*](http://www.psych.ut.ee/stk/Beginners_Logical_Models.pdf). Book manuscript.
 
-
-This R package is under active development. Please let me know ([atsusaka@rice.edu](atsusaka@rice.edu)) if you find any issue installing and using the software! 
-
 <details>
 <summary>How to Cite logical✒️</summary>
 
