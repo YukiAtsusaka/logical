@@ -19,18 +19,6 @@ For an undergraduate-level treatment, please also see:
 
 - Taagepera, Rein. 2015. [*Logical models and basic numeracy in social sciences*](http://www.psych.ut.ee/stk/Beginners_Logical_Models.pdf). Book manuscript.
 
-<details>
-<summary>How to Cite logical✒️</summary>
-
-@Manual{,
-    title = {logical: Computing and Visualizing Quantitative Predictions of Logical Models},
-    author = {Yuki Atsusaka},
-    year = {2021},
-    note = {R package version 0.0.1},
-    url = {https://github.com/YukiAtsusaka/logical},
-  }
-</details>
-
 ## Main Idea: What is the Logical Model of Minority Representation?
 The logical model of minority representation is a simple mathematical formula introduced in Atsusaka (2021). Its main purpose is to logically explain and accurately predict when minority candidates run for office and win electoral contests. It has been shown that the model can predict over 90% of minority candidate emergence and over 95% of minority electoral success in actual elections.
 
