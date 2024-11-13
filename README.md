@@ -14,12 +14,8 @@ For quantitatively predictive logical models more generally, please refer to:
 - Taagepera, Rein. 2007. [*Predicting Party Sizes: The Logic of Simple Electoral Systems*](https://books.google.com/books?id=T_YTDAAAQBAJ&printsec=frontcover&dq=rein+taagepera&hl=ja&sa=X&ved=2ahUKEwjslpOhndnwAhURac0KHdMWD0AQ6AEwBHoECAUQAg#v=onepage&q=rein%20taagepera&f=false). Oxford University Press.
 - Taagepera, Rein. 2008. [*Making Social Sciences More Scientific: The Need for Predictive Models*](https://books.google.com/books?id=l6tiJLcVZ8AC&printsec=frontcover&dq=rein+taagepera&hl=ja&sa=X&ved=2ahUKEwjslpOhndnwAhURac0KHdMWD0AQ6AEwBnoECAcQAg#v=onepage&q=rein%20taagepera&f=false). Oxford University Press.
 - Shugart, Matthew S. and Rein Taagepera. 2017. [*Votes from Seats: Logical Models of Electoral Systems*](https://books.google.com/books?id=0S42DwAAQBAJ&printsec=frontcover&dq=rein+taagepera&hl=ja&sa=X&ved=2ahUKEwjslpOhndnwAhURac0KHdMWD0AQ6AEwCHoECAsQAg#v=onepage&q=rein%20taagepera&f=false). Cambridge University Press.
-
-For an undergraduate-level treatment, please also see:
-
-- Taagepera, Rein. 2015. [*Logical models and basic numeracy in social sciences*](http://www.psych.ut.ee/stk/Beginners_Logical_Models.pdf). Book manuscript.
-
-## Main Idea: What is the Logical Model of Minority Representation?
+  
+## What is the Logical Model of Minority Representation?
 The logical model of minority representation is a simple mathematical formula introduced in Atsusaka (2021). Its main purpose is to logically explain and accurately predict when minority candidates run for office and win electoral contests. It has been shown that the model can predict over 90% of minority candidate emergence and over 95% of minority electoral success in actual elections.
 
 The logical model states that the probability that a minority candidate runs for office in a particular district is equal to the estimated probability that she can win the election in the distirct. This estimated probability in turn is represented by the standard normal CDF (Cumulative Distribution Function) of a square-root of a product of two terms (*MC*) minus 50 (please see the original manuscript and its Online Appendix for derivation and explanations).
