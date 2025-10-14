@@ -22,8 +22,10 @@ A vector of the racial margin of victories based on substantive knowledge on the
 \examples{
 Simulating M from substantive knowledge
 C_hypothetical <- c(40,50,60)  # Hypothetical percentages of \% minority voters
-bloc <- 1        # Proportion of minority voters who vote for a single (hypothetical) minority candidate
-cross <- 0.3     # Proportion of white voters who vote for a single (hypothetical) minority candidate
+bloc <- 1        
+# Proportion of minority voters who vote for a single (hypothetical) minority candidate
+cross <- 0.3     
+# Proportion of white voters who vote for a single (hypothetical) minority candidate
 
 M_vec_sim <- sim_M(C = C_hypothetical, coethnic = bloc, crossover = cross)
 M_vec_sim

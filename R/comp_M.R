@@ -10,7 +10,11 @@
 #' top_minority <- c(18, 40, 85, 20) # Top minority candidate's vote share in four districts
 #' top_white <- c(60, 40, 10, 34)    # Top white candidate's vote share in four districts
 #' 
-#' M_vec_obs <- comp_M(Vm = top_minority, Vw = top_white) # Compute the (adjusted) racial margin of victor
+#' # Compute the (adjusted) racial margin of victor
+#' M_vec_obs <- comp_M(
+#'   Vm = top_minority,
+#'   Vw = top_white
+#' )
 #' minorep(M = M_vec_obs, C = c(50, 45, 65, 35))
 #' @export
 

@@ -18,6 +18,7 @@ A vector of the predicted number of minority candidates who run for office and w
 \examples{
 M_vec = c(20, 50, 30)
 C_vec = c(40, 70, 85)
-p_vec <- minorep(M=M_vec, C=C_vec, gap=c(0.5, 0.6)) # Assuming that minority turnout is 0.5 and White turnout is 0.6 
+p_vec <- minorep(M=M_vec, C=C_vec, gap=c(0.5, 0.6)) 
+# Assuming that minority turnout is 0.5 and White turnout is 0.6 
 n_minorep(model_pred=p_vec)
 }

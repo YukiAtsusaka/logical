@@ -4,12 +4,14 @@
 \alias{minorep}
 \title{minorep}
 \usage{
-minorep(M, C, gap = NULL)
+minorep(M, C, sd = 1, gap = NULL)
 }
 \arguments{
 \item{M}{a vector of (adjusted) racial margin of victories (Top minority candidate' vote share - Top White candidate's vote share + 50)}
 
 \item{C}{a vector of the percentages of minority voters in districts (as simulated racial margin of victory given distrcit racial composition)}
+
+\item{sd}{a value (standard deviation) that quantifies the degree to which candidates may misestiamte their odds of winning}
 
 \item{gap}{a vector of the turnout rates of minority and White voters}
 }
@@ -23,5 +25,10 @@ A vector of predicted probabilities that minority candidates run for office and 
 M_vec = c(20, 50, 30)
 C_vec = c(40, 70, 85)
 minorep(M=M_vec, C=C_vec) # Assuming no turnout gap
-minorep(M=M_vec, C=C_vec, gap=c(0.5, 0.6)) # Assuming that minority turnout is 0.5 and White turnout is 0.6 
+# Assuming that minority turnout is 0.5 and White turnout is 0.6
+minorep(
+  M = M_vec,
+  C = C_vec,
+  gap = c(0.5, 0.6)
+)
 }
