@@ -57,7 +57,10 @@ To install the latest development version of `logical` directly from
 
 ``` r
 library(devtools)
-devtools::install_github("YukiAtsusaka/logical")
+remotes::install_github(
+  "YukiAtsusaka/logical",
+  dependencies = TRUE
+)
 
 # This may take some time. 
 # Also, you may be asked to update 
