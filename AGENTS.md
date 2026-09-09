@@ -1,7 +1,7 @@
 # logical: CRAN Submission Plan
 
 **Created**: 2026-09-08
-**Last Updated**: 2026-09-08
+**Last Updated**: 2026-09-09
 
 ## Project Overview
 
@@ -15,21 +15,65 @@ macOS, and Windows.
 
 ## Current Status
 
-Planning and baseline audit are complete. No package source code has been changed.
-The only added repository file is `AGENTS.md`.
+The safe pre-vignette implementation is complete on branch
+`codex/cran-readiness` and is being pushed for Yuki's review. The package has
+validation, 51 passing tests, 97.44 percent test coverage, current metadata and
+citation, a rebuilt README and help files, 59 KB source-package output, and GitHub
+Actions definitions. No vignette file was created, edited, rendered, or
+regenerated because Yuki owns that lane.
+
+The current source tarball passes `R CMD check --as-cran --no-manual` with
+0 ERRORs, 0 WARNINGs, and three expected or temporary NOTEs: new submission,
+declared vignette support without a vignette, and inability to verify the current
+time. The PDF manual is blocked locally by a missing `inconsolata.sty` TeX
+component, not an observed Rd defect. Cross-platform services and final
+submission artifacts should wait until Yuki's vignette is integrated.
 
 **Owner labels:** `YA` = Yuki, `KD` = Kolbe, `Both` = joint decision or review,
-`?` = unassigned.
+`?` = unassigned. **Status labels:** `☒` = complete, `◐` = partially complete,
+`☐` = open.
 
 ## To-Do List
 
 - [x] Audit the current repository and record a reproducible CRAN baseline.
 - [ ] Agree on the release contract and collaborator roles.
-- [ ] Add correctness fixes and regression tests.
-- [ ] Complete CRAN metadata, dependency, and package-size cleanup.
+- [x] Add safe correctness fixes and regression tests.
+- [ ] Obtain Yuki's approval of published-model fixtures and deferred API choices.
+- [ ] Complete final authorship and maintainer metadata review.
+- [x] Complete dependency and package-size cleanup.
 - [ ] Rebuild user documentation and the introductory vignette.
-- [ ] Pass local and cross-platform release checks.
+- [x] Rebuild README and Rd documentation without touching the vignette lane.
+- [ ] Integrate Yuki's vignette and rerun the full documentation gate.
+- [ ] Pass the PDF-manual and cross-platform release checks.
 - [ ] Review and submit the `0.1.0` release candidate.
+
+## Flagged for Collaborator Review
+
+1. **Published-model fixtures:** The tests verify the existing formulas,
+   documented examples, validation, reproducibility under an externally set seed,
+   and unchanged valid-input behavior. Yuki still needs to approve independent
+   fixtures drawn from the article or replication materials.
+2. **Numerical precision:** `minorep()` still rounds to four decimal places. Decide
+   whether version 0.1.0 should instead return full-precision probabilities.
+3. **Simulation interface:** `n_minorep()` still produces exactly 1,000 draws and
+   uses the caller's random-number state. Decide whether to add `n_sim` and `seed`
+   arguments with explicit RNG preservation.
+4. **Plot scope:** `plot_redistrict()` still displays the first two columns when
+   more than two plans are supplied. Decide whether to enforce exactly two plans
+   or generalize the function. Also confirm whether `plot_sweetspot()` should
+   reject a supplied `C.prime` below the computed sweet spot.
+5. **Package roles:** Confirm that Yuki remains maintainer at the current email and
+   decide whether Kolbe's role is `aut` or `ctb`. `Authors@R` remains unchanged.
+6. **Minimum R version:** `Depends: R (>= 4.1.0)` remains unchanged because its
+   historical basis has not been confirmed.
+7. **Vignette:** Yuki is preparing it. The two vignette-related NOTEs will remain
+   until the source and prebuilt index are integrated.
+8. **Manual environment:** The local TeX Live 2025 installation lacks
+   `inconsolata.sty` and cannot install it directly from the 2026 repository.
+   Verify the PDF manual on CI, a current TeX installation, or an external builder.
+9. **External release checks:** Windows, macOS builder, R-hub, and final
+   `cran-comments.md` work should run after the vignette and review decisions are
+   merged, so the evidence describes the actual release candidate.
 
 ## Ground rules
 
@@ -182,18 +226,18 @@ Yuki confirms which behaviors match the model and intended use.
 
 | # | Task | Files | Who | Done |
 |---|---|---|---|---|
-| 2.1 | Create `tests/testthat.R` and `tests/testthat/`. Use testthat edition 3 and add the edition to `DESCRIPTION`. | `DESCRIPTION`, `tests/` | KD | ☐ |
+| 2.1 | Create `tests/testthat.R` and `tests/testthat/`. Use testthat edition 3 and add the edition to `DESCRIPTION`. | `DESCRIPTION`, `tests/` | KD | ☒ |
 | 2.2 | Add published-model fixtures with hand-calculated values for `M`, `C`, turnout adjustment, predicted probabilities, and jurisdiction totals. Confirm the fixtures against the article or its replication materials before treating them as ground truth. | `tests/testthat/test-model-values.R` | Both | ☐ |
-| 2.3 | Fix `comp_M()` vector handling. Validate equal or explicitly compatible lengths, finite numeric inputs, vote-share bounds, and pairwise sums. Use informative errors rather than printing and returning an undefined object. | `R/comp_M.R`, tests, Rd | KD | ☐ |
-| 2.4 | Harden `minorep()`. Validate `M`, `C`, `sd`, and `gap`; reject impossible values and zero denominators; make precision behavior match Decision 1.5. | `R/minorep.R`, tests, Rd | Both | ☐ |
-| 2.5 | Harden `sim_M()`. Validate `C`, `coethnic`, and `crossover`; document supported vectorization; test boundary values 0 and 1. | `R/sim_M.R`, tests, Rd | KD | ☐ |
-| 2.6 | Harden `sim_redistrict()`. Document and validate `gap`; test the grid, turnout transformation, output length, monotonic cases, and extreme voting patterns. | `R/sim_redistrict.R`, tests, Rd | Both | ☐ |
-| 2.7 | Make `n_minorep()` reproducible and configurable under Decision 1.7. Validate probabilities, simulation count, missing values, and boundary probabilities; test RNG preservation. | `R/n_minorep.R`, tests, Rd | KD | ☐ |
-| 2.8 | Separate plot-data preparation from rendering so numerical plot inputs can be tested without image comparison. Keep user-facing plotting functions small. | `R/plot_*.R`, helper file, tests | KD | ☐ |
-| 2.9 | Replace exact floating-point lookup such as `C == start` with a validated grid match or interpolation rule. Test ranges that do and do not fall exactly on the grid. | `R/plot_redistrict.R`, tests | KD | ☐ |
-| 2.10 | Define failures for unreachable thresholds, reversed ranges, out-of-range `C.prime`, wrong plan dimensions, and missing values. `plot_sweetspot()` should not silently produce `Inf` when the threshold is unreachable. | `R/plot_*.R`, tests, Rd | Both | ☐ |
-| 2.11 | Resolve README/API inconsistencies: `plot_minorep` is described but does not exist, and `model_predict` is shown although the argument is `model_pred`. Decide whether to implement, rename, or correct the prose. | `README.md`, code if needed | YA | ☐ |
-| 2.12 | Run test coverage and inspect uncovered branches. Use coverage as a diagnostic, not a release score. Every validation branch and all seven exports need direct tests. | tests | KD | ☐ |
+| 2.3 | Fix `comp_M()` vector handling. Validate equal or explicitly compatible lengths, finite numeric inputs, vote-share bounds, and pairwise sums. Use informative errors rather than printing and returning an undefined object. | `R/comp_M.R`, tests, Rd | KD | ☒ |
+| 2.4 | Harden `minorep()`. Validate `M`, `C`, `sd`, and `gap`; reject impossible values and zero denominators; make precision behavior match Decision 1.5. Validation is complete; precision remains flagged. | `R/minorep.R`, tests, Rd | Both | ◐ |
+| 2.5 | Harden `sim_M()`. Validate `C`, `coethnic`, and `crossover`; document supported vectorization; test boundary values 0 and 1. | `R/sim_M.R`, tests, Rd | KD | ☒ |
+| 2.6 | Harden `sim_redistrict()`. Document and validate `gap`; test the grid, turnout transformation, output length, monotonic cases, and extreme voting patterns. | `R/sim_redistrict.R`, tests, Rd | Both | ☒ |
+| 2.7 | Make `n_minorep()` reproducible and configurable under Decision 1.7. Input validation and externally seeded reproducibility tests are complete; the new interface remains flagged. | `R/n_minorep.R`, tests, Rd | KD | ◐ |
+| 2.8 | Separate plot-data preparation from rendering so numerical plot inputs can be tested without image comparison. Keep user-facing plotting functions small. | `R/plot_*.R`, helper file, tests | KD | ☒ |
+| 2.9 | Replace exact floating-point lookup such as `C == start` with a validated grid match or interpolation rule. Test ranges that do and do not fall exactly on the grid. | `R/plot_redistrict.R`, tests | KD | ☒ |
+| 2.10 | Define failures for unreachable thresholds, reversed ranges, out-of-range `C.prime`, wrong plan dimensions, and missing values. `plot_sweetspot()` should not silently produce `Inf` when the threshold is unreachable. | `R/plot_*.R`, tests, Rd | Both | ☒ |
+| 2.11 | Resolve README/API inconsistencies: `plot_minorep` is described but does not exist, and `model_predict` is shown although the argument is `model_pred`. The README now documents the actual functions and argument. | `README.md` | KD | ☒ |
+| 2.12 | Run test coverage and inspect uncovered branches. Use coverage as a diagnostic, not a release score. Every validation branch and all seven exports need direct tests. Coverage is 97.44 percent. | tests | KD | ☒ |
 
 ### Required test families
 
@@ -217,17 +261,17 @@ the published model.
 
 | # | Task | Files | Who | Done |
 |---|---|---|---|---|
-| 3.1 | Rewrite `Title` and `Description` in CRAN style. The description should explain what the package computes and cite Atsusaka (2021) with `<doi:10.1017/S000305542100054X>`. | `DESCRIPTION` | KD | ☐ |
-| 3.2 | Bump to `0.1.0`; add a concise `NEWS.md` that records the first release and any user-facing behavior changes. | `DESCRIPTION`, `NEWS.md` | KD | ☐ |
+| 3.1 | Rewrite `Title` and `Description` in CRAN style. The description should explain what the package computes and cite Atsusaka (2021) with `<doi:10.1017/S000305542100054X>`. | `DESCRIPTION` | KD | ☒ |
+| 3.2 | Bump to `0.1.0`; add a concise `NEWS.md` that records the first release and any user-facing behavior changes. | `DESCRIPTION`, `NEWS.md` | KD | ☒ |
 | 3.3 | Finalize `Authors@R` after Decision 1.3. Confirm the maintainer email and any ORCID entries directly with each author. | `DESCRIPTION` | Both | ☐ |
-| 3.4 | Remove unused tidyverse-style Imports. Keep only packages called by package code; add explicit `graphics` and `stats` imports through roxygen. | `DESCRIPTION`, package roxygen, `NAMESPACE` | KD | ☐ |
-| 3.5 | Replace every partial argument match such as `d =` with the full argument name `digits =`. | `R/`, examples | KD | ☐ |
-| 3.6 | Add `.Rbuildignore` rules for `logical.Rproj`, this plan, local development files, check output, and any repository-only configuration. Add generated artifacts such as `Rplots.pdf` to `.gitignore`. | `.Rbuildignore`, `.gitignore` | KD | ☐ |
-| 3.7 | Remove the unused 3.3 MB photo and decide whether the 3.6 MB decorative README photo should be removed or replaced with a small optimized asset. Keep analytical figures only when they serve documentation. | `man/figures/`, `README.md` | Both | ☐ |
-| 3.8 | Update `inst/CITATION` from the conditionally accepted SSRN record to the published *American Political Science Review* article, volume 115(4), pages 1210-1225, DOI `10.1017/S000305542100054X`. | `inst/CITATION` | KD | ☐ |
-| 3.9 | Confirm `License: GPL-3`. Do not add a separate `LICENSE` file unless the declaration is changed to refer to one. | `DESCRIPTION` | KD | ☐ |
-| 3.10 | Add package-level documentation and a stable package alias if needed. Regenerate all Rd files with the agreed roxygen version. | `R/logical-package.R`, `man/`, `NAMESPACE` | KD | ☐ |
-| 3.11 | Run a spelling pass over `R/`, Rd files, and README. Correct visible errors such as “Instllation,” “distrcit,” “misestiamte,” “scaler,” and “plot_sweetpot.” | documentation | KD | ☐ |
+| 3.4 | Remove unused tidyverse-style Imports. Keep only packages called by package code; qualify the `graphics`, `stats`, and `scales` calls explicitly. | `DESCRIPTION`, `R/`, `NAMESPACE` | KD | ☒ |
+| 3.5 | Replace every partial argument match such as `d =` with the full argument name `digits =`. | `R/`, examples | KD | ☒ |
+| 3.6 | Add `.Rbuildignore` rules for `logical.Rproj`, this plan, local development files, check output, and any repository-only configuration. Add generated artifacts such as `Rplots.pdf` to `.gitignore`. | `.Rbuildignore`, `.gitignore` | KD | ☒ |
+| 3.7 | Remove the unused 3.3 MB photo and decide whether the 3.6 MB decorative README photo should be removed or replaced with a small optimized asset. Both unused photos were removed; they remain recoverable from Git history. | `man/figures/`, `README.md` | KD | ☒ |
+| 3.8 | Update `inst/CITATION` from the conditionally accepted SSRN record to the published *American Political Science Review* article, volume 115(4), pages 1210-1225, DOI `10.1017/S000305542100054X`. | `inst/CITATION` | KD | ☒ |
+| 3.9 | Confirm `License: GPL-3`. Do not add a separate `LICENSE` file unless the declaration is changed to refer to one. | `DESCRIPTION` | KD | ☒ |
+| 3.10 | Add package-level documentation and a stable package alias if needed. Regenerate all Rd files with roxygen 7.3.3. | `R/logical-package.R`, `man/`, `NAMESPACE` | KD | ☒ |
+| 3.11 | Run a spelling pass over `R/`, Rd files, and README. Correct visible errors such as “Instllation,” “distrcit,” “misestiamte,” “scaler,” and “plot_sweetpot.” | documentation | KD | ☒ |
 
 **Exit criterion:** A source-package check reaches and completes tests, examples,
 vignette, and manual generation with 0 ERRORs and 0 WARNINGs. Repository-generated
@@ -239,14 +283,14 @@ NOTEs are resolved rather than merely described.
 
 | # | Task | Files | Who | Done |
 |---|---|---|---|---|
-| 4.1 | Rewrite the README installation block with `pak::pak("YukiAtsusaka/logical")` or `remotes::install_github()`. Remove badges and links that still point to `cWise`. | `README.md` | KD | ☐ |
-| 4.2 | Make README examples executable in a fresh R session. Define every object before use and ensure argument names match the API. | `README.md` | KD | ☐ |
-| 4.3 | Replace indexed-grid examples that confuse a vector position with a percentage value. A value such as `sim1[45]` is not the prediction at `C = 45` on a 0.1-point grid. | `README.md`, examples | Both | ☐ |
-| 4.4 | Add one focused vignette if Decision 1.4 keeps vignette support. Keep runtime short and use deterministic simulations. | `vignettes/`, `DESCRIPTION` | KD | ☐ |
-| 4.5 | Explain the model's quantities and units before code: `M`, `C`, `gap`, `coethnic`, `crossover`, prediction probability, and the jurisdiction-level simulation output. | README, vignette, Rd | YA | ☐ |
-| 4.6 | Calibrate empirical claims to the published article. Distinguish the model's evaluated predictive performance from a general guarantee for new elections or district plans. | README, vignette | YA | ☐ |
-| 4.7 | Add `@references`, `@seealso`, and complete `@return` text where it helps users interpret outputs. | `R/`, generated Rd | KD | ☐ |
-| 4.8 | Render the README and vignette, then inspect every figure, caption, line break, and local image reference. | rendered docs | Both | ☐ |
+| 4.1 | Rewrite the README installation block with `remotes::install_github()`. Remove badges and links that still point to `cWise`. | `README.md` | KD | ☒ |
+| 4.2 | Make README examples executable in a fresh R session. Define every object before use and ensure argument names match the API. | `README.md` | KD | ☒ |
+| 4.3 | Replace indexed-grid examples that confuse a vector position with a percentage value. A value such as `sim1[45]` is not the prediction at `C = 45` on a 0.1-point grid. | `README.md`, examples | KD | ☒ |
+| 4.4 | Yuki is adding the vignette. Do not create, edit, render, or regenerate vignette files in the KD/Codex branch. | `vignettes/`, `DESCRIPTION` | YA | ☐ |
+| 4.5 | Explain the model's quantities and units before code: `M`, `C`, `gap`, `coethnic`, `crossover`, prediction probability, and the jurisdiction-level simulation output. README and Rd work is complete; vignette work remains with Yuki. | README, vignette, Rd | Both | ◐ |
+| 4.6 | Calibrate empirical claims to the published article. Distinguish the model's evaluated predictive performance from a general guarantee for new elections or district plans. README work is complete; vignette work remains with Yuki. | README, vignette | Both | ◐ |
+| 4.7 | Add `@references` and complete `@return` text where it helps users interpret outputs. | `R/`, generated Rd | KD | ☒ |
+| 4.8 | Execute every README example and visually inspect both package-generated plot pages. Vignette rendering remains pending. | rendered docs | Both | ◐ |
 
 **Exit criterion:** A new user can install the package, reproduce each README and
 vignette example, understand every input's scale, and interpret every returned
@@ -258,12 +302,12 @@ object without consulting the source code.
 
 | # | Task | Files | Who | Done |
 |---|---|---|---|---|
-| 5.1 | Add standard GitHub Actions `R-CMD-check` across Linux, macOS, and Windows with current release, old release where practical, and R-devel. | `.github/workflows/` | KD | ☐ |
-| 5.2 | Add automated test coverage as a separate informational workflow. Do not make a coverage percentage the definition of correctness. | `.github/workflows/` | KD | ☐ |
+| 5.1 | Add standard GitHub Actions `R-CMD-check` across Linux, macOS, and Windows with current release, old release where practical, and R-devel. | `.github/workflows/` | KD | ☒ |
+| 5.2 | Add automated test coverage as a separate informational workflow. Do not make a coverage percentage the definition of correctness. | `.github/workflows/` | KD | ☒ |
 | 5.3 | Run `devtools::check_win_release()` and `devtools::check_win_devel()`. Archive the returned logs long enough for the release review. | external checks | YA | ☐ |
 | 5.4 | Configure R-hub v2, push its workflow, and run the recommended CRAN platforms from the release-candidate branch. | R-hub workflow | KD | ☐ |
 | 5.5 | Run the macOS builder and inspect any differences in examples, graphics devices, locales, or PDF-manual generation. | external checks | KD | ☐ |
-| 5.6 | Recheck all URLs from a networked environment. Replace long tracking URLs with stable DOI or canonical links. | package-wide | KD | ☐ |
+| 5.6 | Recheck all URLs from a networked environment. Replace long tracking URLs with stable DOI or canonical links. All five package URLs passed. | package-wide | KD | ☒ |
 
 **Exit criterion:** All required platforms pass with 0 ERRORs and 0 WARNINGs.
 Every remaining NOTE is understood, reproducible, and described in
@@ -276,8 +320,8 @@ Every remaining NOTE is understood, reproducible, and described in
 | # | Task | Who | Done |
 |---|---|---|---|
 | 6.1 | Freeze the API and merge only reviewed Phase 1-5 work into a release-candidate branch. | Both | ☐ |
-| 6.2 | Run `devtools::document()`, tests, full `--as-cran` check, manual build, vignette build, URL check, spelling check, and a clean-library installation. | KD | ☐ |
-| 6.3 | Recheck that `logical` remains available in the current CRAN package index. | KD | ☐ |
+| 6.2 | Documentation, tests, no-manual CRAN check, URL check, spelling check, source-tarball inspection, and clean-library installation passed. Manual and vignette gates remain open. | KD | ◐ |
+| 6.3 | Rechecked on 2026-09-09: the current CRAN package index contains no exact package named `logical`. Recheck at submission. | KD | ☒ |
 | 6.4 | Create `cran-comments.md` with exact test environments and an explanation for every accepted NOTE. Do not describe unresolved repository defects as expected notes. | KD | ☐ |
 | 6.5 | Review the built tarball contents. Confirm that it excludes this plan, `.Rproj`, check output, temporary graphics, and oversized unused assets. | Both | ☐ |
 | 6.6 | Review package authorship, maintainer address, title, description, citation, license, URLs, `NEWS.md`, and version one final time. | Both | ☐ |
@@ -316,15 +360,15 @@ files are fully disjoint.
 The package is ready to submit only when all of the following are true:
 
 - [ ] Yuki has approved the numerical reference fixtures and public API.
-- [ ] All seven exported functions have ordinary, boundary, and failure tests.
-- [ ] `devtools::test()` passes from a clean session.
+- [x] All seven exported functions have ordinary, boundary, and failure tests.
+- [x] `devtools::test()` passes from a clean session.
 - [ ] A built source tarball passes `R CMD check --as-cran` with 0 ERRORs,
   0 WARNINGs, and only justified NOTEs.
 - [ ] The PDF manual and vignette build without warnings.
 - [ ] Linux, macOS, Windows release, Windows devel, and R-hub results are reviewed.
 - [ ] README, Rd, vignette, citation, and `DESCRIPTION` agree with the code and
   the published article.
-- [ ] Package size is reasonable and unused decorative assets are absent from the
+- [x] Package size is reasonable and unused decorative assets are absent from the
   source tarball.
 - [ ] The exact release commit, tarball contents, and staged changes have been
   reviewed by both collaborators.
@@ -346,3 +390,33 @@ The package is ready to submit only when all of the following are true:
   `logical`; this must be rechecked at submission.
 - Created this CRAN-readiness plan. No commit, push, issue, or pull request was
   created.
+
+### 2026-09-09
+
+- Synced local `master` to `origin/master` at commit `722a1e9` and created local
+  branch `codex/cran-readiness`.
+- Updated package metadata to version 0.1.0, reduced runtime dependencies, added
+  package-level documentation, and updated the published-article citation.
+- Added centralized input validation and hardened all seven exported functions.
+  Preserved valid-input numerical behavior, four-decimal `minorep()` output,
+  the fixed 1,000-draw simulation interface, and existing plot scope pending
+  collaborator decisions.
+- Added 51 tests covering ordinary use, vectorization, boundaries, failures,
+  externally seeded reproducibility, plot data, and rendering. The suite passes
+  with 97.44 percent coverage.
+- Rebuilt Rd files and `NAMESPACE`, corrected the README against the public API,
+  executed all README examples against a clean installation, and visually
+  inspected both generated plot pages.
+- Removed two unused decorative JPEGs, reducing the built source package to
+  59 KB. Both files remain recoverable from Git history.
+- Added Linux, macOS, and Windows R CMD check automation plus an informational
+  coverage workflow based on the current r-lib/actions v2 templates.
+- Passed URL and spelling checks, source-tarball inspection, clean-library
+  installation, and `R CMD check --as-cran --no-manual` with 0 ERRORs,
+  0 WARNINGs, and three NOTEs documented above.
+- Left all vignette files untouched for Yuki. Deferred the PDF-manual environment,
+  external builders, R-hub, `cran-comments.md`, and release submission until the
+  vignette and collaborator decisions are integrated.
+- Added `YUKI_REVIEW.md`, a plain-language status and decision sheet for Yuki.
+- Committed and pushed the implementation branch for collaborator review. No
+  issue, pull request, or external submission was created.

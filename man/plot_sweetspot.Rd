@@ -2,32 +2,42 @@
 % Please edit documentation in R/plot_sweetspot.R
 \name{plot_sweetspot}
 \alias{plot_sweetspot}
-\title{plot_sweetspot}
+\title{Plot the Redistricting Sweet Spot}
 \usage{
 plot_sweetspot(plan, threshold, range, C.prime = NULL)
 }
 \arguments{
-\item{plan}{a set of outputs from \code{sim_redistrict}}
+\item{plan}{Numeric vector returned by [sim_redistrict()].}
 
-\item{threshold}{a pre-specified threshold for the probability of minority electoral success}
+\item{threshold}{Numeric probability from 0 to 1.}
 
-\item{range}{the starting and ending points of C over which the model predictions are demonstrated}
+\item{range}{Length-two numeric vector giving the lower and upper minority
+electorate percentages shown in the plot.}
 
-\item{C.prime}{a percentage of minority voters in a district of interest}
+\item{C.prime}{Optional minority electorate percentage for a district of
+interest, expressed from 1 to 100.}
 }
 \value{
-A plot showing the sweet spot of redistricting under a given district plan and a pre-specified threshold as well as the potential level of minority vote dilution via packing
+`NULL`, invisibly. The function is called for its plotting side effect.
 }
 \description{
-\code{plot_sweetspot} visualizes the impact of redistricting on minority descriptive representation
+Visualizes the minimum minority electorate percentage at which a redistricting
+scenario reaches a specified probability threshold.
 }
 \examples{
-plan_1 <- sim_redistrict(coethnic=0.9, crossover=0.2) 
-plot_sweetspot(plan=plan_1, range=c(30,70),threshold=0.8, C.prime=70)
-text(x=59, y=0.6, labels="Degree of \nPotential Vote Dilution \n(C'-Sweet Spot)",
-     cex=1, col="dimgray", font=1)
-text(x=64, y=0.2, labels="C'\n(District Plan \nof Interest)",
-     cex=1, col="dimgray", font=2)
-arrows(x0=65.5, x1=69,
-       y0=0.28, y1=0.28, col="dimgray", lwd=1, length=0.1)      
+plan_1 <- sim_redistrict(coethnic = 0.9, crossover = 0.2)
+plot_sweetspot(plan = plan_1, range = c(30, 70), threshold = 0.8, C.prime = 70)
+text(x = 59, y = 0.6,
+     labels = "Degree of \nPotential Vote Dilution \n(C'-Sweet Spot)",
+     cex = 1, col = "dimgray", font = 1)
+text(x = 64, y = 0.2, labels = "C'\nDistrict Plan \nof Interest",
+     cex = 1, col = "dimgray", font = 2)
+arrows(x0 = 65.5, x1 = 69, y0 = 0.28, y1 = 0.28,
+       col = "dimgray", lwd = 1, length = 0.1)
+}
+\references{
+Atsusaka, Y. (2021). A Logical Model for Predicting Minority
+  Representation: Application to Redistricting and Voting Rights Cases.
+  \emph{American Political Science Review}, 115(4), 1210-1225.
+  \doi{10.1017/S000305542100054X}
 }

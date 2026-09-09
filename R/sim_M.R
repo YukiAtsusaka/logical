@@ -1,31 +1,47 @@
-#' @title sim_M
+#' Simulate the Adjusted Racial Margin of Victory
 #'
-#' @description  \code{sim_M} simulates the values of the (adjusted) racial margin of victory based on the expected level of coethnic and crossover voting
+#' Computes adjusted racial margins of victory from minority electorate shares
+#' and expected coethnic and crossover voting.
 #'
-#' @param C a scalar denoting the (turnout adjusted) percentages of minority voters in a district of interest
-#' @param coethnic a scaler denoting the proportion of minority voters who would vote for the minority candidate in biracial elections with a single minority and White candidates.
-#' @param crossover a scaler denoting the proportion of White voters who would vote for the minority candidate in biracial elections with a single minority and White candidates.
-#' @return A vector of the racial margin of victories based on substantive knowledge on the levels of minority bloc and crossover voting
+#' @param C Numeric vector of minority electorate percentages, expressed from 0
+#'   to 100.
+#' @param coethnic Numeric vector containing the proportion of minority voters
+#'   expected to support the minority candidate, expressed from 0 to 1.
+#' @param crossover Numeric vector containing the proportion of White voters
+#'   expected to support the minority candidate, expressed from 0 to 1.
+#' @return A numeric vector of simulated adjusted racial margins of victory.
+#'   Inputs of length 1 are expanded to the common input length.
+#' @inherit comp_M references
 #' @examples
-#' Simulating M from substantive knowledge
-#' C_hypothetical <- c(40,50,60)  # Hypothetical percentages of % minority voters
+#' # Simulate M from substantive assumptions
+#' C_hypothetical <- c(40, 50, 60)
 #' bloc <- 1        
-#' # Proportion of minority voters who vote for a single (hypothetical) minority candidate
 #' cross <- 0.3     
-#' # Proportion of white voters who vote for a single (hypothetical) minority candidate
 #'
 #' M_vec_sim <- sim_M(C = C_hypothetical, coethnic = bloc, crossover = cross)
 #' M_vec_sim
 #'
-#'minorep(M = M_vec_sim, C = C_hypothetical)
+#' minorep(M = M_vec_sim, C = C_hypothetical)
 #' @export
 
+sim_M <- function(C, coethnic, crossover) {
+  .logical_assert_numeric(C, "C")
+  .logical_assert_numeric(coethnic, "coethnic")
+  .logical_assert_numeric(crossover, "crossover")
+  .logical_assert_range(C, "C", 0, 100)
+  .logical_assert_range(coethnic, "coethnic", 0, 1)
+  .logical_assert_range(crossover, "crossover", 0, 1)
 
-sim_M <- function(C, coethnic, crossover){
-   
-V_m = C*coethnic + ((100-C)*crossover)         # Simulated vote share for the top minority candidate
-V_w = C*(1-coethnic) + ((100-C)*(1-crossover)) # Simulated vote share for the top White candidate
-M = 1/2*(V_m - V_w) + 50                       # Simulated racial margin of victory
+  inputs <- .logical_recycle_common(
+    list(C, coethnic, crossover),
+    c("C", "coethnic", "crossover")
+  )
+  C <- inputs[[1]]
+  coethnic <- inputs[[2]]
+  crossover <- inputs[[3]]
 
-return(M)   
+  minority_vote <- C * coethnic + (100 - C) * crossover
+  white_vote <- C * (1 - coethnic) + (100 - C) * (1 - crossover)
+
+  (minority_vote - white_vote) / 2 + 50
 }

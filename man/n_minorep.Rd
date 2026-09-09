@@ -2,23 +2,30 @@
 % Please edit documentation in R/n_minorep.R
 \name{n_minorep}
 \alias{n_minorep}
-\title{n_minorep}
+\title{Simulate the Number of Minority Officeholders}
 \usage{
 n_minorep(model_pred)
 }
 \arguments{
-\item{model_pred}{A vector of model predictions obtained from \code{minorep}}
+\item{model_pred}{Numeric vector of probabilities from 0 to 1, typically
+obtained from [minorep()].}
 }
 \value{
-A vector of the predicted number of minority candidates who run for office and win in given districts
+An integer vector containing 1,000 simulated jurisdiction-level counts.
 }
 \description{
-\code{n_minorep} computes a vector of the number of minority candidates who run for office and win in given districts
+Draws the number of minority candidates who emerge and win across a set of
+districts using district-level probabilities from [minorep()].
 }
 \examples{
-M_vec = c(20, 50, 30)
-C_vec = c(40, 70, 85)
-p_vec <- minorep(M=M_vec, C=C_vec, gap=c(0.5, 0.6)) 
-# Assuming that minority turnout is 0.5 and White turnout is 0.6 
-n_minorep(model_pred=p_vec)
+M_vec <- c(20, 50, 30)
+C_vec <- c(40, 70, 85)
+p_vec <- minorep(M = M_vec, C = C_vec, gap = c(0.5, 0.6))
+n_minorep(model_pred = p_vec)
+}
+\references{
+Atsusaka, Y. (2021). A Logical Model for Predicting Minority
+  Representation: Application to Redistricting and Voting Rights Cases.
+  \emph{American Political Science Review}, 115(4), 1210-1225.
+  \doi{10.1017/S000305542100054X}
 }

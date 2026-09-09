@@ -1,18 +1,25 @@
-#' @title minorep
+#' Predict Minority Candidate Emergence and Electoral Success
 #'
-#' @description  \code{minorep} computes a vector of probabilities that minority candidate run for office and win in given districts
+#' Computes district-level probabilities of minority candidate emergence and
+#' electoral success under the logical model.
 #'
-#' @param M a vector of (adjusted) racial margin of victories (Top minority candidate' vote share - Top White candidate's vote share + 50)
-#' @param C a vector of the percentages of minority voters in districts (as simulated racial margin of victory given distrcit racial composition)
-#' @param sd a value (standard deviation) that quantifies the degree to which candidates may misestiamte their odds of winning 
-#' @param gap a vector of the turnout rates of minority and White voters
+#' @param M Numeric vector of adjusted racial margins of victory, expressed from
+#'   0 to 100.
+#' @param C Numeric vector of minority electorate percentages, expressed from 0
+#'   to 100.
+#' @param sd Positive numeric scalar describing candidate uncertainty about the
+#'   probability of winning.
+#' @param gap Optional length-two numeric vector containing minority and White
+#'   turnout rates, each expressed from 0 to 1.
 #'
-#' @return A vector of predicted probabilities that minority candidates run for office and win in given districts (defined by M and C)
+#' @return A numeric vector of predicted probabilities, rounded to four decimal
+#'   places. Inputs of length 1 are expanded to the common input length.
+#' @inherit comp_M references
 #' @examples
-#' M_vec = c(20, 50, 30)
-#' C_vec = c(40, 70, 85)
-#' minorep(M=M_vec, C=C_vec) # Assuming no turnout gap
-#' # Assuming that minority turnout is 0.5 and White turnout is 0.6
+#' M_vec <- c(20, 50, 30)
+#' C_vec <- c(40, 70, 85)
+#' minorep(M = M_vec, C = C_vec)
+#'
 #' minorep(
 #'   M = M_vec,
 #'   C = C_vec,
@@ -20,18 +27,23 @@
 #' )
 #' @export
 
-minorep <- function(M, C, sd = 1, gap = NULL){
+minorep <- function(M, C, sd = 1, gap = NULL) {
+  .logical_assert_numeric(M, "M")
+  .logical_assert_numeric(C, "C")
+  .logical_assert_numeric(sd, "sd", length = 1L)
+  .logical_assert_range(M, "M", 0, 100)
+  .logical_assert_range(C, "C", 0, 100)
+  if (sd <= 0) {
+    stop("`sd` must be greater than zero.", call. = FALSE)
+  }
+  .logical_validate_gap(gap)
 
-# Computing Turnout Adjusted Percentage of Minority Voters
-if(is.null(gap)){
-C = C
-}else{
-C = (C*gap[1])/(C*gap[1] + (100-C)*gap[2])*100
-}
+  inputs <- .logical_recycle_common(list(M, C), c("M", "C"))
+  M <- inputs[[1]]
+  C <- .logical_adjust_turnout(inputs[[2]], gap)
 
-q = sqrt(M*C) - 50             # Geometric mean of the two bounds
-p = pnorm(q=q,  mean=0, sd = sd)  # Model prediction
-  
-p <- round(p,d=4)              # Rounding
-return(p)
+  q <- sqrt(M * C) - 50
+  probability <- stats::pnorm(q = q, mean = 0, sd = sd)
+
+  round(probability, digits = 4)
 }

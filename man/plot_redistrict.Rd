@@ -2,30 +2,41 @@
 % Please edit documentation in R/plot_redistrict.R
 \name{plot_redistrict}
 \alias{plot_redistrict}
-\title{plot_redistrict}
+\title{Plot Redistricting Predictions}
 \usage{
 plot_redistrict(plans, range)
 }
 \arguments{
-\item{plans}{a set of outputs from \code{sim_redistrict}}
+\item{plans}{A numeric matrix or data frame whose first two columns contain
+outputs from [sim_redistrict()].}
 
-\item{range}{the starting and ending points of C over which the model predictions are demonstrated}
+\item{range}{Length-two numeric vector giving the lower and upper minority
+electorate percentages shown in the plot.}
 }
 \value{
-A plot representing the substantive change in the probability of minority candidate emergence and electoral success
+`NULL`, invisibly. The function is called for its plotting side effect.
 }
 \description{
-\code{plot_redistrict} visualizes the impact of redistricting on minority descriptive representation
+Visualizes changes in minority candidate emergence and electoral success under
+two redistricting scenarios.
 }
 \examples{
-plan1 <- sim_redistrict(coethnic=1, crossover=0)
-plan2 <- sim_redistrict(coethnic=1, crossover=0.3)
-my_plans = cbind(plan1, plan2)
-my_range = c(44,55) # Changing from 44\% to 55\%
-plot_redistrict(plans=my_plans, range=my_range)
-text(x=start, y=1.1, labels="Moderate white crossover",
-     cex=1, col="maroon", font=2)
-text(x=start+10, y=-0.09, labels="No white crossover",
-     cex=1, col="seagreen", font=2)
+plan1 <- sim_redistrict(coethnic = 1, crossover = 0)
+plan2 <- sim_redistrict(coethnic = 1, crossover = 0.3)
+my_plans <- cbind(plan1, plan2)
+my_range <- c(44, 55)
+start <- my_range[1]
+end <- my_range[2]
+plot_redistrict(plans = my_plans, range = my_range)
+text(x = start, y = 1.1, labels = "Moderate white crossover",
+     cex = 1, col = "maroon", font = 2)
+text(x = start + 10, y = -0.09, labels = "No white crossover",
+     cex = 1, col = "seagreen", font = 2)
 title("Impact of Increasing \% Minority on Minority Success")
+}
+\references{
+Atsusaka, Y. (2021). A Logical Model for Predicting Minority
+  Representation: Application to Redistricting and Voting Rights Cases.
+  \emph{American Political Science Review}, 115(4), 1210-1225.
+  \doi{10.1017/S000305542100054X}
 }

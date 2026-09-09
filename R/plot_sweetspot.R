@@ -1,65 +1,93 @@
-#' @title plot_sweetspot
-#'
-#' @description  \code{plot_sweetspot} visualizes the impact of redistricting on minority descriptive representation
-#'
-#' @param plan a set of outputs from \code{sim_redistrict}
-#' @param threshold a pre-specified threshold for the probability of minority electoral success
-#' @param range the starting and ending points of C over which the model predictions are demonstrated
-#' @param C.prime a percentage of minority voters in a district of interest
-#'
-#' @return A plot showing the sweet spot of redistricting under a given district plan and a pre-specified threshold as well as the potential level of minority vote dilution via packing
-#' @examples
-#' plan_1 <- sim_redistrict(coethnic=0.9, crossover=0.2) 
-#' plot_sweetspot(plan=plan_1, range=c(30,70),threshold=0.8, C.prime=70)
-#' text(x=59, y=0.6, labels="Degree of \nPotential Vote Dilution \n(C'-Sweet Spot)",
-#'      cex=1, col="dimgray", font=1)
-#' text(x=64, y=0.2, labels="C'\n(District Plan \nof Interest)",
-#'      cex=1, col="dimgray", font=2)
-#' arrows(x0=65.5, x1=69,
-#'        y0=0.28, y1=0.28, col="dimgray", lwd=1, length=0.1)      
-#' @export
+.logical_sweetspot_plot_data <- function(plan, threshold, range, C.prime) {
+  .logical_assert_numeric(plan, "plan")
+  .logical_assert_range(plan, "plan", 0, 1)
+  .logical_assert_numeric(threshold, "threshold", length = 1L)
+  .logical_assert_range(threshold, "threshold", 0, 1)
+  .logical_validate_range(range)
 
+  C <- seq(from = 1, to = 100, by = 0.1)
+  if (length(plan) != length(C)) {
+    stop(sprintf("`plan` must contain %d values.", length(C)), call. = FALSE)
+  }
+  if (!any(plan >= threshold)) {
+    stop("`plan` never reaches `threshold`.", call. = FALSE)
+  }
 
-plot_sweetspot <- function(plan, threshold, range, C.prime=NULL){
-  
-# Neccesary entries
-C <- seq(from=1, to=100, by=0.1) # % minority voters over which we draw the plot
+  sweet_spot <- C[which(plan >= threshold)[1]]
+  if (is.null(C.prime)) {
+    C.prime <- sweet_spot
+  } else {
+    .logical_assert_numeric(C.prime, "C.prime", length = 1L)
+    .logical_assert_range(C.prime, "C.prime", 1, 100)
+  }
 
-
-# Making a plot
-plot(0, type="n",                         # Empty plot
-     ylim=c(-0.1,1.1),
-     xlim=range,
-     ylab="Pr(Minority Electoral Success)", 
-     xlab="C (% of Minority Voters)",
-     mgp=c(2,0.7,0), cex.lab=1.2)
-lines(plan ~ C, col="maroon",lwd=4)       # Model predictions over C
-abline(h=threshold, lty=2, col="dimgray") # Horizontal line for threshold
-
-sweet_spot = min(C[plan>=threshold])      # Sweet Spot under plan
-
-
-# Computing C.prime if not provided: C under a given distrcit plan
-if(is.null(C.prime)){
-C.prime = sweet_spot
-}else{
-C.prime = C.prime
+  list(C = C, plan = plan, threshold = threshold, range = range,
+       sweet_spot = sweet_spot, C.prime = C.prime)
 }
 
+#' Plot the Redistricting Sweet Spot
+#'
+#' Visualizes the minimum minority electorate percentage at which a redistricting
+#' scenario reaches a specified probability threshold.
+#'
+#' @param plan Numeric vector returned by [sim_redistrict()].
+#' @param threshold Numeric probability from 0 to 1.
+#' @param range Length-two numeric vector giving the lower and upper minority
+#'   electorate percentages shown in the plot.
+#' @param C.prime Optional minority electorate percentage for a district of
+#'   interest, expressed from 1 to 100.
+#'
+#' @return `NULL`, invisibly. The function is called for its plotting side effect.
+#' @inherit comp_M references
+#' @examples
+#' plan_1 <- sim_redistrict(coethnic = 0.9, crossover = 0.2)
+#' plot_sweetspot(plan = plan_1, range = c(30, 70), threshold = 0.8, C.prime = 70)
+#' text(x = 59, y = 0.6,
+#'      labels = "Degree of \nPotential Vote Dilution \n(C'-Sweet Spot)",
+#'      cex = 1, col = "dimgray", font = 1)
+#' text(x = 64, y = 0.2, labels = "C'\nDistrict Plan \nof Interest",
+#'      cex = 1, col = "dimgray", font = 2)
+#' arrows(x0 = 65.5, x1 = 69, y0 = 0.28, y1 = 0.28,
+#'        col = "dimgray", lwd = 1, length = 0.1)
+#' @export
+plot_sweetspot <- function(plan, threshold, range, C.prime = NULL) {
+  data <- .logical_sweetspot_plot_data(plan, threshold, range, C.prime)
 
-rect(sweet_spot, -0.2, C.prime, 1.2,          # Visualizing the potential vote dilution
-     col=alpha("gray80", 0.5), lty=0)
-abline(v=C.prime, lwd=2, col="gray60", lty=2) # C under a given district plan
-arrows(x0=sweet_spot, x1=sweet_spot,          # Vertical line for the sweet spot
-       y0=threshold, y1=-0.05, 
-       col="maroon", lwd=1, length=0.1, lty=1)
-points(x=sweet_spot, y=threshold,             # Add a point for the sweet spot
-       cex=1.5, pch=16, col="maroon")    
-text(x=sweet_spot, y=-0.1,                    # Add a percentage for the sweet spot
-     labels=paste0(sweet_spot, "% (Sweet Spot)"), 
-     col="maroon", font=2)
-text(x=range[1]+7,y=threshold-0.1, 
-     labels="Pre-specified \nThreshold", font=2, col="dimgray")
+  graphics::plot(
+    0,
+    type = "n",
+    ylim = c(-0.1, 1.1),
+    xlim = data$range,
+    ylab = "Pr(Minority Electoral Success)",
+    xlab = "C (% of Minority Voters)",
+    mgp = c(2, 0.7, 0),
+    cex.lab = 1.2
+  )
+  graphics::lines(data$plan ~ data$C, col = "maroon", lwd = 4)
+  graphics::abline(h = data$threshold, lty = 2, col = "dimgray")
+  graphics::rect(
+    data$sweet_spot, -0.2, data$C.prime, 1.2,
+    col = scales::alpha("gray80", 0.5), border = NA
+  )
+  graphics::abline(v = data$C.prime, lwd = 2, col = "gray60", lty = 2)
+  graphics::arrows(
+    x0 = data$sweet_spot, x1 = data$sweet_spot,
+    y0 = data$threshold, y1 = -0.05,
+    col = "maroon", lwd = 1, length = 0.1, lty = 1
+  )
+  graphics::points(
+    x = data$sweet_spot, y = data$threshold,
+    cex = 1.5, pch = 16, col = "maroon"
+  )
+  graphics::text(
+    x = data$sweet_spot, y = -0.1,
+    labels = paste0(data$sweet_spot, "% (Sweet Spot)"),
+    col = "maroon", font = 2
+  )
+  graphics::text(
+    x = data$range[1] + 7, y = data$threshold - 0.1,
+    labels = "Pre-specified \nThreshold", font = 2, col = "dimgray"
+  )
 
-return()
+  invisible(NULL)
 }

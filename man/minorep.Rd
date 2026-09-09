@@ -2,33 +2,45 @@
 % Please edit documentation in R/minorep.R
 \name{minorep}
 \alias{minorep}
-\title{minorep}
+\title{Predict Minority Candidate Emergence and Electoral Success}
 \usage{
 minorep(M, C, sd = 1, gap = NULL)
 }
 \arguments{
-\item{M}{a vector of (adjusted) racial margin of victories (Top minority candidate' vote share - Top White candidate's vote share + 50)}
+\item{M}{Numeric vector of adjusted racial margins of victory, expressed from
+0 to 100.}
 
-\item{C}{a vector of the percentages of minority voters in districts (as simulated racial margin of victory given distrcit racial composition)}
+\item{C}{Numeric vector of minority electorate percentages, expressed from 0
+to 100.}
 
-\item{sd}{a value (standard deviation) that quantifies the degree to which candidates may misestiamte their odds of winning}
+\item{sd}{Positive numeric scalar describing candidate uncertainty about the
+probability of winning.}
 
-\item{gap}{a vector of the turnout rates of minority and White voters}
+\item{gap}{Optional length-two numeric vector containing minority and White
+turnout rates, each expressed from 0 to 1.}
 }
 \value{
-A vector of predicted probabilities that minority candidates run for office and win in given districts (defined by M and C)
+A numeric vector of predicted probabilities, rounded to four decimal
+  places. Inputs of length 1 are expanded to the common input length.
 }
 \description{
-\code{minorep} computes a vector of probabilities that minority candidate run for office and win in given districts
+Computes district-level probabilities of minority candidate emergence and
+electoral success under the logical model.
 }
 \examples{
-M_vec = c(20, 50, 30)
-C_vec = c(40, 70, 85)
-minorep(M=M_vec, C=C_vec) # Assuming no turnout gap
-# Assuming that minority turnout is 0.5 and White turnout is 0.6
+M_vec <- c(20, 50, 30)
+C_vec <- c(40, 70, 85)
+minorep(M = M_vec, C = C_vec)
+
 minorep(
   M = M_vec,
   C = C_vec,
   gap = c(0.5, 0.6)
 )
+}
+\references{
+Atsusaka, Y. (2021). A Logical Model for Predicting Minority
+  Representation: Application to Redistricting and Voting Rights Cases.
+  \emph{American Political Science Review}, 115(4), 1210-1225.
+  \doi{10.1017/S000305542100054X}
 }
