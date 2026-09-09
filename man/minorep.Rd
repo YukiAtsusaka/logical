@@ -20,8 +20,8 @@ probability of winning.}
 turnout rates, each expressed from 0 to 1.}
 }
 \value{
-A numeric vector of predicted probabilities, rounded to four decimal
-  places. Inputs of length 1 are expanded to the common input length.
+A numeric vector of full-precision predicted probabilities. Inputs of
+  length 1 are expanded to the common input length.
 }
 \description{
 Computes district-level probabilities of minority candidate emergence and

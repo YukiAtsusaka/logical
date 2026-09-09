@@ -2,10 +2,16 @@ Package: logical
 Type: Package
 Title: Predictions from a Logical Model of Minority Representation
 Version: 0.1.0
-Authors@R: 
-    person("Yuki", "Atsusaka", 
-           email = "yuki.atsusaka@gmail.com", 
-           role = c("aut", "cre"))
+Authors@R: c(
+    person("Yuki", "Atsusaka",
+           email = "atsusaka@uh.edu",
+           role = c("aut", "cre"),
+           comment = c(ORCID = "0000-0001-5365-1876")),
+    person("Kolbe A.", "Dumas",
+           email = "kdumas@uh.edu",
+           role = "aut",
+           comment = c(ORCID = "0009-0002-8777-5476"))
+    )
 Description: Computes and visualizes quantitative predictions from the logical
     model of minority representation developed by Atsusaka (2021)
     <doi:10.1017/S000305542100054X>. Functions support district-level prediction,
@@ -13,10 +19,10 @@ Description: Computes and visualizes quantitative predictions from the logical
 License: GPL-3
 URL: https://github.com/YukiAtsusaka/logical
 BugReports: https://github.com/YukiAtsusaka/logical/issues
-Depends: R (>= 4.1.0)
+Depends: R (>= 3.6.0)
 Imports:
-    scales,
     graphics,
+    grDevices,
     stats
 Suggests:
     knitr,

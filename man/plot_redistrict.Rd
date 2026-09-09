@@ -7,8 +7,8 @@
 plot_redistrict(plans, range)
 }
 \arguments{
-\item{plans}{A numeric matrix or data frame whose first two columns contain
-outputs from [sim_redistrict()].}
+\item{plans}{A numeric matrix or data frame whose columns contain outputs from
+[sim_redistrict()]. Column names are used to label plans in the legend.}
 
 \item{range}{Length-two numeric vector giving the lower and upper minority
 electorate percentages shown in the plot.}
@@ -18,12 +18,12 @@ electorate percentages shown in the plot.}
 }
 \description{
 Visualizes changes in minority candidate emergence and electoral success under
-two redistricting scenarios.
+one or more redistricting scenarios.
 }
 \examples{
 plan1 <- sim_redistrict(coethnic = 1, crossover = 0)
 plan2 <- sim_redistrict(coethnic = 1, crossover = 0.3)
-my_plans <- cbind(plan1, plan2)
+my_plans <- cbind("No crossover" = plan1, "Moderate crossover" = plan2)
 my_range <- c(44, 55)
 start <- my_range[1]
 end <- my_range[2]

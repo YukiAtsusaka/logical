@@ -26,7 +26,12 @@ Useful links:
 
 }
 \author{
-\strong{Maintainer}: Yuki Atsusaka \email{yuki.atsusaka@gmail.com}
+\strong{Maintainer}: Yuki Atsusaka \email{atsusaka@uh.edu} (\href{https://orcid.org/0000-0001-5365-1876}{ORCID})
+
+Authors:
+\itemize{
+  \item Kolbe A. Dumas \email{kdumas@uh.edu} (\href{https://orcid.org/0009-0002-8777-5476}{ORCID})
+}
 
 }
 \keyword{internal}

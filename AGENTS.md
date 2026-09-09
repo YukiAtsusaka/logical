@@ -15,12 +15,12 @@ macOS, and Windows.
 
 ## Current Status
 
-The safe pre-vignette implementation is complete on branch
-`codex/cran-readiness` and is being pushed for Yuki's review. The package has
-validation, 51 passing tests, 97.44 percent test coverage, current metadata and
-citation, a rebuilt README and help files, 59 KB source-package output, and GitHub
-Actions definitions. No vignette file was created, edited, rendered, or
-regenerated because Yuki owns that lane.
+The approved pre-vignette implementation is complete on branch
+`codex/cran-readiness`. The package has validation, 68 passing tests, 96.99
+percent test coverage, approved authorship and public-interface decisions,
+current metadata and citation, a rebuilt README and help files, 61 KB
+source-package output, and GitHub Actions definitions. No vignette file was
+created, edited, rendered, or regenerated because Yuki owns that lane.
 
 The current source tarball passes `R CMD check --as-cran --no-manual` with
 0 ERRORs, 0 WARNINGs, and three expected or temporary NOTEs: new submission,
@@ -36,10 +36,10 @@ submission artifacts should wait until Yuki's vignette is integrated.
 ## To-Do List
 
 - [x] Audit the current repository and record a reproducible CRAN baseline.
-- [ ] Agree on the release contract and collaborator roles.
+- [x] Agree on the release contract and collaborator roles.
 - [x] Add safe correctness fixes and regression tests.
-- [ ] Obtain Yuki's approval of published-model fixtures and deferred API choices.
-- [ ] Complete final authorship and maintainer metadata review.
+- [x] Obtain approval of published-model fixtures and deferred API choices.
+- [x] Complete final authorship and maintainer metadata review.
 - [x] Complete dependency and package-size cleanup.
 - [ ] Rebuild user documentation and the introductory vignette.
 - [x] Rebuild README and Rd documentation without touching the vignette lane.
@@ -47,31 +47,14 @@ submission artifacts should wait until Yuki's vignette is integrated.
 - [ ] Pass the PDF-manual and cross-platform release checks.
 - [ ] Review and submit the `0.1.0` release candidate.
 
-## Flagged for Collaborator Review
+## Remaining Release Gates
 
-1. **Published-model fixtures:** The tests verify the existing formulas,
-   documented examples, validation, reproducibility under an externally set seed,
-   and unchanged valid-input behavior. Yuki still needs to approve independent
-   fixtures drawn from the article or replication materials.
-2. **Numerical precision:** `minorep()` still rounds to four decimal places. Decide
-   whether version 0.1.0 should instead return full-precision probabilities.
-3. **Simulation interface:** `n_minorep()` still produces exactly 1,000 draws and
-   uses the caller's random-number state. Decide whether to add `n_sim` and `seed`
-   arguments with explicit RNG preservation.
-4. **Plot scope:** `plot_redistrict()` still displays the first two columns when
-   more than two plans are supplied. Decide whether to enforce exactly two plans
-   or generalize the function. Also confirm whether `plot_sweetspot()` should
-   reject a supplied `C.prime` below the computed sweet spot.
-5. **Package roles:** Confirm that Yuki remains maintainer at the current email and
-   decide whether Kolbe's role is `aut` or `ctb`. `Authors@R` remains unchanged.
-6. **Minimum R version:** `Depends: R (>= 4.1.0)` remains unchanged because its
-   historical basis has not been confirmed.
-7. **Vignette:** Yuki is preparing it. The two vignette-related NOTEs will remain
+1. **Vignette:** Yuki is preparing it. The two vignette-related NOTEs will remain
    until the source and prebuilt index are integrated.
-8. **Manual environment:** The local TeX Live 2025 installation lacks
+2. **Manual environment:** The local TeX Live 2025 installation lacks
    `inconsolata.sty` and cannot install it directly from the 2026 repository.
    Verify the PDF manual on CI, a current TeX installation, or an external builder.
-9. **External release checks:** Windows, macOS builder, R-hub, and final
+3. **External release checks:** Windows, macOS builder, R-hub, and final
    `cran-comments.md` work should run after the vignette and review decisions are
    merged, so the evidence describes the actual release candidate.
 
@@ -204,15 +187,15 @@ this file and in `NEWS.md` when it affects users.
 
 | # | Decision | Recommendation | Who | Done |
 |---|---|---|---|---|
-| 1.1 | CRAN release version | Use `0.1.0` for the first public release. | Both | ☐ |
-| 1.2 | Maintainer | Keep Yuki as `cre` unless responsibility has changed. Confirm that the maintainer email is current and monitored. | YA | ☐ |
-| 1.3 | Kolbe's author role | Use `aut` if Kolbe contributes substantive package code or API design; use `ctb` if the contribution is mainly testing, documentation, and release engineering. | Both | ☐ |
-| 1.4 | Vignette | Keep `knitr` only if one real vignette is added. Recommended: one short workflow vignette covering district-level predictions, jurisdiction totals, and redistricting scenarios. | Both | ☐ |
-| 1.5 | Numerical precision | Return full-precision predictions from computational functions. Round only when printing or labeling plots. Document this as a behavior change. | YA | ☐ |
-| 1.6 | Vector recycling | Require compatible input lengths. Permit scalar expansion only when it is explicit and tested; reject accidental recycling. | YA | ☐ |
-| 1.7 | Simulation interface | Add `n_sim` and optional `seed` to `n_minorep()`. Preserve the caller's random-number state when a seed is supplied. | YA | ☐ |
-| 1.8 | Plot scope | Decide whether `plot_redistrict()` supports exactly two plans or any number. Enforce and document the selected contract. | YA | ☐ |
-| 1.9 | Minimum R version | Confirm whether R 4.1.0 is truly required. Lower it if the code supports older R; otherwise document why 4.1.0 is needed. | Both | ☐ |
+| 1.1 | CRAN release version | Use `0.1.0` for the first public release. | Both | ☒ |
+| 1.2 | Maintainer | Yuki remains `cre`; use the monitored `atsusaka@uh.edu` address and his ORCID. | YA | ☒ |
+| 1.3 | Kolbe's author role | List Kolbe A. Dumas as the second `aut`; Yuki remains the first and primary author. | Both | ☒ |
+| 1.4 | Vignette | Keep `knitr` and integrate Yuki's short introductory vignette when ready. | Both | ☒ |
+| 1.5 | Numerical precision | Return full-precision predictions from computational functions. Round only when printing or labeling plots. | YA | ☒ |
+| 1.6 | Vector recycling | Require compatible input lengths. Permit scalar expansion only when it is explicit and tested; reject accidental recycling. | YA | ☒ |
+| 1.7 | Simulation interface | Add `n_sim` and optional `seed` to `n_minorep()`. Preserve the caller's random-number state when a seed is supplied. | YA | ☒ |
+| 1.8 | Plot scope | Support one or more plans with column-name labels. Treat `C.prime` below the sweet spot as a valid shortfall. | YA | ☒ |
+| 1.9 | Minimum R version | Use R 3.6.0 and remove the `scales` dependency that otherwise requires R 4.1.0. | Both | ☒ |
 
 **Exit criterion:** Every public behavior change has an agreed contract before code
 and documentation branches diverge.
@@ -227,12 +210,12 @@ Yuki confirms which behaviors match the model and intended use.
 | # | Task | Files | Who | Done |
 |---|---|---|---|---|
 | 2.1 | Create `tests/testthat.R` and `tests/testthat/`. Use testthat edition 3 and add the edition to `DESCRIPTION`. | `DESCRIPTION`, `tests/` | KD | ☒ |
-| 2.2 | Add published-model fixtures with hand-calculated values for `M`, `C`, turnout adjustment, predicted probabilities, and jurisdiction totals. Confirm the fixtures against the article or its replication materials before treating them as ground truth. | `tests/testthat/test-model-values.R` | Both | ☐ |
+| 2.2 | Add approved hand-calculated model fixtures for `M`, `C`, turnout adjustment, predicted probabilities, and jurisdiction totals. | `tests/testthat/test-model-values.R` | Both | ☒ |
 | 2.3 | Fix `comp_M()` vector handling. Validate equal or explicitly compatible lengths, finite numeric inputs, vote-share bounds, and pairwise sums. Use informative errors rather than printing and returning an undefined object. | `R/comp_M.R`, tests, Rd | KD | ☒ |
-| 2.4 | Harden `minorep()`. Validate `M`, `C`, `sd`, and `gap`; reject impossible values and zero denominators; make precision behavior match Decision 1.5. Validation is complete; precision remains flagged. | `R/minorep.R`, tests, Rd | Both | ◐ |
+| 2.4 | Harden `minorep()`. Validate `M`, `C`, `sd`, and `gap`; reject impossible values and zero denominators; return full-precision probabilities. | `R/minorep.R`, tests, Rd | Both | ☒ |
 | 2.5 | Harden `sim_M()`. Validate `C`, `coethnic`, and `crossover`; document supported vectorization; test boundary values 0 and 1. | `R/sim_M.R`, tests, Rd | KD | ☒ |
 | 2.6 | Harden `sim_redistrict()`. Document and validate `gap`; test the grid, turnout transformation, output length, monotonic cases, and extreme voting patterns. | `R/sim_redistrict.R`, tests, Rd | Both | ☒ |
-| 2.7 | Make `n_minorep()` reproducible and configurable under Decision 1.7. Input validation and externally seeded reproducibility tests are complete; the new interface remains flagged. | `R/n_minorep.R`, tests, Rd | KD | ◐ |
+| 2.7 | Make `n_minorep()` reproducible and configurable with `n_sim` and optional `seed`, including preservation of the caller's random-number state. | `R/n_minorep.R`, tests, Rd | KD | ☒ |
 | 2.8 | Separate plot-data preparation from rendering so numerical plot inputs can be tested without image comparison. Keep user-facing plotting functions small. | `R/plot_*.R`, helper file, tests | KD | ☒ |
 | 2.9 | Replace exact floating-point lookup such as `C == start` with a validated grid match or interpolation rule. Test ranges that do and do not fall exactly on the grid. | `R/plot_redistrict.R`, tests | KD | ☒ |
 | 2.10 | Define failures for unreachable thresholds, reversed ranges, out-of-range `C.prime`, wrong plan dimensions, and missing values. `plot_sweetspot()` should not silently produce `Inf` when the threshold is unreachable. | `R/plot_*.R`, tests, Rd | Both | ☒ |
@@ -263,8 +246,8 @@ the published model.
 |---|---|---|---|---|
 | 3.1 | Rewrite `Title` and `Description` in CRAN style. The description should explain what the package computes and cite Atsusaka (2021) with `<doi:10.1017/S000305542100054X>`. | `DESCRIPTION` | KD | ☒ |
 | 3.2 | Bump to `0.1.0`; add a concise `NEWS.md` that records the first release and any user-facing behavior changes. | `DESCRIPTION`, `NEWS.md` | KD | ☒ |
-| 3.3 | Finalize `Authors@R` after Decision 1.3. Confirm the maintainer email and any ORCID entries directly with each author. | `DESCRIPTION` | Both | ☐ |
-| 3.4 | Remove unused tidyverse-style Imports. Keep only packages called by package code; qualify the `graphics`, `stats`, and `scales` calls explicitly. | `DESCRIPTION`, `R/`, `NAMESPACE` | KD | ☒ |
+| 3.3 | Finalize `Authors@R`: Yuki first as `aut` and `cre`, Kolbe second as `aut`, with confirmed emails and ORCIDs. | `DESCRIPTION` | Both | ☒ |
+| 3.4 | Remove unused Imports. Keep only base packages called by package code and qualify `graphics`, `grDevices`, and `stats` calls explicitly. | `DESCRIPTION`, `R/`, `NAMESPACE` | KD | ☒ |
 | 3.5 | Replace every partial argument match such as `d =` with the full argument name `digits =`. | `R/`, examples | KD | ☒ |
 | 3.6 | Add `.Rbuildignore` rules for `logical.Rproj`, this plan, local development files, check output, and any repository-only configuration. Add generated artifacts such as `Rplots.pdf` to `.gitignore`. | `.Rbuildignore`, `.gitignore` | KD | ☒ |
 | 3.7 | Remove the unused 3.3 MB photo and decide whether the 3.6 MB decorative README photo should be removed or replaced with a small optimized asset. Both unused photos were removed; they remain recoverable from Git history. | `man/figures/`, `README.md` | KD | ☒ |
@@ -302,7 +285,7 @@ object without consulting the source code.
 
 | # | Task | Files | Who | Done |
 |---|---|---|---|---|
-| 5.1 | Add standard GitHub Actions `R-CMD-check` across Linux, macOS, and Windows with current release, old release where practical, and R-devel. | `.github/workflows/` | KD | ☒ |
+| 5.1 | Add GitHub Actions `R-CMD-check` across Linux, macOS, and Windows, including R-devel, old release, and the declared R 3.6.0 minimum. | `.github/workflows/` | KD | ☒ |
 | 5.2 | Add automated test coverage as a separate informational workflow. Do not make a coverage percentage the definition of correctness. | `.github/workflows/` | KD | ☒ |
 | 5.3 | Run `devtools::check_win_release()` and `devtools::check_win_devel()`. Archive the returned logs long enough for the release review. | external checks | YA | ☐ |
 | 5.4 | Configure R-hub v2, push its workflow, and run the recommended CRAN platforms from the release-candidate branch. | R-hub workflow | KD | ☐ |
@@ -359,7 +342,7 @@ files are fully disjoint.
 
 The package is ready to submit only when all of the following are true:
 
-- [ ] Yuki has approved the numerical reference fixtures and public API.
+- [x] Yuki has approved the numerical reference fixtures and public API.
 - [x] All seven exported functions have ordinary, boundary, and failure tests.
 - [x] `devtools::test()` passes from a clean session.
 - [ ] A built source tarball passes `R CMD check --as-cran` with 0 ERRORs,
@@ -372,7 +355,7 @@ The package is ready to submit only when all of the following are true:
   source tarball.
 - [ ] The exact release commit, tarball contents, and staged changes have been
   reviewed by both collaborators.
-- [ ] Yuki's maintainer address is current and ready for CRAN confirmation.
+- [x] Yuki's maintainer address is current and ready for CRAN confirmation.
 
 ## Session History
 
@@ -420,3 +403,13 @@ The package is ready to submit only when all of the following are true:
 - Added `YUKI_REVIEW.md`, a plain-language status and decision sheet for Yuki.
 - Committed and pushed the implementation branch for collaborator review. No
   issue, pull request, or external submission was created.
+- Reviewed Yuki's response at commit `8e55240` and implemented the approved
+  interface, authorship, maintainer, and minimum-version decisions.
+- Added approved hand-calculated fixtures, full-precision predictions,
+  configurable seeded simulations, multi-plan plotting, and explicit shortfall
+  handling for districts below the sweet spot.
+- Removed three accidental top-level HTML renders totaling about 7 MB and added
+  repository exclusions to prevent them from returning.
+- Rebuilt documentation and the source package. The updated suite passes 68 tests
+  with 96.99 percent coverage; the no-manual CRAN check remains at 0 ERRORs,
+  0 WARNINGs, and three pending-vignette or environment NOTEs.

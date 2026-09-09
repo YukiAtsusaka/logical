@@ -1,95 +1,79 @@
----
-
-editor_options: 
-  markdown: 
-    wrap: 72
----
-
 # logical 0.1.0: Status for Yuki
 
 **Updated:** September 9, 2026
 
 ## Where things stand
 
-The package is close to a release candidate. The code, tests, documentation, package description, citation, and automated checks have been cleaned up. The remaining work is the vignette, a short set of decisions about the public interface, and final checks on outside systems.
+The package is close to a release candidate. The code, tests, documentation,
+package description, citation, and automated checks have been cleaned up. Yuki's
+review decisions are now implemented. The remaining release work is the vignette
+and final checks on outside systems.
 
-All vignette files were left untouched for Yuki.
+All vignette files remain with Yuki.
 
-## What is finished
+## Decisions recorded
 
-- Fixed the package errors that prevented examples from running.
-- Added clearer messages when users supply invalid values.
-- Added 51 tests covering all seven public functions. All tests pass.
-- Confirmed that ordinary calculations still produce the same results as the original package.
-- Updated the package to version 0.1.0 and corrected the article citation.
-- Rewrote the README so installation instructions and examples match the package.
-- Removed unused dependencies and two large decorative images. The source package is now about 59 KB.
-- Added automated checks for Linux, macOS, Windows, and R development versions.
-- Checked the current source package with CRAN's main checks, except for the PDF manual. The result was 0 errors, 0 warnings, and 3 notes tied to the new submission, the pending vignette, and the local clock check.
+### Published examples
+
+The model fixtures are approved. The tests now include hand-calculated checks for
+the racial margin, simulated voting assumptions, turnout adjustment, predicted
+probability, and jurisdiction total.
+
+### Prediction precision
+
+`minorep()` now returns full-precision results. Users can round values when
+preparing a table, label, or other display.
+
+### Number of simulations
+
+`n_minorep()` now lets users choose the number of simulations and optionally
+provide a seed. A supplied seed will reproduce the result without changing the
+random-number state used elsewhere in the user's session.
+
+### Plot behavior
+
+`plot_redistrict()` now displays more than two plans and uses their column names as
+labels.
+
+`C.prime` is the minority electorate percentage in the district being evaluated.
+The sweet spot is the minimum percentage at which the simulated plan reaches the
+selected probability threshold. A `C.prime` below the sweet spot is valid because
+it shows the district's shortfall from that threshold. A value above the sweet
+spot shows a surplus. The supplied value must appear within the displayed plot
+range so the comparison remains visible.
+
+### Package credits and maintainer
+
+- Yuki remains the primary author and CRAN maintainer.
+- Yuki's maintainer email is `atsusaka@uh.edu`.
+- Yuki's ORCID is `0000-0001-5365-1876`.
+- Kolbe A. Dumas is listed as a second author.
+- Kolbe's ORCID is `0009-0002-8777-5476`.
+
+### Minimum R version
+
+The minimum supported version is R 3.6.0. The package uses base R's
+graphics tools instead of requiring the newer `scales` package solely for color
+transparency.
 
 ## What Yuki is handling
 
 - Add the introductory vignette.
-- Confirm that its explanation of the model and empirical claims matches the published article.
-- Let Kolbe know when it is ready to merge so the full documentation and release checks can be rerun.
+- Confirm that its explanation of the model and empirical claims matches the
+  published article.
+- Let Kolbe know when it is ready to merge so the full documentation and release
+  checks can be rerun.
 
-## Decisions for Yuki to review
+## What happens next
 
-### 1. Published examples
+Once the vignette is ready, Kolbe can integrate it and run the final sequence:
 
-Please confirm that the package's example values and formulas match the article or replication materials. The current tests preserve the original calculations, but this substantive check still needs the model author's approval.
+1. Rebuild all documentation and the PDF manual.
+2. Run the package on Windows, macOS, Linux, and R-hub.
+3. Prepare the short CRAN submission note.
+4. Review the final package contents together.
+5. Submit through Yuki's maintainer account.
 
-### 2. Prediction precision
-
-`minorep()` currently returns probabilities rounded to four decimal places.
-
-- [x] Return full-precision results and round only when displaying them.
-
-### 3. Number of simulations
-
-`n_minorep()` currently runs 1,000 simulations. Users can reproduce results by setting the random seed before calling it.
-
-- [x] Let users choose the number of simulations and optionally provide a seed.
-
-### 4. Plot behavior
-
-`plot_redistrict()` currently compares the first two plans supplied by the user.
-
-- [x] Expand the function to display more than two plans.
-
-For `plot_sweetspot()`, please also confirm whether the function should reject a district value below the calculated sweet spot.
-
---\> Could you clarify?
-
-### 5. Package credits and maintainer
-
-Please confirm:
-
-- [x] Yuki remains the CRAN maintainer.
-
-- [ ] `yuki.atsusaka@gmail.com` is the correct monitored maintainer address. \
-  Use atsusaka\@uh.edu
-
-- [x] Kolbe should be listed as an author (`aut`) or contributor (`ctb`).
-
-- [ ] Any ORCID identifiers that should appear in the package record.
-
-  Use 0000-0001-5365-1876
-
-### 6. Minimum R version
-
-The package still lists R 4.1.0 as its minimum version. Please confirm whether there is a reason to keep that requirement. Otherwise, we can test and support an older minimum version.
-
-----\> There is no reasons. Let's use the older minimum version.
-
-## What happens after this review
-
-Once the vignette and decisions above are ready, Kolbe can integrate them and run the final sequence:
-
-1.  Rebuild all documentation and the PDF manual.
-2.  Run the package on Windows, macOS, Linux, and R-hub.
-3.  Prepare the short CRAN submission note.
-4.  Review the final package contents together.
-5.  Submit through Yuki's maintainer account.
-
-The PDF manual is currently blocked on the local Mac by a missing TeX font package. That is a local setup issue and can be checked through continuous integration or an external service after the vignette is merged.
+The PDF manual is currently blocked on the local Mac by a missing TeX font
+package. That local setup issue can be checked through continuous integration or
+an external service after the vignette is merged.

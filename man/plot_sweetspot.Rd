@@ -15,7 +15,9 @@ plot_sweetspot(plan, threshold, range, C.prime = NULL)
 electorate percentages shown in the plot.}
 
 \item{C.prime}{Optional minority electorate percentage for a district of
-interest, expressed from 1 to 100.}
+interest, expressed from 1 to 100 and contained within `range`. Values below
+the sweet spot represent a shortfall from the model threshold; values above
+it represent a surplus.}
 }
 \value{
 `NULL`, invisibly. The function is called for its plotting side effect.
@@ -28,7 +30,7 @@ scenario reaches a specified probability threshold.
 plan_1 <- sim_redistrict(coethnic = 0.9, crossover = 0.2)
 plot_sweetspot(plan = plan_1, range = c(30, 70), threshold = 0.8, C.prime = 70)
 text(x = 59, y = 0.6,
-     labels = "Degree of \nPotential Vote Dilution \n(C'-Sweet Spot)",
+     labels = "Distance from \nthe Sweet Spot",
      cex = 1, col = "dimgray", font = 1)
 text(x = 64, y = 0.2, labels = "C'\nDistrict Plan \nof Interest",
      cex = 1, col = "dimgray", font = 2)

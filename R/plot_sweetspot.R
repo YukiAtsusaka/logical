@@ -20,9 +20,24 @@
     .logical_assert_numeric(C.prime, "C.prime", length = 1L)
     .logical_assert_range(C.prime, "C.prime", 1, 100)
   }
+  if (sweet_spot < range[1] || sweet_spot > range[2]) {
+    stop("`range` must include the calculated sweet spot.", call. = FALSE)
+  }
+  if (C.prime < range[1] || C.prime > range[2]) {
+    stop("`C.prime` must fall within the displayed `range`.", call. = FALSE)
+  }
+
+  relationship <- if (C.prime < sweet_spot) {
+    "shortfall"
+  } else if (C.prime > sweet_spot) {
+    "surplus"
+  } else {
+    "at sweet spot"
+  }
 
   list(C = C, plan = plan, threshold = threshold, range = range,
-       sweet_spot = sweet_spot, C.prime = C.prime)
+       sweet_spot = sweet_spot, C.prime = C.prime,
+       relationship = relationship)
 }
 
 #' Plot the Redistricting Sweet Spot
@@ -35,7 +50,9 @@
 #' @param range Length-two numeric vector giving the lower and upper minority
 #'   electorate percentages shown in the plot.
 #' @param C.prime Optional minority electorate percentage for a district of
-#'   interest, expressed from 1 to 100.
+#'   interest, expressed from 1 to 100 and contained within `range`. Values below
+#'   the sweet spot represent a shortfall from the model threshold; values above
+#'   it represent a surplus.
 #'
 #' @return `NULL`, invisibly. The function is called for its plotting side effect.
 #' @inherit comp_M references
@@ -43,7 +60,7 @@
 #' plan_1 <- sim_redistrict(coethnic = 0.9, crossover = 0.2)
 #' plot_sweetspot(plan = plan_1, range = c(30, 70), threshold = 0.8, C.prime = 70)
 #' text(x = 59, y = 0.6,
-#'      labels = "Degree of \nPotential Vote Dilution \n(C'-Sweet Spot)",
+#'      labels = "Distance from \nthe Sweet Spot",
 #'      cex = 1, col = "dimgray", font = 1)
 #' text(x = 64, y = 0.2, labels = "C'\nDistrict Plan \nof Interest",
 #'      cex = 1, col = "dimgray", font = 2)
@@ -67,7 +84,7 @@ plot_sweetspot <- function(plan, threshold, range, C.prime = NULL) {
   graphics::abline(h = data$threshold, lty = 2, col = "dimgray")
   graphics::rect(
     data$sweet_spot, -0.2, data$C.prime, 1.2,
-    col = scales::alpha("gray80", 0.5), border = NA
+    col = grDevices::adjustcolor("gray80", alpha.f = 0.5), border = NA
   )
   graphics::abline(v = data$C.prime, lwd = 2, col = "gray60", lty = 2)
   graphics::arrows(

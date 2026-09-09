@@ -4,14 +4,22 @@
 \alias{n_minorep}
 \title{Simulate the Number of Minority Officeholders}
 \usage{
-n_minorep(model_pred)
+n_minorep(model_pred, n_sim = 1000L, seed = NULL)
 }
 \arguments{
 \item{model_pred}{Numeric vector of probabilities from 0 to 1, typically
 obtained from [minorep()].}
+
+\item{n_sim}{Positive whole number giving the number of simulated
+jurisdiction-level counts to return.}
+
+\item{seed}{Optional whole number used to reproduce the simulation. When
+supplied, the function restores the caller's random-number state before
+returning.}
 }
 \value{
-An integer vector containing 1,000 simulated jurisdiction-level counts.
+An integer vector containing `n_sim` simulated jurisdiction-level
+  counts.
 }
 \description{
 Draws the number of minority candidates who emerge and win across a set of
@@ -21,7 +29,7 @@ districts using district-level probabilities from [minorep()].
 M_vec <- c(20, 50, 30)
 C_vec <- c(40, 70, 85)
 p_vec <- minorep(M = M_vec, C = C_vec, gap = c(0.5, 0.6))
-n_minorep(model_pred = p_vec)
+n_minorep(model_pred = p_vec, n_sim = 1000, seed = 2026)
 }
 \references{
 Atsusaka, Y. (2021). A Logical Model for Predicting Minority

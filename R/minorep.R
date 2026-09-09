@@ -12,8 +12,8 @@
 #' @param gap Optional length-two numeric vector containing minority and White
 #'   turnout rates, each expressed from 0 to 1.
 #'
-#' @return A numeric vector of predicted probabilities, rounded to four decimal
-#'   places. Inputs of length 1 are expanded to the common input length.
+#' @return A numeric vector of full-precision predicted probabilities. Inputs of
+#'   length 1 are expanded to the common input length.
 #' @inherit comp_M references
 #' @examples
 #' M_vec <- c(20, 50, 30)
@@ -43,7 +43,5 @@ minorep <- function(M, C, sd = 1, gap = NULL) {
   C <- .logical_adjust_turnout(inputs[[2]], gap)
 
   q <- sqrt(M * C) - 50
-  probability <- stats::pnorm(q = q, mean = 0, sd = sd)
-
-  round(probability, digits = 4)
+  stats::pnorm(q = q, mean = 0, sd = sd)
 }

@@ -9,10 +9,15 @@
 - Updated the package metadata and citation to the published article.
 - Corrected README installation instructions, function names, and executable examples.
 - Added automated package checks for Linux, macOS, and Windows.
+- Lowered the minimum supported R version to 3.6.0 and removed the `scales`
+  dependency.
 
-## Behavior retained pending collaborator review
+## Approved public interface changes
 
-- `minorep()` continues to return probabilities rounded to four decimal places.
-- `n_minorep()` continues to return 1,000 simulation draws and uses the caller's
-  current random-number state.
-- `plot_redistrict()` continues to display the first two supplied plans.
+- `minorep()` now returns full-precision probabilities.
+- `n_minorep()` now accepts `n_sim` and `seed`. A supplied seed is reproducible
+  without changing the caller's random-number state.
+- `plot_redistrict()` now displays and labels any positive number of supplied
+  plans.
+- `plot_sweetspot()` now describes values below the calculated sweet spot as a
+  shortfall and requires the district value to fall within the displayed range.

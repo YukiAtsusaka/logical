@@ -1,5 +1,8 @@
 ^AGENTS\.md$
 ^YUKI_REVIEW\.md$
+^AGENTS\.html$
+^README\.html$
+^YUKI_REVIEW\.html$
 ^logical\.Rproj$
 ^\.Rproj\.user$
 ^\.github$

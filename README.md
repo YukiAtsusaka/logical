@@ -65,9 +65,12 @@ M <- c(20, 50, 30)
 C <- c(40, 70, 85)
 
 prediction <- minorep(M = M, C = C)
-prediction
+round(prediction, digits = 4)
 #> [1] 0.0000 1.0000 0.6906
 ```
+
+`minorep()` returns full-precision probabilities. Round them only when a table,
+label, or other presentation requires fewer digits.
 
 The optional `gap` argument contains minority and White turnout rates in that
 order. Each rate is expressed from 0 to 1:
@@ -78,23 +81,27 @@ prediction_with_gap <- minorep(
   C = C,
   gap = c(0.5, 0.6)
 )
-prediction_with_gap
+round(prediction_with_gap, digits = 4)
 #> [1] 0.0000 1.0000 0.4039
 ```
 
 ## 2. Jurisdiction-level counts
 
-`n_minorep()` uses district-level probabilities to draw 1,000 possible counts for
-the jurisdiction. Set the random seed before calling the function when the same
-draws must be reproduced:
+`n_minorep()` uses district-level probabilities to draw possible counts for the
+jurisdiction. The default is 1,000 simulations. Use `n_sim` to change that number
+and `seed` to reproduce a result without changing the caller's random-number
+state:
 
 ```r
 district_M <- c(50, 40, 40, 35, 70, 85)
 district_C <- c(50, 40, 60, 30, 50, 80)
 district_prediction <- minorep(M = district_M, C = district_C)
 
-set.seed(2026)
-count_draws <- n_minorep(model_pred = district_prediction)
+count_draws <- n_minorep(
+  model_pred = district_prediction,
+  n_sim = 1000,
+  seed = 2026
+)
 
 summary(count_draws)
 hist(
@@ -140,7 +147,12 @@ that grid, so a vector position should not be interpreted as a percentage value.
 ```r
 plan_1 <- sim_redistrict(coethnic = 0.9, crossover = 0)
 plan_2 <- sim_redistrict(coethnic = 0.9, crossover = 0.3)
-plans <- cbind(plan_1, plan_2)
+plan_3 <- sim_redistrict(coethnic = 0.9, crossover = 0.5)
+plans <- cbind(
+  "No crossover" = plan_1,
+  "Moderate crossover" = plan_2,
+  "High crossover" = plan_3
+)
 
 plot_redistrict(plans = plans, range = c(44, 55))
 ```
@@ -149,7 +161,10 @@ plot_redistrict(plans = plans, range = c(44, 55))
 
 The sweet spot is the first minority electorate percentage at which a simulated
 scenario reaches a prespecified probability threshold. `C.prime` marks the
-minority electorate percentage in a district of interest.
+minority electorate percentage in a district of interest. A value below the sweet
+spot shows how far the district falls short of the threshold; a value above it
+shows how far the district exceeds the threshold. The value must fall inside the
+displayed plot range.
 
 ```r
 plan <- sim_redistrict(coethnic = 0.9, crossover = 0.2)

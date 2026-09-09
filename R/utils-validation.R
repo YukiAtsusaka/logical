@@ -21,6 +21,17 @@
   invisible(x)
 }
 
+.logical_assert_whole_number <- function(x, argument, lower = 0L) {
+  .logical_assert_numeric(x, argument, length = 1L)
+  if (x < lower || x > .Machine$integer.max || x != floor(x)) {
+    stop(sprintf(
+      "`%s` must be a whole number between %d and %d.",
+      argument, lower, .Machine$integer.max
+    ), call. = FALSE)
+  }
+  invisible(x)
+}
+
 .logical_recycle_common <- function(values, arguments) {
   lengths <- lengths(values)
   target <- max(lengths)
