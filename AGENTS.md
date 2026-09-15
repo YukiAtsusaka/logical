@@ -29,6 +29,11 @@ time. The PDF manual is blocked locally by a missing `inconsolata.sty` TeX
 component, not an observed Rd defect. Cross-platform services and final
 submission artifacts should wait until Yuki's vignette is integrated.
 
+A Florida 2018-to-2020 congressional worked example is now proposed for Yuki's
+review. No Florida data, code, generated documentation, or vignette changes have
+been added. The proposal, source plan, validation gates, and author decisions are
+recorded in `YUKI_REVIEW.md`.
+
 **Owner labels:** `YA` = Yuki, `KD` = Kolbe, `Both` = joint decision or review,
 `?` = unassigned. **Status labels:** `☒` = complete, `◐` = partially complete,
 `☐` = open.
@@ -44,6 +49,8 @@ submission artifacts should wait until Yuki's vignette is integrated.
 - [x] Add and document the two paper datasets from Harvard Dataverse.
 - [ ] Obtain Yuki's definitions and retention decisions for `phase`, `proper`,
   and `white_over65`.
+- [ ] Obtain Yuki's scope and model-construction decisions for the proposed
+  Florida congressional example.
 - [ ] Rebuild user documentation and the introductory vignette.
 - [x] Rebuild README and Rd documentation without touching the vignette lane.
 - [ ] Integrate Yuki's vignette and rerun the full documentation gate.
@@ -63,6 +70,10 @@ submission artifacts should wait until Yuki's vignette is integrated.
 4. **Dataset codebook:** The deposited data are integrated and verified. Yuki
    still needs to define `phase`, explain whether constant `proper` should remain,
    and correct or clarify the unit of `white_over65`.
+5. **Proposed worked example:** Yuki needs to decide whether the Florida
+   congressional example belongs in `0.1.0` and confirm the model outcome,
+   no-candidate rule, candidate-identity treatment, `C` measure, and display
+   scope before implementation begins.
 
 ## Ground rules
 
@@ -281,6 +292,7 @@ NOTEs are resolved rather than merely described.
 | 4.6 | Calibrate empirical claims to the published article. Distinguish the model's evaluated predictive performance from a general guarantee for new elections or district plans. README work is complete; vignette work remains with Yuki. | README, vignette | Both | ◐ |
 | 4.7 | Add `@references` and complete `@return` text where it helps users interpret outputs. | `R/`, generated Rd | KD | ☒ |
 | 4.8 | Execute every README example and visually inspect both package-generated plot pages. Vignette rendering remains pending. | rendered docs | Both | ◐ |
+| 4.9 | Review and, if approved, implement the Florida 2018-to-2020 congressional example described in `YUKI_REVIEW.md`. Keep candidate and district source layers separate, preserve identity provenance, use all 27 districts for statewide calculations, and leave vignette integration to Yuki. | data, data-raw, tests, documentation | Both | ☐ |
 
 **Exit criterion:** A new user can install the package, reproduce each README and
 vignette example, understand every input's scale, and interpret every returned
@@ -442,3 +454,7 @@ The package is ready to submit only when all of the following are true:
 - Expanded `YUKI_REVIEW.md` into a direct decision sheet for `phase`, `proper`,
   and `white_over65`. Confirmed separately that `white_run` exactly represents
   the presence of at least one White candidate in the upstream data.
+- Added a review-only plan for a Florida 2018-to-2020 congressional worked
+  example. The plan records the official election and Census sources, proposed
+  package objects, candidate-identity safeguards, validation checks, vignette
+  boundary, and seven decisions for Yuki. No example data or code were added.
