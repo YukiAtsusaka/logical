@@ -28,6 +28,8 @@ Representation: Application to Redistricting and Voting Rights
 Cases."](https://doi.org/10.1017/S000305542100054X) *American Political Science
 Review* 115(4): 1210-1225.
 
+Documentation: <https://logical-model.github.io/>
+
 ## Installation
 
 Install the development version from GitHub:

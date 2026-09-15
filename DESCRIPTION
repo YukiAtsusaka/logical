@@ -19,7 +19,8 @@ Description: Computes and visualizes quantitative predictions from the logical
     package includes the Louisiana mayoral and state legislative election data
     used to evaluate the model <doi:10.7910/DVN/F2OX6O>.
 License: GPL-3
-URL: https://github.com/YukiAtsusaka/logical
+URL: https://logical-model.github.io/,
+    https://github.com/YukiAtsusaka/logical
 BugReports: https://github.com/YukiAtsusaka/logical/issues
 Depends: R (>= 3.6.0)
 Imports:

@@ -42,6 +42,8 @@ submission artifacts should wait until Yuki's vignette is integrated.
 - [x] Complete final authorship and maintainer metadata review.
 - [x] Complete dependency and package-size cleanup.
 - [x] Add and document the two paper datasets from Harvard Dataverse.
+- [ ] Obtain Yuki's definitions and retention decisions for `phase`, `proper`,
+  and `white_over65`.
 - [ ] Rebuild user documentation and the introductory vignette.
 - [x] Rebuild README and Rd documentation without touching the vignette lane.
 - [ ] Integrate Yuki's vignette and rerun the full documentation gate.
@@ -58,6 +60,9 @@ submission artifacts should wait until Yuki's vignette is integrated.
 3. **External release checks:** Windows, macOS builder, R-hub, and final
    `cran-comments.md` work should run after the vignette and review decisions are
    merged, so the evidence describes the actual release candidate.
+4. **Dataset codebook:** The deposited data are integrated and verified. Yuki
+   still needs to define `phase`, explain whether constant `proper` should remain,
+   and correct or clarify the unit of `white_over65`.
 
 ## Ground rules
 
@@ -431,3 +436,9 @@ The package is ready to submit only when all of the following are true:
   `R CMD check --as-cran --no-manual` with 0 ERRORs, 0 WARNINGs, and the same
   three vignette or clock NOTEs. The tarball includes both `.rda` objects and
   their Rd codebooks, and excludes `data-raw/`.
+- Confirmed that Yuki's website update at commit `bf94c1c` changes the published
+  theme but does not add vignette source. Added the live documentation site to
+  the package metadata and README.
+- Expanded `YUKI_REVIEW.md` into a direct decision sheet for `phase`, `proper`,
+  and `white_over65`. Confirmed separately that `white_run` exactly represents
+  the presence of at least one White candidate in the upstream data.

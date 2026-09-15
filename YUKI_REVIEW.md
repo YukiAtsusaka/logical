@@ -68,10 +68,66 @@ Their help pages cite the paper and dataset DOI, identify the CC0 license, and
 explain each field covered by the deposited codebook. A reproducible import
 script records the Dataverse file identifiers and checksums.
 
-The deposited documentation does not define `phase` or `proper`, and it labels
-`white_over65` as a percentage even though some values exceed 100. The package
-preserves these fields but states those limitations instead of assigning new
-meanings to them.
+## Review needed: three dataset fields
+
+The data files themselves match the Dataverse originals. These questions concern
+how three deposited columns should be explained to users. Please answer the
+questions below before the final CRAN candidate is assembled.
+
+### 1. What does `phase` mean?
+
+`phase` appears in `state_legislative` and takes values from 1 through 7. It is
+not defined in the Dataverse README, does not appear in the upstream Fraga,
+Juenke, and Shah data, and is not used in the replication scripts. Phase 7
+contains the Asian observations, while phases 1 through 6 contain Black and
+Hispanic observations from multiple states and both election years.
+
+Please confirm:
+
+- What does each value represent?
+- Is this a meaningful variable for package users or an internal coding batch?
+- Should the package retain it, rename it, or omit it from the user-facing data?
+
+### 2. What does `proper` mean?
+
+`proper` appears in `state_legislative`, but all 1,306 observations equal 1. It
+is not defined in the Dataverse README, does not appear in the upstream data, and
+is not used in the replication scripts. It may be an inclusion or cleaning flag
+that became constant after the data were filtered, but that is not confirmed.
+
+Please confirm:
+
+- Was `proper` an inclusion or cleaning flag?
+- Should it remain for fidelity to the deposited file, or should it be omitted
+  because it contains no information in the released sample?
+
+### 3. What is the unit of `white_over65`?
+
+The Dataverse README calls `white_over65` a percentage, but the deposited values
+range from 0 to 32,398.8. For example, the New Orleans value is 32,398.8 in 1994
+and 14,787.0 in 2014. These values cannot be percentages. Their magnitude and
+decimals suggest a count or interpolated population estimate, but the deposited
+materials do not establish that construction.
+
+This field is used as a control in the appendix regressions, so its unit matters
+for interpreting the coefficient even though the original replication still runs
+with the deposited values.
+
+Please confirm:
+
+- Is this a count, interpolated count, rate, or another measure?
+- What population, source, and geographic unit does it describe?
+- Should the Dataverse README's percentage description be corrected?
+
+### Resolved field
+
+No review is needed for `white_run`. A row-level comparison with the upstream
+Fraga, Juenke, and Shah data confirms that it equals 1 exactly when the upstream
+White-candidate count is greater than zero.
+
+Until these questions are answered, the package preserves the deposited columns
+and marks the documentation limits. It does not rescale, rename, or reinterpret
+the values.
 
 ## What Yuki is handling
 
