@@ -1,7 +1,7 @@
 # logical: CRAN Submission Plan
 
 **Created**: 2026-09-08
-**Last Updated**: 2026-09-09
+**Last Updated**: 2026-09-15
 
 ## Project Overview
 
@@ -16,9 +16,9 @@ macOS, and Windows.
 ## Current Status
 
 The approved pre-vignette implementation is complete on branch
-`codex/cran-readiness`. The package has validation, 68 passing tests, 96.99
-percent test coverage, approved authorship and public-interface decisions,
-current metadata and citation, a rebuilt README and help files, 61 KB
+`codex/cran-readiness`. The package has validation, 79 passing tests, approved
+authorship and public-interface decisions, current metadata and citation, a
+rebuilt README and help files, two documented paper datasets, about 135 KB of
 source-package output, and GitHub Actions definitions. No vignette file was
 created, edited, rendered, or regenerated because Yuki owns that lane.
 
@@ -41,6 +41,7 @@ submission artifacts should wait until Yuki's vignette is integrated.
 - [x] Obtain approval of published-model fixtures and deferred API choices.
 - [x] Complete final authorship and maintainer metadata review.
 - [x] Complete dependency and package-size cleanup.
+- [x] Add and document the two paper datasets from Harvard Dataverse.
 - [ ] Rebuild user documentation and the introductory vignette.
 - [x] Rebuild README and Rd documentation without touching the vignette lane.
 - [ ] Integrate Yuki's vignette and rerun the full documentation gate.
@@ -255,6 +256,7 @@ the published model.
 | 3.9 | Confirm `License: GPL-3`. Do not add a separate `LICENSE` file unless the declaration is changed to refer to one. | `DESCRIPTION` | KD | ☒ |
 | 3.10 | Add package-level documentation and a stable package alias if needed. Regenerate all Rd files with roxygen 7.3.3. | `R/logical-package.R`, `man/`, `NAMESPACE` | KD | ☒ |
 | 3.11 | Run a spelling pass over `R/`, Rd files, and README. Correct visible errors such as “Instllation,” “distrcit,” “misestiamte,” “scaler,” and “plot_sweetpot.” | documentation | KD | ☒ |
+| 3.12 | Add the Louisiana mayoral and state legislative data used in the paper as documented package data. Preserve deposited values and names, record the CC0 Dataverse source, verify source checksums, and test `data()` loading. | `data/`, `data-raw/`, `R/data.R`, tests | KD | ☒ |
 
 **Exit criterion:** A source-package check reaches and completes tests, examples,
 vignette, and manual generation with 0 ERRORs and 0 WARNINGs. Repository-generated
@@ -413,3 +415,19 @@ The package is ready to submit only when all of the following are true:
 - Rebuilt documentation and the source package. The updated suite passes 68 tests
   with 96.99 percent coverage; the no-manual CRAN check remains at 0 ERRORs,
   0 WARNINGs, and three pending-vignette or environment NOTEs.
+
+### 2026-09-15
+
+- Added the paper's Louisiana mayoral and state legislative election data as
+  `louisiana` and `state_legislative`.
+- Rebuilt both objects from the original Dataverse CSV files after verifying the
+  published MD5 checksums. The import script also validates dimensions and column
+  order before writing the package data.
+- Added complete package help, README examples, source and CC0 attribution, and
+  tests for `data()` loading, dimensions, names, and key deposited properties.
+- Recorded three incompletely defined deposited fields without inventing labels:
+  `phase`, `proper`, and the scale of `white_over65`.
+- The suite now passes 79 tests. The exact 134,848-byte source tarball passes
+  `R CMD check --as-cran --no-manual` with 0 ERRORs, 0 WARNINGs, and the same
+  three vignette or clock NOTEs. The tarball includes both `.rda` objects and
+  their Rd codebooks, and excludes `data-raw/`.

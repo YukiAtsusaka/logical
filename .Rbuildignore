@@ -6,6 +6,7 @@
 ^logical\.Rproj$
 ^\.Rproj\.user$
 ^\.github$
+^data-raw$
 ^cran-comments\.md$
 ^CRAN-SUBMISSION$
 ^.*\.Rcheck$

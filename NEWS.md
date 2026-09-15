@@ -11,6 +11,8 @@
 - Added automated package checks for Linux, macOS, and Windows.
 - Lowered the minimum supported R version to 3.6.0 and removed the `scales`
   dependency.
+- Added the paper's Louisiana mayoral and state legislative election data as
+  `louisiana` and `state_legislative`, with Dataverse provenance and codebooks.
 
 ## Approved public interface changes
 

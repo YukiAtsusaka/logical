@@ -1,13 +1,13 @@
 # logical 0.1.0: Status for Yuki
 
-**Updated:** September 9, 2026
+**Updated:** September 15, 2026
 
 ## Where things stand
 
 The package is close to a release candidate. The code, tests, documentation,
-package description, citation, and automated checks have been cleaned up. Yuki's
-review decisions are now implemented. The remaining release work is the vignette
-and final checks on outside systems.
+package description, citation, included paper data, and automated checks have
+been cleaned up. Yuki's review decisions are now implemented. The remaining
+release work is the vignette and final checks on outside systems.
 
 All vignette files remain with Yuki.
 
@@ -55,6 +55,23 @@ range so the comparison remains visible.
 The minimum supported version is R 3.6.0. The package uses base R's
 graphics tools instead of requiring the newer `scales` package solely for color
 transparency.
+
+### Included paper data
+
+The two requested datasets are now included with the package:
+
+- `data(louisiana)` loads the Louisiana mayoral data used in the online appendix.
+- `data(state_legislative)` loads the state legislative election data.
+
+Both objects reproduce the deposited rows and columns from Harvard Dataverse.
+Their help pages cite the paper and dataset DOI, identify the CC0 license, and
+explain each field covered by the deposited codebook. A reproducible import
+script records the Dataverse file identifiers and checksums.
+
+The deposited documentation does not define `phase` or `proper`, and it labels
+`white_over65` as a percentage even though some values exceed 100. The package
+preserves these fields but states those limitations instead of assigning new
+meanings to them.
 
 ## What Yuki is handling
 

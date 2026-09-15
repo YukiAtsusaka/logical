@@ -55,6 +55,26 @@ library(logical)
 | `plot_redistrict()` | Compare two redistricting scenarios over a selected range. |
 | `plot_sweetspot()` | Find and visualize the electorate share at which a scenario reaches a probability threshold. |
 
+## Included paper data
+
+The package includes the two datasets used to evaluate the model in Atsusaka
+(2021). Load them by name:
+
+```r
+data(louisiana)
+data(state_legislative)
+```
+
+`louisiana` contains 2,037 Louisiana municipality-election observations and 21
+variables from the paper's online-appendix file. `state_legislative` contains
+1,306 group-district-election observations and 20 variables from 36 states in
+2012 and 2014. Use `?louisiana` and `?state_legislative` for the codebooks and
+source notes.
+
+The datasets are reproduced from the
+[paper's Harvard Dataverse record](https://doi.org/10.7910/DVN/F2OX6O), version
+1.0, under CC0 1.0.
+
 ## 1. District-level prediction
 
 Suppose three districts have observed adjusted racial margins of victory
