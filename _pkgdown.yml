@@ -1,0 +1,40 @@
+url: https://logical-model.github.io/
+template:
+  bootstrap: 5
+  light-switch: true
+
+navbar:
+  structure:
+    left: [reference, articles, news]
+    right: [github]
+  components:
+    articles:
+      text: Get started
+      menu:
+      - text: "Overview"
+        href: articles/overview.html
+      - text: "Theory"
+        href: articles/theory.html
+      - text: "Application 1: District-level predictions"
+        href: articles/application-1-district-predictions.html
+      - text: "Application 2: Racial margin"
+        href: articles/application-2-racial-margin.html
+      - text: "Application 3: Jurisdiction-level counts"
+        href: articles/application-3-jurisdiction-counts.html
+      - text: "Application 4: Redistricting"
+        href: articles/application-4-redistricting.html
+      - text: "Application 5: Sweet spot"
+        href: articles/application-5-sweet-spot.html
+
+reference:
+- title: Model inputs and predictions
+  contents:
+  - comp_M
+  - minorep
+  - n_minorep
+  - sim_M
+- title: Redistricting scenarios
+  contents:
+  - sim_redistrict
+  - plot_redistrict
+  - plot_sweetspot

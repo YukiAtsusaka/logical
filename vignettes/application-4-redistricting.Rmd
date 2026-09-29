@@ -1,0 +1,39 @@
+---
+title: "Application 4: comparing redistricting scenarios"
+author: "Yuki Atsusaka and Kolbe A. Dumas"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Application 4: comparing redistricting scenarios}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
+library(logical)
+```
+
+`sim_redistrict()` calculates model predictions as the minority electorate share
+changes from 1 to 100 percent in 0.1-point increments. Each returned vector has
+991 values. Give each scenario a named column, then pass the resulting matrix to
+`plot_redistrict()`.
+
+```{r redistricting-scenarios, fig.width = 7, fig.height = 5}
+plan_1 <- sim_redistrict(coethnic = 0.9, crossover = 0)
+plan_2 <- sim_redistrict(coethnic = 0.9, crossover = 0.3)
+plan_3 <- sim_redistrict(coethnic = 0.9, crossover = 0.5)
+
+plans <- cbind(
+  "No crossover" = plan_1,
+  "Moderate crossover" = plan_2,
+  "High crossover" = plan_3
+)
+
+plot_redistrict(plans = plans, range = c(44, 55))
+```
+
+`range` is expressed in electorate percentages, not vector positions. The plot
+uses column names in its legend and can compare one or more scenarios. Choose
+coethnic and crossover assumptions that are appropriate to the setting, then
+compare how they change the relationship between electorate composition and
+predicted success.

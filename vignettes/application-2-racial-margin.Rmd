@@ -1,0 +1,56 @@
+---
+title: "Application 2: calculating and simulating the racial margin"
+author: "Yuki Atsusaka and Kolbe A. Dumas"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Application 2: calculating and simulating the racial margin}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
+library(logical)
+```
+
+The adjusted racial margin of victory, `M`, can come from observed election
+returns or from a prospective voting scenario. This vignette demonstrates both
+paths.
+
+## Calculate `M` from observed vote shares
+
+`comp_M()` accepts the vote shares, on a 0–100 scale, of the top minority and
+top White candidates.
+
+```{r observed-margin}
+top_minority <- c(18, 40, 85, 20)
+top_white <- c(60, 40, 10, 34)
+
+observed_M <- comp_M(Vm = top_minority, Vw = top_white)
+observed_M
+```
+
+Pass the resulting margins to `minorep()` with the corresponding electorate
+shares to make predictions.
+
+## Simulate `M` from voting assumptions
+
+For a prospective scenario, `sim_M()` derives `M` from the minority electorate
+share, coethnic voting, and White crossover voting. `coethnic` is the share of
+minority voters expected to support the minority candidate; `crossover` is the
+analogous White-voter share. Both are proportions from 0 to 1.
+
+```{r simulated-margin}
+hypothetical_C <- c(40, 50, 60)
+simulated_M <- sim_M(
+  C = hypothetical_C,
+  coethnic = 1,
+  crossover = 0.3
+)
+simulated_M
+
+round(minorep(M = simulated_M, C = hypothetical_C), digits = 4)
+```
+
+These assumptions should be explicit and substantively defensible. Varying them
+is often a useful way to understand how a scenario depends on voting behavior.

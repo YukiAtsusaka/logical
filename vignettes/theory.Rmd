@@ -1,0 +1,75 @@
+---
+title: "Theory: the logical model of minority representation"
+author: "Yuki Atsusaka and Kolbe A. Dumas"
+output:
+  rmarkdown::html_vignette:
+    toc: true
+vignette: >
+  %\VignetteIndexEntry{Theory: the logical model of minority representation}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
+library(logical)
+```
+
+## What is the logical model of minority representation?
+
+The logical model formalizes a simple claim: minority representation requires a
+minority candidate to emerge and to win. Whether that occurs reflects both the
+district's prior racial electoral environment and the minority group's share of
+the electorate. The model combines those quantities to produce a district-level
+probability of minority candidate emergence and electoral success.
+
+The package calculates
+
+\[
+\Pr(\text{minority candidate emerges and wins}) =
+\Phi\left(\sqrt{MC} - 50\right),
+\]
+
+where \(\Phi\) is the standard normal cumulative distribution function, `M` is
+the adjusted racial margin of victory, and `C` is the minority share of the
+electorate. Both `M` and `C` are expressed from 0 to 100.
+
+## The adjusted racial margin of victory (`M`)
+
+`M` summarizes the electoral environment from the vote shares of the top
+minority and White candidates in a previous election. If those vote shares are
+`Vm` and `Vw`, respectively, then
+
+\[
+M = \frac{V_m - V_w}{2} + 50.
+\]
+
+Larger values indicate a more favorable prior environment for the minority
+candidate. Use `comp_M()` when the relevant vote shares are observed, or
+`sim_M()` when constructing a prospective scenario from voting assumptions.
+
+## Minority electorate share (`C`) and turnout
+
+`C` is the minority percentage of the electorate. If the available value is a
+population or voting-age-population percentage and minority and White turnout
+rates differ, use `gap = c(minority_turnout, white_turnout)`. Each turnout rate
+is a proportion from 0 to 1. `minorep()` and `sim_redistrict()` apply the turnout
+adjustment before calculating their predictions.
+
+## Interpreting a prediction
+
+The output is a model-based probability, conditional on the inputs and
+assumptions supplied. It is not a deterministic forecast and should be read with
+the model's scope in mind. The published article evaluates the model with
+Louisiana mayoral elections and state legislative elections; those results do
+not establish a universal accuracy guarantee for other places or future plans.
+
+The application vignettes show how to choose inputs, calculate predictions, and
+use simulations and plots to compare scenarios.
+
+## Reference
+
+> Atsusaka, Yuki. 2021. “A Logical Model for Predicting Minority
+> Representation: Application to Redistricting and Voting Rights Cases.”
+> *American Political Science Review* 115 (4): 1210–1225.
+> <https://doi.org/10.1017/S000305542100054X>

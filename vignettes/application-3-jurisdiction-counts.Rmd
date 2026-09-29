@@ -1,0 +1,48 @@
+---
+title: "Application 3: jurisdiction-level counts"
+author: "Yuki Atsusaka and Kolbe A. Dumas"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Application 3: jurisdiction-level counts}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
+library(logical)
+```
+
+`n_minorep()` converts district-level probabilities into simulated counts of
+minority officeholders across a jurisdiction. It makes independent Bernoulli
+draws for each district in every simulation.
+
+```{r jurisdiction-counts}
+district_M <- c(50, 40, 40, 35, 70, 85)
+district_C <- c(50, 40, 60, 30, 50, 80)
+district_prediction <- minorep(M = district_M, C = district_C)
+
+count_draws <- n_minorep(
+  model_pred = district_prediction,
+  n_sim = 1000,
+  seed = 2026
+)
+summary(count_draws)
+```
+
+`n_sim` controls the number of returned draws. Supplying `seed` makes the result
+reproducible without changing the caller's random-number state.
+
+## Inspect the simulation distribution
+
+```{r count-histogram, fig.width = 7, fig.height = 4}
+hist(
+  count_draws,
+  xlab = "Simulated number of minority officeholders",
+  main = ""
+)
+```
+
+The distribution represents uncertainty implied by the supplied district-level
+probabilities. It should be interpreted alongside the assumptions used to
+construct those probabilities.
