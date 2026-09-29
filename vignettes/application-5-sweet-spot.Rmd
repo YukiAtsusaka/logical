@@ -1,0 +1,39 @@
+---
+title: "Application 5: finding a scenario's sweet spot"
+author: "Yuki Atsusaka and Kolbe A. Dumas"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Application 5: finding a scenario's sweet spot}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
+library(logical)
+```
+
+The sweet spot is the first minority electorate percentage at which a simulated
+scenario reaches a chosen probability threshold. Use `plot_sweetspot()` to
+display it alongside a district of interest.
+
+```{r sweet-spot, fig.width = 7, fig.height = 5}
+plan <- sim_redistrict(coethnic = 0.9, crossover = 0.2)
+
+plot_sweetspot(
+  plan = plan,
+  threshold = 0.8,
+  range = c(30, 70),
+  C.prime = 70
+)
+```
+
+`threshold` is a probability from 0 to 1. `C.prime` marks the minority
+electorate percentage for a district of interest and must be within the plotted
+`range`. If it is below the sweet spot, the plot represents a shortfall from the
+chosen threshold; if it is above, it represents a surplus. Omitting `C.prime`
+places it at the calculated sweet spot.
+
+The sweet spot is conditional on the plan and the voting assumptions supplied to
+`sim_redistrict()`. It is therefore a comparison tool, rather than a universal
+electoral threshold.

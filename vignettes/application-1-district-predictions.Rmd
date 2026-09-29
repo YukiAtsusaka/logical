@@ -1,0 +1,48 @@
+---
+title: "Application 1: district-level predictions"
+author: "Yuki Atsusaka and Kolbe A. Dumas"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Application 1: district-level predictions}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
+library(logical)
+```
+
+Use `minorep()` when the adjusted racial margin of victory (`M`) and minority
+electorate share (`C`) are known for one or more districts. Both are percentages
+from 0 to 100.
+
+```{r district-predictions}
+M <- c(20, 50, 30)
+C <- c(40, 70, 85)
+
+prediction <- minorep(M = M, C = C)
+round(prediction, digits = 4)
+```
+
+The result contains one probability per district. `minorep()` returns
+full-precision values, so retain `prediction` rather than its rounded display for
+later analysis.
+
+## Adjusting for turnout differences
+
+If the minority and White turnout rates are 0.5 and 0.6, respectively, provide
+them in that order with `gap`. Rates are proportions, not percentages.
+
+```{r turnout-adjustment}
+prediction_with_gap <- minorep(
+  M = M,
+  C = C,
+  gap = c(0.5, 0.6)
+)
+round(prediction_with_gap, digits = 4)
+```
+
+The adjustment changes the effective minority share of the electorate before the
+model calculates the probability. Use turnout rates that match the election or
+scenario under study.

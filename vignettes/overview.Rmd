@@ -1,0 +1,75 @@
+---
+title: "Overview of logical"
+author: "Yuki Atsusaka and Kolbe A. Dumas"
+output:
+  rmarkdown::html_vignette:
+    toc: true
+vignette: >
+  %\VignetteIndexEntry{Overview of logical}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
+library(logical)
+```
+
+`logical` produces quantitative predictions from the logical model of minority
+representation developed in Atsusaka (2021). The model describes the probability
+that a minority candidate emerges and wins in a district. It is a tool for
+examining observed elections and explicit scenarios; the article's validation
+results describe its evaluated samples, not a guaranteed accuracy rate for every
+new election or district plan.
+
+## What are logical models?
+
+A logical model begins with a transparent account of the conditions that make an
+outcome possible. Here, candidate emergence and electoral success depend on two
+district-level quantities: the electoral environment facing a minority candidate
+and the minority share of the electorate. The package turns those quantities and
+clearly stated assumptions into probabilities, simulations, and visual
+comparisons. It does not replace substantive knowledge about local candidates,
+institutions, or elections.
+
+The core inputs are:
+
+- `M`, the adjusted racial margin of victory based on a previous election, on a
+  0–100 scale;
+- `C`, the minority share of the electorate, on a 0–100 scale;
+- optional turnout rates, coethnic voting, and White crossover voting, each on a
+  0–1 scale.
+
+## The vignette series
+
+The next vignette, [Theory](theory.html), explains the logical model and its
+quantities. The five application vignettes then demonstrate how to:
+
+1. make district-level predictions;
+2. calculate or simulate `M`;
+3. simulate jurisdiction-level counts;
+4. compare redistricting scenarios; and
+5. find a scenario's sweet spot.
+
+The package also includes the Louisiana mayoral and state legislative datasets
+used to evaluate the model. Load `louisiana` or `state_legislative` with
+`data()` and consult `?louisiana` or `?state_legislative` for their codebooks.
+
+## A first prediction
+
+For a district with `M = 50` and `C = 70`, calculate the probability of minority
+candidate emergence and electoral success as follows:
+
+```{r first-prediction}
+minorep(M = 50, C = 70)
+```
+
+`minorep()` returns a full-precision probability. Round it only when presenting
+the result in a table, figure, or narrative.
+
+## Reference
+
+> Atsusaka, Yuki. 2021. “A Logical Model for Predicting Minority
+> Representation: Application to Redistricting and Voting Rights Cases.”
+> *American Political Science Review* 115 (4): 1210–1225.
+> <https://doi.org/10.1017/S000305542100054X>
