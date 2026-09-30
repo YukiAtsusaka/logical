@@ -20,11 +20,14 @@
 
 comp_M <- function(Vm, Vw){
 
-if( (Vm+Vw)>100 ){
-print("Some vote shares sum up to more than 100. \n Please check your input vectors.")
-}else{
-out <- (1/2)*(Vm - Vw) + 50 # (Adjusted) Racial Margin of Victory
-}  
+if (any((Vm + Vw) > 100)) {
+  warning(
+    "Some vote shares sum up to more than 100. Please check your input vectors.",
+    call. = FALSE
+  )
+}
+
+out <- (1 / 2) * (Vm - Vw) + 50 # (Adjusted) Racial Margin of Victory
 
 return(out)
 }
