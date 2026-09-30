@@ -1,23 +1,26 @@
 # logical: Computing and Visualizing Quantitative Predictions of Logical Models
 
-**This R package is for computing and visualizing the quantitative predictions
-of a logical model of minority representation.** This quantitatively predictive
-logical model was developed in Atsusaka (2021), [“A Logical Model for Predicting
-Minority Representation: Application to Redistricting and Voting Rights
-Cases”](https://doi.org/10.1017/S000305542100054X), *American Political Science
-Review* 115(4): 1210–1225.
 
-For quantitatively predictive logical models more generally, please refer to:
+[![license](https://img.shields.io/badge/license-GPL--3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html) <img src="man/figures/pexels-mathias-pr-reding-4394233.jpg" align="right" height="200"/>
 
-- Taagepera, Rein. 2007. [*Predicting Party Sizes: The Logic of Simple
-  Electoral Systems*](https://books.google.com/books?id=T_YTDAAAQBAJ&printsec=frontcover&dq=rein+taagepera#v=onepage&q=rein%20taagepera&f=false).
-  Oxford University Press.
-- Taagepera, Rein. 2008. [*Making Social Sciences More Scientific: The Need for
-  Predictive Models*](https://books.google.com/books?id=l6tiJLcVZ8AC&printsec=frontcover&dq=rein+taagepera#v=onepage&q=rein%20taagepera&f=false).
-  Oxford University Press.
-- Shugart, Matthew S., and Rein Taagepera. 2017. [*Votes from Seats: Logical
-  Models of Electoral Systems*](https://books.google.com/books?id=0S42DwAAQBAJ&printsec=frontcover&dq=rein+taagepera#v=onepage&q=rein%20taagepera&f=false).
-  Cambridge University Press.
+**logical** is open-source software for computing and visualizing the quantitative predictions of a logical model of minority representation. The logical model is a parsimonious mathematical model for explaining the emergence and electoral victory of minority candidates at the district level. Theoretically, it assumes that minority candidates strategically decide whether to run for office depending on the likely probability of winning in a given district. Empirically, the model predicts the probability that a district has minority candidacy as well as electoral victory just with two variables (predictors).
+
+Practically, the logical model can be a useful tool for answering common questions regarding race and representation, redistricting, and voting rights. In contrast to other empirical models that require data to answer such questions, the logical model seeks to provide quantitative predictions based on theory.
+
+For theory and existing applications, see
+
+- Atsusaka (2021) ["A Logical Model for Predicting Minority Representation: Application to Redistricting and Voting Rights Cases"](https://doi.org/10.1017/S000305542100054X) *American Political Science Review* 115 (4), 1210-1225.
+- Hankinson, Loffredo, & Magazinnik (2026). ["Assessing District Elections as a Remedy in State Voting Rights Acts"](https://papers.ssrn.com/sol3/Delivery.cfm?abstractid=7154498). Available at SSRN 7154498.
+
+### What Are Logical Models?
+
+Before introducing *this* logical model, let us briefly explain what logical models are in the first place. **Quantitatively predictive logical models** (or logical models in short) are mathematical models that are designed to explain and predict political outcomes. Logical models are constructed based on the logical bounds of target outcomes (e.g., minimum and maximum possible values) and generate quantitative predictions about them. This methodological approach was developed by Rein Taagepera and Matthew Shugart in the literature of electoral systems, though it can be applied to any outcomes in social science.
+
+To learn more about this approach, see
+
+- Taagepera (2007). [*Predicting Party Sizes: The Logic of Simple Electoral Systems*](https://books.google.com/books?id=T_YTDAAAQBAJ&printsec=frontcover&dq=rein+taagepera&hl=ja&sa=X&ved=2ahUKEwjslpOhndnwAhURac0KHdMWD0AQ6AEwBHoECAUQAg#v=onepage&q=rein%20taagepera&f=false).
+- Taagepera (2008). [*Making Social Sciences More Scientific: The Need for Predictive Models*](https://books.google.com/books?id=l6tiJLcVZ8AC&printsec=frontcover&dq=rein+taagepera&hl=ja&sa=X&ved=2ahUKEwjslpOhndnwAhURac0KHdMWD0AQ6AEwBnoECAcQAg#v=onepage&q=rein%20taagepera&f=false).
+- Shugart & Taagepera (2017). [*Votes from Seats: Logical Models of Electoral Systems*](https://books.google.com/books?id=0S42DwAAQBAJ&printsec=frontcover&dq=rein+taagepera&hl=ja&sa=X&ved=2ahUKEwjslpOhndnwAhURac0KHdMWD0AQ6AEwCHoECAsQAg#v=onepage&q=rein%20taagepera&f=false).
 
 ## What is the Logical Model of Minority Representation?
 
