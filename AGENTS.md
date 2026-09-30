@@ -1,7 +1,7 @@
 # logical: CRAN Submission Plan
 
 **Created**: 2026-09-08
-**Last Updated**: 2026-09-15
+**Last Updated**: 2026-09-30
 
 ## Project Overview
 
@@ -33,6 +33,13 @@ A Florida 2018-to-2020 congressional worked example is now proposed for Yuki's
 review. No Florida data, code, generated documentation, or vignette changes have
 been added. The proposal, source plan, validation gates, and author decisions are
 recorded in `YUKI_REVIEW.md`.
+
+Yuki has since added seven vignette sources and pkgdown configuration to this
+branch at `96a6da5`. The September 30 README update incorporates his expanded
+model discussion from `master` at `2baf1a4`, adds four compact motivating
+examples from Online Appendix C, and links application questions and functions
+to the published vignette pages. The previously reported package-check results
+predate these vignettes; final release checks remain open.
 
 **Owner labels:** `YA` = Yuki, `KD` = Kolbe, `Both` = joint decision or review,
 `?` = unassigned. **Status labels:** `☒` = complete, `◐` = partially complete,
@@ -377,6 +384,23 @@ The package is ready to submit only when all of the following are true:
 - [x] Yuki's maintainer address is current and ready for CRAN confirmation.
 
 ## Session History
+
+### 2026-09-30
+
+- Synced `codex/cran-readiness` to Yuki's remote merge at `96a6da5` and brought
+  over the updated README based on his current `master` at `2baf1a4`. Preserved
+  this branch's package code, tests, datasets, and all seven vignette sources.
+- Added summaries of Appendix C.1-C.4, a question-to-function table, direct
+  links to separate vignette pages, and a link to the publisher's supplementary
+  PDF. Verified the attached appendix using text extraction and rendered pages.
+- Review item for Yuki: C.4 lists `M = c(30, 40, 50, 65, 70, 30)` but reports
+  a geometric mean of 45.8. Those inputs give 44.89665 and a full-precision
+  at-large probability of approximately 0.00006672 rather than 0.0004. The
+  README retains the count comparison without copying either disputed value.
+- Verified the numerical summaries, rendered README structure, and all seven
+  article links plus the supplementary PDF. Only README and this log are in
+  the documentation commit. KD authorized publication to `codex/cran-readiness`;
+  `master` and the live website are outside this push.
 
 ### 2026-09-08
 
