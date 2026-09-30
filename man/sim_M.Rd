@@ -20,7 +20,7 @@ A vector of the racial margin of victories based on substantive knowledge on the
 \code{sim_M} simulates the values of the (adjusted) racial margin of victory based on the expected level of coethnic and crossover voting
 }
 \examples{
-Simulating M from substantive knowledge
+# Simulating M from substantive knowledge
 C_hypothetical <- c(40,50,60)  # Hypothetical percentages of \% minority voters
 bloc <- 1        
 # Proportion of minority voters who vote for a single (hypothetical) minority candidate

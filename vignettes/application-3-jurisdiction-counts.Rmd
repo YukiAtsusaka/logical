@@ -22,16 +22,13 @@ district_M <- c(50, 40, 40, 35, 70, 85)
 district_C <- c(50, 40, 60, 30, 50, 80)
 district_prediction <- minorep(M = district_M, C = district_C)
 
-count_draws <- n_minorep(
-  model_pred = district_prediction,
-  n_sim = 1000,
-  seed = 2026
-)
+set.seed(2026)
+count_draws <- n_minorep(model_pred = district_prediction)
 summary(count_draws)
 ```
 
-`n_sim` controls the number of returned draws. Supplying `seed` makes the result
-reproducible without changing the caller's random-number state.
+`n_minorep()` returns 1,000 simulation draws. Setting the random-number seed
+makes the illustrative result reproducible.
 
 ## Inspect the simulation distribution
 

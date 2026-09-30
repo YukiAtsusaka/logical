@@ -7,7 +7,7 @@
 #' @param crossover a scaler denoting the proportion of White voters who would vote for the minority candidate in biracial elections with a single minority and White candidates.
 #' @return A vector of the racial margin of victories based on substantive knowledge on the levels of minority bloc and crossover voting
 #' @examples
-#' Simulating M from substantive knowledge
+#' # Simulating M from substantive knowledge
 #' C_hypothetical <- c(40,50,60)  # Hypothetical percentages of % minority voters
 #' bloc <- 1        
 #' # Proportion of minority voters who vote for a single (hypothetical) minority candidate
