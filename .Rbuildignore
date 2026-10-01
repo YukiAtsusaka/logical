@@ -1,0 +1,14 @@
+^AGENTS\.md$
+^YUKI_REVIEW\.md$
+^AGENTS\.html$
+^README\.html$
+^YUKI_REVIEW\.html$
+^logical\.Rproj$
+^\.Rproj\.user$
+^\.github$
+^data-raw$
+^cran-comments\.md$
+^CRAN-SUBMISSION$
+^.*\.Rcheck$
+^logical_.*\.tar\.gz$
+^Rplots\.pdf$

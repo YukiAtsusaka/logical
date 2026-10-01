@@ -2,3 +2,9 @@
 .Rhistory
 .RData
 .Ruserdata
+*.Rcheck/
+*.tar.gz
+Rplots.pdf
+/AGENTS.html
+/README.html
+/YUKI_REVIEW.html

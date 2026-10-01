@@ -61,25 +61,38 @@ what district racial composition implies under perfect racially polarized voting
 
 ## Key applications
 
-- Estimate district-level probabilities of minority candidate emergence and
-  electoral success.
-- Compute or simulate the adjusted racial margin of victory from election data
-  and substantive voting assumptions.
-- Simulate jurisdiction-level counts of minority officeholders.
-- Compare redistricting scenarios and identify a scenario's sweet spot.
+Choose the question you want to answer. Each application links to a separate
+vignette with runnable code and explanations of the inputs and output.
 
-The vignette series provides the model's conceptual and mathematical background,
-followed by focused, runnable applications:
+| Question | Functions | Worked guide |
+|---|---|---|
+| What is the predicted chance that a minority candidate runs or wins in a district, including an influence district? | `minorep()`; `gap` adjusts for turnout differences | [District-level predictions](https://logical-model.github.io/articles/application-1-district-predictions.html) |
+| How do I calculate past minority-candidate performance or simulate it from voting assumptions? | `comp_M()`, `sim_M()` | [Racial margin of victory](https://logical-model.github.io/articles/application-2-racial-margin.html) |
+| How many minority officeholders might be elected across a city, county, or state? | `minorep()`, `n_minorep()` | [Jurisdiction-level counts](https://logical-model.github.io/articles/application-3-jurisdiction-counts.html) |
+| How does changing a district's minority share change its predicted probability of representation? | `sim_redistrict()`, `plot_redistrict()` | [Comparing redistricting scenarios](https://logical-model.github.io/articles/application-4-redistricting.html) |
+| What minority share reaches a chosen probability, and how does a proposed district compare with that sweet spot? | `sim_redistrict()`, `plot_sweetspot()` | [Finding the sweet spot](https://logical-model.github.io/articles/application-5-sweet-spot.html) |
 
-1. `vignette("overview", package = "logical")`
-2. `vignette("theory", package = "logical")`
-3. `vignette("application-1-district-predictions", package = "logical")`
-4. `vignette("application-2-racial-margin", package = "logical")`
-5. `vignette("application-3-jurisdiction-counts", package = "logical")`
-6. `vignette("application-4-redistricting", package = "logical")`
-7. `vignette("application-5-sweet-spot", package = "logical")`
+Start with the [overview](https://logical-model.github.io/articles/overview.html)
+and [theory guide](https://logical-model.github.io/articles/theory.html) for the
+model's conceptual and mathematical background. To open an installed vignette in
+R, use its name, for example:
+
+```r
+vignette("application-1-district-predictions", package = "logical")
+```
 
 Online documentation: <https://logical-model.github.io/>.
+
+## Examples from Online Appendix C
+
+The motivating examples from
+[Online Appendix C of Atsusaka (2021)](https://static.cambridge.org/content/id/urn:cambridge.org:id:article:S000305542100054X/resource/name/S000305542100054Xsup001.pdf#page=18)
+are discussed alongside runnable code in the application guides:
+
+- C.1, influence districts and turnout: [Application 1](https://logical-model.github.io/articles/application-1-district-predictions.html).
+- C.2, comparing proposed district compositions: [Application 4](https://logical-model.github.io/articles/application-4-redistricting.html).
+- C.3, a sufficient minority share: [Application 5](https://logical-model.github.io/articles/application-5-sweet-spot.html).
+- C.4, at-large versus district elections: [Application 3](https://logical-model.github.io/articles/application-3-jurisdiction-counts.html).
 
 ## Installation
 

@@ -13,6 +13,37 @@ knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
 library(logical)
 ```
 
+## Motivating example: at-large versus district elections (Online Appendix C.4)
+
+[Online Appendix C.4 of Atsusaka (2021)](https://static.cambridge.org/content/id/urn:cambridge.org:id:article:S000305542100054X/resource/name/S000305542100054Xsup001.pdf#page=21)
+considers a jurisdiction with six seats and a jurisdiction-wide minority share
+of 47.5%. It compares an at-large arrangement with six single-member districts
+whose minority shares are `c(50, 40, 60, 30, 50, 80)` and whose adjusted racial
+margins are `c(30, 40, 50, 65, 70, 30)`. Under this hypothetical comparison,
+the simulations concentrate on zero minority officeholders at large and two
+or three under district elections.
+
+`minorep()` supplies the seat-level probabilities and `n_minorep()` converts
+them into a distribution of counts, using independent draws across seats.
+The district component can be reproduced directly from the appendix inputs:
+
+```{r appendix-c4-district-counts}
+appendix_M <- c(30, 40, 50, 65, 70, 30)
+appendix_C <- c(50, 40, 60, 30, 50, 80)
+appendix_prediction <- minorep(M = appendix_M, C = appendix_C)
+appendix_counts <- n_minorep(
+  model_pred = appendix_prediction, n_sim = 1000, seed = 2026
+)
+prop.table(table(appendix_counts))
+```
+
+The electoral-rule comparison is conditional on the voting assumptions and
+the independence of seat outcomes. It does not by itself establish legal
+vote dilution. The example below illustrates the same workflow with a different
+set of district margins.
+
+## Simulating jurisdiction totals
+
 `n_minorep()` converts district-level probabilities into simulated counts of
 minority officeholders across a jurisdiction. It makes independent Bernoulli
 draws for each district in every simulation.
@@ -22,13 +53,16 @@ district_M <- c(50, 40, 40, 35, 70, 85)
 district_C <- c(50, 40, 60, 30, 50, 80)
 district_prediction <- minorep(M = district_M, C = district_C)
 
-set.seed(2026)
-count_draws <- n_minorep(model_pred = district_prediction)
+count_draws <- n_minorep(
+  model_pred = district_prediction,
+  n_sim = 1000,
+  seed = 2026
+)
 summary(count_draws)
 ```
 
-`n_minorep()` returns 1,000 simulation draws. Setting the random-number seed
-makes the illustrative result reproducible.
+`n_sim` controls the number of returned draws. Supplying `seed` makes the result
+reproducible without changing the caller's random-number state.
 
 ## Inspect the simulation distribution
 

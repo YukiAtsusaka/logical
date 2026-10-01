@@ -2,29 +2,38 @@
 % Please edit documentation in R/comp_M.R
 \name{comp_M}
 \alias{comp_M}
-\title{comp_M}
+\title{Compute the Adjusted Racial Margin of Victory}
 \usage{
 comp_M(Vm, Vw)
 }
 \arguments{
-\item{Vm}{a vector of the vote share in percent for the top minority candidate}
+\item{Vm}{Numeric vector containing the top minority candidate's vote share,
+expressed from 0 to 100.}
 
-\item{Vw}{a vector of the vote share in percent for the top White candidate}
+\item{Vw}{Numeric vector containing the top White candidate's vote share,
+expressed from 0 to 100.}
 }
 \value{
-A vector of the racial margin of victories based on observed vote shares
+A numeric vector of adjusted racial margins of victory. Inputs of
+  length 1 are expanded to the length of the other input.
 }
 \description{
-\code{comp_M} computes the racial margin of victory given the vote shares for the top minority and White candidates
+Computes the adjusted racial margin of victory from the vote shares of the
+top minority and White candidates.
 }
 \examples{
-top_minority <- c(18, 40, 85, 20) # Top minority candidate's vote share in four districts
-top_white <- c(60, 40, 10, 34)    # Top white candidate's vote share in four districts
+top_minority <- c(18, 40, 85, 20)
+top_white <- c(60, 40, 10, 34)
 
-# Compute the (adjusted) racial margin of victor
 M_vec_obs <- comp_M(
   Vm = top_minority,
   Vw = top_white
 )
 minorep(M = M_vec_obs, C = c(50, 45, 65, 35))
+}
+\references{
+Atsusaka, Y. (2021). A Logical Model for Predicting Minority
+  Representation: Application to Redistricting and Voting Rights Cases.
+  \emph{American Political Science Review}, 115(4), 1210-1225.
+  \doi{10.1017/S000305542100054X}
 }
