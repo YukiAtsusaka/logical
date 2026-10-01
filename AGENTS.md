@@ -1,7 +1,7 @@
 # logical: CRAN Submission Plan
 
 **Created**: 2026-09-08
-**Last Updated**: 2026-09-30
+**Last Updated**: 2026-10-01
 
 ## Project Overview
 
@@ -39,7 +39,10 @@ branch at `96a6da5`. The September 30 README update incorporates his expanded
 model discussion from `master` at `2baf1a4`, adds four compact motivating
 examples from Online Appendix C, and links application questions and functions
 to the published vignette pages. The previously reported package-check results
-predate these vignettes; final release checks remain open.
+predate these vignettes; final release checks remain open. At KD's October 1
+request relaying Yuki's feedback, the Appendix C discussions now live in their
+matching application vignettes, with short README pointers. This request
+authorizes these focused vignette edits despite the earlier ownership boundary.
 
 **Owner labels:** `YA` = Yuki, `KD` = Kolbe, `Both` = joint decision or review,
 `?` = unassigned. **Status labels:** `☒` = complete, `◐` = partially complete,
@@ -384,6 +387,28 @@ The package is ready to submit only when all of the following are true:
 - [x] Yuki's maintainer address is current and ready for CRAN confirmation.
 
 ## Session History
+
+### 2026-10-01
+
+- Moved C.1 to Application 1, C.2 to Application 4, C.3 to Application 5,
+  and C.4 to Application 3. Retained the existing vignette instructions and
+  added runnable reproductions of the undisputed numerical examples. Replaced
+  the full README discussions with concise links to the guides.
+- Retained the C.4 review flag below; the vignette reproduces district counts
+  without copying the disputed at-large geometric mean or probability.
+- All four modified vignettes rendered successfully with their code executed
+  against the local package sources. `git diff --check` passed. These focused
+  documentation checks do not replace a full source-package release check.
+- Fetched both remote branches. `master` remains at `2baf1a4` and readiness
+  at `676cfc5`, with seven and nine unique commits, respectively. A read-only
+  merge preview identified conflicts in `.github/workflows/pkgdown.yaml`,
+  `R/comp_M.R`, `R/sim_M.R`, `README.md`, `man/sim_M.Rd`,
+  `vignettes/application-3-jurisdiction-counts.Rmd`, and `vignettes/overview.Rmd`.
+  Recommend a reviewed pull request into `master`, preserving Yuki's newer
+  website workflow and reviewing model behavior before final release checks.
+- KD subsequently authorized committing and pushing these six documentation
+  files to `codex/cran-readiness`. No merge into `master` or CRAN submission
+  is included in that authorization.
 
 ### 2026-09-30
 

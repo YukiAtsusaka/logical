@@ -83,63 +83,16 @@ vignette("application-1-district-predictions", package = "logical")
 
 Online documentation: <https://logical-model.github.io/>.
 
-## Motivating examples from Online Appendix C
+## Examples from Online Appendix C
 
-The following examples summarize applications in
-[Online Appendix C of Atsusaka (2021)](https://static.cambridge.org/content/id/urn:cambridge.org:id:article:S000305542100054X/resource/name/S000305542100054Xsup001.pdf#page=18).
-They illustrate how the question, voting assumptions, and turnout rates shape a
-model prediction. All probabilities are conditional on those assumptions;
-comparisons of district plans do not by themselves establish legal vote dilution.
+The motivating examples from
+[Online Appendix C of Atsusaka (2021)](https://static.cambridge.org/content/id/urn:cambridge.org:id:article:S000305542100054X/resource/name/S000305542100054Xsup001.pdf#page=18)
+are discussed alongside runnable code in the application guides:
 
-### Can an influence district elect a minority candidate? (C.1)
-
-Louisiana redistricting disputes raised the question of whether districts with
-about 20% minority voters could elect minority candidates under strongly
-polarized voting. The appendix's model scenario predicts a probability close to
-zero. A second example considers a district with 40% minority voters. Assuming
-all minority voters support the minority candidate and 30% of White voters do
-so, `sim_M()` gives `M = 58`. Holding that margin fixed, `minorep()` predicts
-about a 3.3% chance with equal turnout, about 91.1% when minority turnout is 50%
-and White turnout is 40%, and almost zero when those turnout rates are reversed.
-The same district composition can therefore produce very different predictions.
-See the [district-level guide](https://logical-model.github.io/articles/application-1-district-predictions.html)
-for the `gap` argument and the [racial-margin guide](https://logical-model.github.io/articles/application-2-racial-margin.html)
-for constructing `M`.
-
-### Would increasing the minority share improve the prediction? (C.2)
-
-The appendix compares two proposed Louisiana districts with minority shares of
-59.2% and 63.2%. It assumes all minority voters support the minority candidate,
-no White voters do so, and minority and White turnout rates are 50% and 60%,
-respectively. Under these assumptions, both plans yield probabilities very close
-to one, so the additional four percentage points make little difference to the
-prediction. `sim_redistrict()` and `plot_redistrict()` let users examine the
-composition range where a change would matter under their own assumptions.
-See the [redistricting guide](https://logical-model.github.io/articles/application-4-redistricting.html).
-
-### What counts as a sufficient minority share? (C.3)
-
-A 50% chance of electing a minority candidate and near certainty are different
-targets. The appendix assumes all minority voters support the minority candidate,
-30% of White voters do so, and minority and White turnout rates are 40% and 50%,
-respectively. On the package's 0.1-point grid, the prediction first reaches 50%
-at a minority share of 47.6%; at 57%, it is approximately 100% at numerical
-precision. This is conditional near certainty, rather than an electoral
-guarantee. `plot_sweetspot()` identifies the share needed for a chosen
-`threshold`; `C.prime` marks the district being compared with that threshold.
-See the [sweet-spot guide](https://logical-model.github.io/articles/application-5-sweet-spot.html).
-
-### How might electoral rules change the number of minority officeholders? (C.4)
-
-The appendix considers a jurisdiction with six seats and a jurisdiction-wide
-minority share of 47.5%. It compares an at-large arrangement with six single-member
-districts whose minority shares are `c(50, 40, 60, 30, 50, 80)` and whose adjusted
-racial margins are `c(30, 40, 50, 65, 70, 30)`. Under this hypothetical comparison,
-the simulations concentrate on zero minority officeholders at large and two or
-three under district elections. `minorep()` supplies the seat-level probabilities
-and `n_minorep()` converts them into a distribution of counts, using independent
-draws across seats. See the [jurisdiction-level guide](https://logical-model.github.io/articles/application-3-jurisdiction-counts.html)
-for the simulation workflow.
+- C.1, influence districts and turnout: [Application 1](https://logical-model.github.io/articles/application-1-district-predictions.html).
+- C.2, comparing proposed district compositions: [Application 4](https://logical-model.github.io/articles/application-4-redistricting.html).
+- C.3, a sufficient minority share: [Application 5](https://logical-model.github.io/articles/application-5-sweet-spot.html).
+- C.4, at-large versus district elections: [Application 3](https://logical-model.github.io/articles/application-3-jurisdiction-counts.html).
 
 ## Installation
 
